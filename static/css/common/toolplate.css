@@ -1,0 +1,9 @@
+:root {
+    --base-font-family: 'Plain', sans-serif;
+    --white-color: #ffffff;
+}
+
+body {
+    font-family: var(--base-font-family);
+    background-color: var(--white-color);
+}
