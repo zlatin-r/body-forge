@@ -1,6 +1,8 @@
 :root {
     --base-font-family: 'Plain', sans-serif;
+
     --white-color: #ffffff;
+    --gray-color: #909090;
 }
 
 body {

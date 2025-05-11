@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 USER_APPS = [
     'body_forge.common',
+    'body_forge.accounts',
 ]
 
 INSTALLED_APPS = [
