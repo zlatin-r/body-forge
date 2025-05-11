@@ -1,0 +1,25 @@
+/* Reset margins, paddings, and borders */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Remove list styles (bullets/numbers) */
+ul, ol {
+    list-style: none;
+}
+
+/* Remove default hyperlink styling */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Remove blue highlight on buttons in some browsers */
+button {
+    background: none;
+    border: none;
+    outline: none;
+}
