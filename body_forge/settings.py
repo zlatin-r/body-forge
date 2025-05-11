@@ -28,13 +28,17 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+USER_APPS = [
+    'body_forge.common',
+]
+
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+] + USER_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,9 +76,9 @@ WSGI_APPLICATION = 'body_forge.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mydatabase",
-        "USER": "mydatabaseuser",
-        "PASSWORD": "mypassword",
+        "NAME": "body_forge_v3.0",
+        "USER": "postgres",
+        "PASSWORD": "password",
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
