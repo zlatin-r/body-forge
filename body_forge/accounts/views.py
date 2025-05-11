@@ -10,7 +10,7 @@ UserModel = get_user_model()
 class AppUserRegisterView(CreateView):
     model = UserModel
     form_class = AppUserCreationForm
-    template_name = "accounts/user-register-page.html"
+    template_name = "accounts/register-page.html"
     success_url = reverse_lazy("home-page")
 
     def form_valid(self, form):

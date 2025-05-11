@@ -22,4 +22,5 @@ from body_forge import common
 urlpatterns = [
     #    path('admin/', admin.site.urls),
     path('', include('body_forge.common.urls')),
+    path('accounts/', include('body_forge.accounts.urls')),
 ]

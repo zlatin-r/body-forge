@@ -34,8 +34,8 @@
                     <div class="buttons-container">
                         <a href="#" class="nav-btn">Home</a>
                         <a href="#" class="nav-btn">About</a>
-                        <a href="#" class="nav-btn">Contact Us</a>
-                        <a href="#" class="nav-btn">Login</a>
+                        <a href="{% url 'register-user' %}" class="nav-btn">Register</a>
+                        <a href="{% url 'login-user' %}" class="nav-btn">Login</a>
                     </div>
                 {% endif %}
 
