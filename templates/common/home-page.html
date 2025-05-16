@@ -2,45 +2,45 @@
 {% load static %}
 
 {% block content %}
+    <div class="hero-section">
+        <nav class="nav-bar">
+            <div class="container">
+                <a class="logo-link" href="{% url 'home' %}">LOGO</a>
 
-    <nav class="nav-bar">
-        <div class="container">
+                <div class="profile-menu-container">
+                    {% if user.is_authenticated %}
 
-            <a class="logo-link" href="{% url 'home' %}">LOGO</a>
-
-            <div class="profile-menu-container">
-                {% if user.is_authenticated %}
-
-                    <a href="#" class="profile-link">
-                        <img src="
+                        <a href="#" class="profile-link">
+                            <img src="
                         {% if user.profile.profile_picture %}
                             {{ user.profile.profile_picture.url }}
                         {% else %}
                             {% static 'images/profile_pic/default-profile-image2.jpeg' %}
                         {% endif %}"
-                             alt="{{ user.profile.username|default:user.email }}'s profile"
-                             class="profile-pic">
-                    </a>
+                                 alt="{{ user.profile.username|default:user.email }}'s profile"
+                                 class="profile-pic">
+                        </a>
 
-                    <div class="dropdown-content">
-                        <a href="{% url 'details' pk=user.pk %}">View Profile</a>
-                        <form method="post" class="dropdown-logout-form" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="logout-btn">Logout</button>
-                        </form>
-                    </div>
+                        <div class="dropdown-content">
+                            <a href="{% url 'details' pk=user.pk %}">View Profile</a>
+                            <form method="post" class="dropdown-logout-form" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-btn">Logout</button>
+                            </form>
+                        </div>
 
-                {% else %}
-                    <div class="buttons-container">
-                        <a href="#" class="nav-btn">Home</a>
-                        <a href="#" class="nav-btn">About</a>
-                        <a href="{% url 'register-user' %}" class="nav-btn">Register</a>
-                        <a href="{% url 'login-user' %}" class="nav-btn">Login</a>
-                    </div>
-                {% endif %}
-
+                    {% else %}
+                        <div class="buttons-container">
+                            <a href="#" class="nav-btn">Home</a>
+                            <a href="#" class="nav-btn">About</a>
+                            <a href="{% url 'register-user' %}" class="nav-btn">Register</a>
+                            <a href="{% url 'login-user' %}" class="nav-btn">Login</a>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+
+    </div>
 
 {% endblock %}
