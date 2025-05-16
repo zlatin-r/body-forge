@@ -4,15 +4,7 @@
 {% block content %}
     <div class="hero-section position-relative">
 
-        <nav class="navbar navbar-dark position-absolute w-100">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="{% static '/images/gym.png' %}" alt="Logo" width="30" height="24"
-                         class="d-inline-block align-text-top">
-                    Body Forge
-                </a>
-            </div>
-        </nav>
+        {% include "common/navbar.html" %}
 
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner h-100">
@@ -42,7 +34,7 @@
             <h1 class="text-white display-3 fw-bold mb-4">TRANSFORM YOUR BODY</h1>
             <p class="text-white lead mb-5">Join our fitness community and achieve your goals with expert trainers</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="#" class="btn btn-primary btn-lg px-4 py-2">Get Started</a>
+                <a href="{% url 'login-user' %}" class="btn btn-primary btn-lg px-4 py-2">Get Started</a>
                 <a href="#" class="btn btn-outline-light btn-lg px-4 py-2">Learn More</a>
             </div>
         </div>
