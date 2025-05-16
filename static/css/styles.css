@@ -1,7 +1,8 @@
 @import "common/reset-styles.css";
-@import "common/toolplate.css";
 @import "common/home-page.css";
 @import "accounts/login-page.css";
+@import "accounts/register-page.css";
+
 
 
 
