@@ -4,11 +4,14 @@
 {% block content %}
     <div class="fullscreen-background-wrapper">
         <div class="login-container">
-            <h2 class="text-center mb-4">Create Your New Account</h2>
+            <h2 class="text-center mb-4">Register</h2>
             <form method="post">
                 {% csrf_token %}
                 {% if form.errors %}
                     <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
                         {% for field in form %}
                             {% if field.errors %}
                                 {% for error in field.errors %}
@@ -24,10 +27,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="id_password1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="id_password1" name="password" placeholder="Enter your password" required>
+                    {# FIX IS HERE: Change name="password" to name="password1" #}
+                    <input type="password" class="form-control" id="id_password1" name="password1" placeholder="Enter your password" required>
                 </div>
                 <div class="mb-3">
                     <label for="id_password2" class="form-label">Confirm Password</label>
+                    {# Ensure this name attribute is also correct #}
                     <input type="password" class="form-control" id="id_password2" name="password2" placeholder="Confirm your password" required>
                 </div>
                 <div class="d-grid">

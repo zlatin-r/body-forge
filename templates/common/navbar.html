@@ -1,11 +1,41 @@
 {% load static %}
 
 <nav class="navbar navbar-dark position-absolute w-100">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+    <div class="container-fluid d-flex justify-content-between align-items-center"> {# ADDED: d-flex, justify-content-between, align-items-center #}
+        <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static '/images/gym.png' %}" alt="Logo" width="30" height="24"
                  class="d-inline-block align-text-top">
             Body Forge
         </a>
+
+        <div class="profile-menu-container d-flex align-items-center"> {# ADDED: d-flex, align-items-center #}
+            {% if user.is_authenticated %}
+
+                <a href="#" class="profile-link">
+                    <img src="
+                            {% if user.profile.profile_picture %}
+                                {{ user.profile.profile_picture.url }}
+                            {% else %}
+                                {% static 'images/profile_pic/default-profile-image2.jpeg' %}
+                            {% endif %}"
+                         alt="{{ user.profile.username|default:user.email }}'s profile"
+                         class="profile-pic">
+                </a>
+
+                <div class="dropdown-content">
+                    <a href="{% url 'details' pk=user.pk %}">View Profile</a>
+                    <form method="post" class="dropdown-logout-form" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </div>
+
+            {% else %}
+                <div class="buttons-container d-flex"> {# ADDED: d-flex #}
+                    <a href="#" class="nav-btn me-3">About</a> {# ADDED: me-3 for spacing #}
+                    <a href="#" class="nav-btn">Contact Us</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 </nav>
