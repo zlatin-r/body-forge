@@ -14,7 +14,7 @@
        flex items and push them to opposite ends.
     */
     width: 100%; /* Ensure it takes full width */
-    padding: 0; /* Remove default container padding if desired, or keep for inner spacing */
+    padding: 1rem; /* Remove default container padding if desired, or keep for inner spacing */
 }
 
 
@@ -28,6 +28,8 @@
 }
 
 .navbar-brand img {
+    width: 50px;
+    height: 50px;
     margin-right: 8px; /* Space between logo and text */
     /* Remove color and background-color if they are making the image look weird */
     /* color: white; */
