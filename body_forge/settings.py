@@ -28,9 +28,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-USER_APPS = [
+PROJECT_APPS = [
     'body_forge.common',
     'body_forge.accounts',
+    'body_forge.workouts',
 ]
 
 INSTALLED_APPS = [
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-] + USER_APPS
+] + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
