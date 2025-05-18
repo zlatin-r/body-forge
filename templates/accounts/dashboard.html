@@ -3,18 +3,21 @@
 
 {% block content %}
     <div class="dashboard-background-wrapper">
+        {# This div remains fixed for the background #}
+    </div>
+
+    {# This new div will hold all your scrollable content #}
+    <div class="dashboard-main-content-area">
         <div class="dashboard-content-container">
-            <h2 class="text-center mb-4">Welcome, {{ user.email }}!</h2>
-            {# Or simply: <h2 class="text-center mb-4">Your Dashboard</h2> #}
+            <h2 class="text-center mb-4">Welcome, {{ user.email|default:"Fitness Enthusiast" }}!</h2>
 
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="card-section">
                         <h3>Quick Stats</h3>
-                        <p>Total Workouts: **{{ total_workouts|default:"0" }}**</p>
-                        <p>Last Workout: **{{ last_workout_date|default:"N/A" }}**</p>
-                        <p>Upcoming Plans: **{{ upcoming_plans|default:"None" }}**</p>
-                        {# Add more stats here like total time, calories burned (if tracked) #}
+                        <p>Total Workouts: <strong>{{ total_workouts|default:"0" }}</strong></p>
+                        <p>Last Workout: <strong>{{ last_workout_date|default:"N/A" }}</strong></p>
+                        <p>Upcoming Plans: <strong>{{ upcoming_plans|default:"None" }}</strong></p>
                     </div>
                 </div>
 
@@ -30,23 +33,21 @@
                 </div>
             </div>
 
-            <hr class="text-white-50 my-4"> {# A divider for visual separation #}
+            <hr class="text-white-50 my-4">
 
             <div class="previous-workouts">
                 <h3>Previous Workouts</h3>
-                {# This section will dynamically display past workouts. #}
-                {# You'll likely loop through a 'user_workouts' context variable here in Django. #}
-
-                {% if user_workouts %} {# Example: Assuming you pass a list of workouts as 'user_workouts' #}
+                {% if user_workouts %}
                     {% for workout in user_workouts %}
                         <div class="workout-card">
-                            <h4>{{ workout.name|default:"Unnamed Workout" }}</h4>
-                            <p><strong>Date:</strong> {{ workout.date|date:"F d, Y" }}</p>
-                            <p><strong>Duration:</strong> {{ workout.duration|default:"N/A" }}</p>
-                            <p><strong>Exercises:</strong> {{ workout.exercises_count|default:"0" }}</p>
-                            {# Add a link to view workout details if applicable #}
-                            <a href="#" class="btn btn-sm btn-outline-info mt-2">View Details</a>
-{#                            <a href="{% url 'workout-details' pk=workout.pk %}" class="btn btn-sm btn-outline-info mt-2">View Details</a>#}
+                            <div>
+                                <h4>{{ workout.name|default:"Unnamed Workout" }}</h4>
+                                <p><strong>Date:</strong> {{ workout.date|date:"F d, Y" }}</p>
+                                <p><strong>Duration:</strong> {{ workout.duration|default:"N/A" }}</p>
+                                <p><strong>Exercises:</strong> {{ workout.exercises_count|default:"0" }}</p>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-info">View Details</a>
+{#                            <a href="{% url 'workout-details' pk=workout.pk %}" class="btn btn-sm btn-outline-info">View Details</a>#}
                         </div>
                     {% empty %}
                         <p class="text-center">You haven't logged any workouts yet. Time to get started!</p>
@@ -55,9 +56,6 @@
                     <p class="text-center">No previous workouts found.</p>
                 {% endif %}
             </div>
-
-            {# You can add more dashboard sections here #}
-            {# <div class="card-section mt-5"><h3>My Goals</h3><p>Set and track your fitness goals.</p></div> #}
 
         </div>
     </div>
