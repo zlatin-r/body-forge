@@ -4,11 +4,12 @@ from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, DetailView
 
 from body_forge.accounts.forms import AppUserCreationForm
 
 UserModel = get_user_model()
+
 
 class AppUserRegisterView(CreateView):
     model = UserModel
@@ -24,6 +25,7 @@ class AppUserRegisterView(CreateView):
 
 class AppUserLoginView(LoginView):
     template_name = "accounts/login-page.html"
+
 
 class UserDashboardView(LoginRequiredMixin, TemplateView):
     template_name = "accounts/dashboard.html"
@@ -55,3 +57,8 @@ class UserDashboardView(LoginRequiredMixin, TemplateView):
             {'name': 'Leg Day', 'date': date(2025, 5, 10), 'duration': '75 min', 'exercises_count': 6, 'pk': 3},
         ]
         return context
+
+
+class ProfileDetailsView(LoginRequiredMixin, DetailView):
+    model = UserModel
+    template_name = "accounts/profile-details-page.html"
