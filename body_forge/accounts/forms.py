@@ -23,7 +23,7 @@ class AppUserCreationForm(UserCreationForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['username', 'first_name', 'last_name', 'date_of_birth', 'height', 'body_weight']
+        fields = ['username', 'first_name', 'last_name', 'date_of_birth', 'height', 'body_weight', 'profile_picture']
         widgets = {
             'username': forms.TextInput(attrs={"class": "form-control"}),
             'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
@@ -31,5 +31,6 @@ class UserProfileEditForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'height': forms.NumberInput(attrs={'class': 'form-control'}),
             'body_weight': forms.NumberInput(attrs={'class': 'form-control'}),
+            'profile_picture': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
