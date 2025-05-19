@@ -7,9 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, DetailView
+from django.views.generic import CreateView, TemplateView, DetailView, UpdateView
 
 from body_forge.accounts.forms import AppUserCreationForm, UserProfileEditForm
+from body_forge.accounts.models import Profile
 
 UserModel = get_user_model()
 
@@ -67,22 +68,26 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
     template_name = "accounts/profile-details-page.html"
 
 
-@login_required
-def profile_edit_view(request):
-    profile = request.user.profile  # Assuming you have a UserProfile model linked to User
+class ProfileEditView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = UserProfileEditForm
+    template_name = 'accounts/edit-profile-page.html'
 
-    if request.method == 'POST':
-        form = UserProfileEditForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully!')
-            return redirect('profile-details')  # Redirect to the profile details page
-        else:
-            messages.error(request, 'There was an error updating your profile.')
-    else:
-        form = UserProfileEditForm(instance=profile)
+    def get_object(self):
+        return self.request.user.profile
 
-    context = {
-        'form': form,
-    }
-    return render(request, 'accounts/edit-profile-page.html', context)
+    def form_valid(self, form):
+        messages.success(self.request, 'Profile updated successfully!')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'There was an error updating your profile.')
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = context['form']  # Ensure the form is in the context
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('profile-details', kwargs={'pk': self.object.pk})

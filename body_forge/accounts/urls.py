@@ -8,8 +8,8 @@ urlpatterns = [
     path('login/', views.AppUserLoginView.as_view(), name='login-user'),
     path('logout/', LogoutView.as_view(), name="logout-user"),
     path('<int:pk>/', include([
-        path('edit/', views.profile_edit_view.as_view(), name='edit-profile-page'),
+        path('dashboard/', views.UserDashboardView.as_view(), name='dashboard'),
+        path('details/', views.ProfileDetailsView.as_view(), name='profile-details'),
+        path('edit/', views.ProfileEditView.as_view(), name='profile-edit'),
     ])),
-    path('details/<int:pk>/', views.ProfileDetailsView.as_view(), name='profile-details'),
-    path('dashboard/', views.UserDashboardView.as_view(), name='dashboard'),
 ]

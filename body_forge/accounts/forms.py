@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
+from body_forge.accounts.models import Profile
+
 UserModel = get_user_model()
 
 
@@ -20,13 +22,15 @@ class AppUserCreationForm(UserCreationForm):
 
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
-        model = UserModel
-        fields = ['first_name', 'last_name', 'bio', 'birth_date', 'profile_picture', 'fitness_level']
+        model = Profile
+        fields = ['username', 'first_name', 'last_name', 'date_of_birth', 'profile_picture','height', 'body_weight']
         widgets = {
-            'bio': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
-            'birth_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'username': forms.TextInput(attrs={"class": "form-control"}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'fitness_level': forms.TextInput(attrs={'class': 'form-control'}), # Adjust widget as needed (e.g., Select)
+            'height': forms.NumberInput(attrs={'class': 'form-control'}),
+            'body_weight': forms.NumberInput(attrs={'class': 'form-control'}),
         }
+
