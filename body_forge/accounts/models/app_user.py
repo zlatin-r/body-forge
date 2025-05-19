@@ -15,3 +15,4 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     objects = AppUserManager()
+

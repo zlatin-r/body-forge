@@ -2,8 +2,8 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
 
-
 UserModel = get_user_model()
+
 
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -61,4 +61,13 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username or self.user.email
-    
+
+    # If adding to User model
+    @property
+    def total_workouts(self):
+        return self.workouts.count()
+
+    @property
+    def last_workout_date(self):
+        last_workout = self.workouts.order_by('-date').first()
+        return last_workout.date if last_workout else None
