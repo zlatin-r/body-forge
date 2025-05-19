@@ -24,6 +24,7 @@
                 </a>
 
                 <div class="dropdown-content">
+                    <a href="{% url 'dashboard' %}">My Dashboard</a>
                     <a href="#">View Profile</a>
                     <form method="post" class="dropdown-logout-form" action="{% url 'logout-user' %}">
                         {% csrf_token %}
