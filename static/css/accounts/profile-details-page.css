@@ -1,8 +1,25 @@
-/* Profile Details Page */
+/* Profile Details Page with Dark Background */
 .profile-details-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
+    position: relative;
+    z-index: 1;
+    color: #fff;
+}
+
+/* Background overlay */
+.profile-details-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/static/images/details-background.jpg') center/cover no-repeat;
+    background-attachment: fixed;
+    filter: brightness(0.4);
+    z-index: -1;
 }
 
 .profile-header {
@@ -12,7 +29,11 @@
     align-items: center;
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 10px;
 }
 
 .profile-avatar-section {
@@ -29,6 +50,7 @@
     object-fit: cover;
     margin-bottom: 1rem;
     border: 3px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .profile-avatar-default {
@@ -44,6 +66,7 @@
     font-size: 1.8rem;
     margin-bottom: 1rem;
     text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .btn-edit-profile {
@@ -52,6 +75,14 @@
     padding: 0.5rem 1.5rem;
     border-radius: 20px;
     font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-edit-profile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: var(--primary-dark-color);
 }
 
 .profile-stats {
@@ -59,9 +90,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.3);
     padding: 1.5rem;
     border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .stat-item {
@@ -75,18 +108,23 @@
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--primary-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .stat-label {
     font-size: 0.9rem;
-    opacity: 0.8;
+    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .profile-section {
     margin-bottom: 3rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(0, 0, 0, 0.5);
     padding: 1.5rem;
     border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .section-title {
@@ -95,6 +133,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: var(--primary-color);
 }
 
 .detail-grid {
@@ -106,16 +145,26 @@
 .detail-item {
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.detail-item:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .detail-label {
     font-size: 0.9rem;
-    opacity: 0.7;
+    opacity: 0.8;
     margin-bottom: 0.3rem;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .detail-value {
     font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .activity-list {
@@ -128,14 +177,17 @@
 .activity-item {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.4);
     padding: 1rem;
     border-radius: 8px;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
+    border-left: 3px solid var(--primary-color);
 }
 
 .activity-item:hover {
     transform: translateX(5px);
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .activity-date {
@@ -155,13 +207,21 @@
     gap: 1.5rem;
     margin-top: 0.5rem;
     font-size: 0.9rem;
-    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .btn-view {
     background: transparent;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.btn-view:hover {
+    background: var(--primary-color);
+    color: white;
 }
 
 .btn-view-all {
@@ -171,11 +231,19 @@
     background: transparent;
     color: var(--primary-color);
     padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-view-all:hover {
+    transform: translateX(5px);
+    color: white;
 }
 
 .empty-state {
     text-align: center;
     padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }
 
 .empty-state i {
@@ -207,5 +275,15 @@
 
     .activity-info {
         padding: 1rem 0;
+    }
+
+    .activity-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .btn-view {
+        align-self: flex-end;
+        margin-top: 1rem;
     }
 }

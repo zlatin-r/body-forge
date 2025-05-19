@@ -15,7 +15,8 @@
             <h1 class="profile-username">
                 {% firstof profile.username profile.user.email %}
             </h1>
-            <a href="{% url 'profile_edit' %}" class="btn btn-edit-profile">
+            <a href="#" class="btn btn-edit-profile">
+{#            <a href="{% url 'profile_edit' %}" class="btn btn-edit-profile">#}
                 <i class="fas fa-edit"></i> Edit Profile
             </a>
         </div>
@@ -164,7 +165,8 @@
                 <div class="empty-state">
                     <i class="fas fa-dumbbell"></i>
                     <p>No recent workouts recorded</p>
-                    <a href="{% url 'start-new-workout' %}" class="btn btn-primary">
+{#                    <a href="{% url 'start-new-workout' %}" class="btn btn-primary">#}
+                    <a href="#" class="btn btn-primary">
                         Start Your First Workout
                     </a>
                 </div>
