@@ -1,0 +1,61 @@
+/* Profile Edit Form Styles */
+.profile-edit-form .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.profile-edit-form .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    color: #fff;
+}
+
+.profile-edit-form .form-label {
+    color: #87ceeb;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.profile-edit-form .invalid-feedback {
+    color: #ff6b6b;
+    margin-top: 5px;
+    font-size: 0.85rem;
+}
+
+/* Button Styles */
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-outline-danger {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+.btn-outline-danger:hover {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .profile-edit-form .form-control {
+        padding: 10px 12px;
+    }
+
+    .profile-avatar-section .btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}

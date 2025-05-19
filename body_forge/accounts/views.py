@@ -1,12 +1,15 @@
 from datetime import date
 
+from django.contrib import messages
 from django.contrib.auth import get_user_model, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, DetailView
 
-from body_forge.accounts.forms import AppUserCreationForm
+from body_forge.accounts.forms import AppUserCreationForm, UserProfileEditForm
 
 UserModel = get_user_model()
 
@@ -62,3 +65,24 @@ class UserDashboardView(LoginRequiredMixin, TemplateView):
 class ProfileDetailsView(LoginRequiredMixin, DetailView):
     model = UserModel
     template_name = "accounts/profile-details-page.html"
+
+
+@login_required
+def profile_edit_view(request):
+    profile = request.user.profile  # Assuming you have a UserProfile model linked to User
+
+    if request.method == 'POST':
+        form = UserProfileEditForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('profile-details')  # Redirect to the profile details page
+        else:
+            messages.error(request, 'There was an error updating your profile.')
+    else:
+        form = UserProfileEditForm(instance=profile)
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/edit-profile-page.html', context)
