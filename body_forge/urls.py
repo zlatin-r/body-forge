@@ -23,4 +23,5 @@ urlpatterns = [
     #    path('admin/', admin.site.urls),
     path('', include('body_forge.common.urls')),
     path('accounts/', include('body_forge.accounts.urls')),
+    path('workouts/', include('body_forge.workouts.urls')),
 ]

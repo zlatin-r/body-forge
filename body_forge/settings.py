@@ -32,6 +32,7 @@ PROJECT_APPS = [
     'body_forge.common',
     'body_forge.accounts',
     'body_forge.workouts',
+    'body_forge.exercises',
 ]
 
 INSTALLED_APPS = [
