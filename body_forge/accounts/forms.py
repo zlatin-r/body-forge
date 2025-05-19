@@ -23,11 +23,10 @@ class AppUserCreationForm(UserCreationForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['username', 'first_name', 'last_name', 'date_of_birth', 'profile_picture','height', 'body_weight']
+        fields = ['username', 'first_name', 'last_name', 'date_of_birth', 'height', 'body_weight']
         widgets = {
             'username': forms.TextInput(attrs={"class": "form-control"}),
             'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'height': forms.NumberInput(attrs={'class': 'form-control'}),
