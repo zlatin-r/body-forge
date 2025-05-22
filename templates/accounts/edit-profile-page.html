@@ -11,12 +11,14 @@
             <h2 class="text-center mb-4">Edit Profile</h2>
 
             <div class="profile-avatar-section text-center mb-5">
-                {% if profile.profile_picture %}
-                    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture"
+                {% if user.profile.profile_picture %}
+                    <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture"
                          class="profile-avatar rounded-circle mb-3">
                 {% else %}
                     <div class="profile-avatar-default rounded-circle mb-3">
-                        <i class="fas fa-user-circle"></i>
+                        <i class="fas fa-user-circle">
+                            {% static 'images/profile_pic/default-profile-image2.jpeg' %}
+                        </i>
                     </div>
                 {% endif %}
                 <div class="d-flex justify-content-center gap-3">
