@@ -1,4 +1,7 @@
-.cnt-set {
-    display: flex;
-    justify-content: center;
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

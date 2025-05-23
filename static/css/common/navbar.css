@@ -45,16 +45,50 @@
 }
 
 .dropdown-menu {
-    /*display: none;*/
     position: absolute;
     top: 50px;
     right: 17px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
-    gap: 5px;
     background-color: #2b2b2b;
     color: white;
     border-radius: 10px;
+    padding: 5px 0; /* Add vertical padding */
+    min-width: 150px; /* Set a minimum width */
+    width: auto; /* Let it grow as needed */
+}
+
+.dropdown-menu ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0; /* Remove padding from ul */
+    margin: 0; /* Remove default margins */
+    width: 100%; /* Make ul fill the container */
+}
+
+.dropdown-menu li {
+    width: 100%; /* Make li fill the container */
+    list-style: none; /* Remove bullet points */
+}
+
+.dropdown-item {
+    display: block;
+    padding: 8px 15px; /* Add padding to items */
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background-color: #333333; /* Darker hover color */
+    color: white;
+}
+
+/* For the form button to match other items */
+.dropdown-menu button.dropdown-item {
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    width: 100%;
+    padding: 8px 15px;
 }
