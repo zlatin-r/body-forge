@@ -1,21 +1,19 @@
 .navbar-container {
-    position: absolute;
     display: flex;
-    z-index: 1000;
-    width: 100%;
-    padding: 10px;
+    justify-content: space-between;
+}
+
+.logo-container img {
+    width: 60px;
 }
 
 .logo-container a {
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-.logo-image {
-    width: 60px;
-}
-
-.logo-text {
-    margin-bottom: 0;
+.menu-container ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }

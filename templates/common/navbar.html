@@ -1,11 +1,20 @@
-<div class="navbar-container">
+{% load static %}
+
+<section class="navbar-container">
+
     <div class="logo-container">
         <a href="#">
-            <img class="logo-image" src="/static/images/logo.png" alt="logo-image">
-            Body Forge
+            <img src="{% static '/images/logo.png' %}" alt="logo">
+            <span class="logo-text">Body Forge</span>
         </a>
     </div>
-    <div class="menu-container">
 
+    <div class="menu-container cnt-set">
+        <ul>
+            <li>Forum</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
     </div>
-</div>
+
+</section>
