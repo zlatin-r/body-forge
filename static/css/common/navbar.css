@@ -1,8 +1,23 @@
 .navbar-container {
+    position: absolute;
+    display: flex;
+    z-index: 1000;
+    width: 100%;
+    padding: 10px;
     background: #d8d8d8;
+
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo-image {
-    width: 50px;
-    background-color: brown;
+    width: 60px;
+}
+
+.logo-text {
+    margin-bottom: 0;
 }

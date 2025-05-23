@@ -1,3 +1,7 @@
 .hero-section {
     position: relative;
 }
+
+.carousel {
+    height: 100vh;
+}
