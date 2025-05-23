@@ -19,13 +19,11 @@ from django.conf import settings
 from django.urls import path, include, re_path
 from django.views.static import serve
 
-from body_forge import common
 
 urlpatterns = [
     #    path('admin/', admin.site.urls),
-    path('', include('body_forge.common.urls')),
-    path('accounts/', include('body_forge.accounts.urls')),
-    path('workouts/', include('body_forge.workouts.urls')),
+    path('', include('common.urls')),
+
 ]
 
 urlpatterns += [

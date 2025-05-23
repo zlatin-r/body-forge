@@ -18,6 +18,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 PROJECT_APPS = [
+    'common',
 ]
 
 INSTALLED_APPS = [
@@ -64,7 +65,7 @@ WSGI_APPLICATION = 'body_forge.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "body_forge_v3.0",
+        "NAME": "body_forge_db",
         "USER": "postgres",
         "PASSWORD": "password",
         "HOST": "127.0.0.1",
