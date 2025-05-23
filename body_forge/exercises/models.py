@@ -3,7 +3,6 @@ from django.db import models
 from body_forge.workouts.models import Workout
 
 
-# Create your models here.
 class Exercise(models.Model):
     WORKOUT_TYPES = (
         ('strength', 'Strength Training'),
@@ -23,8 +22,14 @@ class Exercise(models.Model):
         choices=WORKOUT_TYPES,
         default='strength'
     )
-    sets = models.PositiveIntegerField(blank=True, null=True)
-    reps = models.PositiveIntegerField(blank=True, null=True)
+    sets = models.PositiveIntegerField(
+        blank=True,
+        null=True
+    )
+    reps = models.PositiveIntegerField(
+        blank=True,
+        null=True
+    )
     weight = models.DecimalField(
         max_digits=6,
         decimal_places=2,
@@ -44,7 +49,10 @@ class Exercise(models.Model):
         null=True,
         help_text="Distance in km/miles for cardio"
     )
-    notes = models.TextField(blank=True, null=True)
+    notes = models.TextField(
+        blank=True,
+        null=True
+    )
 
     class Meta:
         ordering = ['workout', 'id']

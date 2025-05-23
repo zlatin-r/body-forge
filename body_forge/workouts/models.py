@@ -43,5 +43,4 @@ class Workout(models.Model):
 
     @property
     def exercises_count(self):
-        """Returns the count of exercises in this workout"""
         return self.exercises.count()
