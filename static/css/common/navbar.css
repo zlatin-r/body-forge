@@ -27,13 +27,13 @@
     display: flex;
     align-items: center;
     padding-right: 10px;
-    gap: 10px;
+    gap: 20px;
 }
 
 .menu-container ul {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .avatar {
