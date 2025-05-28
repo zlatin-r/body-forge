@@ -9,6 +9,19 @@
     padding: 15px;
 }
 
+.logo-container a {
+    position: relative;
+}
+
+.logo-container span {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    transform: translateY(-50%); /* Vertically center the text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    font-size: 22px;
+}
+
 .logo-container img {
     width: 120px;
 }
