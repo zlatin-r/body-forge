@@ -20,9 +20,18 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-        display: block;
+    display: block;
     object-position: left;
+}
 
+
+.text-area {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 30rem;
+    background-color: #000000;
 }
 
 
