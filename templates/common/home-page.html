@@ -2,25 +2,18 @@
 {% load static %}
 
 {% block content %}
-
     <div class="main-container">
-    
         <section class="hero-section">
-            <div class="text-area-hs">
 
+            <div class="image-container">
+                <div class="gradient-overlay"></div>
+                <img src="{% static '/images/background_images/background9.png' %}" alt="Fitness Background">
             </div>
 
-            <div class="background-img">
-                <img src="{% static '/images/background_images/background9.png' %}" alt="">
+            <div class="text-area">
+                <span>Your Text Here</span>
             </div>
+
         </section>
-    
-{#        <section class="about-section">#}
-{#            <div class="background-img">#}
-{#                <img src="{% static '/images/background_images/p1.jpeg' %}" alt="">#}
-{#            </div>#}
-{#        </section>#}
-
     </div>
-
 {% endblock %}

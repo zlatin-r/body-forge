@@ -1,8 +1,44 @@
-.hero-section {
-    position: relative;
-    display: flex;
-    background-color: black;
-    height: 100vh;
+.main-container {
+    width: 100%;
 }
 
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    background: black;
+    overflow: hidden;
+    position: relative;
+}
 
+.image-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.gradient-overlay {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+            to right, rgb(255, 255, 255), transparent);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.image-container img {
+    height: 100%;
+    width: 80%;
+    object-position: left;
+    display: block;
+    position: absolute;
+    left: 0;
+}
+
+.text-area {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    z-index: 1111;
+    color: white;
+}
