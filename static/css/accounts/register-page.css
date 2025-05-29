@@ -13,12 +13,22 @@
     width: 100%;
     background: linear-gradient(to bottom, rgb(0, 0, 0), transparent);
 }
-/* Form on the left */
+
+.reg-page-text-container {
+    font-family: "Great Vibes", cursive;
+    color: #2e58a8;
+    position: absolute;
+    font-size: 50px;
+    top: 200px;
+    left: 200px;
+    z-index: 5;
+}
+
 .register-form-container {
     z-index: 1;
     position: absolute;
-    bottom: 120px;
-    left: 250px;
+    bottom: 50px;
+    left: 300px;
     background-color: inherit;
     padding: 2rem;
     justify-content: center;
@@ -26,26 +36,45 @@
 }
 
 .register-form {
-
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+}
+
+.reg-page-title {
+    color: var(--smoke-white);
+    margin-bottom: 10px;
+    font-size: 30px;
 }
 
 .field-title {
     margin: 5px 0;
-    color: #2e58a8;
+    color: var(--smoke-white);
 }
 
 .reg-page-img-container img {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 80%;
+    width: 75%;
     height: 88%;
 }
 
-.input-field input {
 
+
+.submit-btn {
+    padding: 5px 20px;
+    border: 1px solid var(--primary-blue);
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 50%;
+}
+
+.login-link-container {
+    color: #bababa;
+}
+
+.login-link-container a {
+    color: var(--primary-blue);
 }

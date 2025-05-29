@@ -6,8 +6,12 @@
     <div class="main-container-register">
     <div class="reg-form-gradient-overlay"></div>
 
+        <section class="reg-page-text-container">
+            <span>The hardest part is showing up. You've already done that.</span>
+        </section>
+
         <section class="register-form-container d-flex-col">
-            <h1 class="title" style="color: #2e58a8">Create Your New Account</h1>
+            <h1 class="reg-page-title">Create Your New Account</h1>
 
             <form method="post" class="register-form d-flex-col">
                 {% csrf_token %}
@@ -32,6 +36,9 @@
 
                 <button  type="submit" class="submit-btn glow-on-hover">Register</button>
             </form>
+            <div class="login-link-container">
+                <span>You already have an account? Signin <a href="">here</a>!</span>
+            </div>
         </section>
 
         <section class="reg-page-img-container">
