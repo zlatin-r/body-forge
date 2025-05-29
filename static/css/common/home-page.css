@@ -45,15 +45,10 @@
     position: absolute;
     color: white;
     bottom: 100px;
-    left: 300px;
+    left: 340px;
 }
 
 .btn-get-started {
-    padding: 15px;
-    margin-right: 20px;
-}
-
-.btn-about {
     padding: 15px 35px;
 }
 
