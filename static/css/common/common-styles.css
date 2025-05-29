@@ -1,7 +1,13 @@
 .hidden {
-  display: none;
+    display: none;
 }
 
 .visible {
-  display: block;
+    display: block;
+}
+
+
+.btn {
+    border: 2px solid #2e58a8;
+    border-radius: 15px;
 }

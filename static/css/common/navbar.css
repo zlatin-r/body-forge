@@ -7,6 +7,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
+    background:
+          linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) 70.71%),
+          linear-gradient(90deg, rgb(46, 88, 168), rgba(0, 0, 255, 0) 70.71%);
 }
 
 .logo-container a {
