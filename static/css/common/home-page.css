@@ -10,12 +10,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 50px 150px 50px;
+    padding: 50px 50px 90px 50px;
 }
 
 .image-container {
     width: 700px;
     margin-right: 50px;
+}
+
+.gradient-overlay {
+    position: absolute;
+
+    right: 260px;
+    bottom: 170px;
+    height: 15%; /* Equivalent to Tailwind's h-1/2 */
+    width: 400px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 3), transparent); /* Equivalent to Tailwind's bg-gradient-to-t from-black to-transparent */
 }
 
 .text-container {
@@ -35,7 +45,7 @@
 .hero-btn-container {
     position: absolute;
     color: white;
-    bottom: 280px;
+    bottom: 220px;
     left: 300px;
 }
 
