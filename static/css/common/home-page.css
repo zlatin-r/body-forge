@@ -4,28 +4,27 @@
 
 .hero-section {
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     position: relative;
     background-color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 50px 90px 50px;
+    padding: 50px 50px 30px 50px;
 }
 
-.image-container {
+.hero-img-container {
     width: 700px;
     margin-right: 50px;
 }
 
-.gradient-overlay {
+.hero-gradient-overlay {
     position: absolute;
-
     right: 260px;
-    bottom: 170px;
-    height: 15%; /* Equivalent to Tailwind's h-1/2 */
+    bottom: 90px;
+    height: 15%;
     width: 400px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 3), transparent); /* Equivalent to Tailwind's bg-gradient-to-t from-black to-transparent */
+    background: linear-gradient(to top, rgba(0, 0, 0, 3), transparent);
 }
 
 .text-container {
@@ -35,7 +34,7 @@
     display: flex;
     flex-direction: column;
     color: white;
-    margin: 0 0 50px 50px;
+    margin: 0 0 30px 50px;
 }
 
 .title {
@@ -45,7 +44,7 @@
 .hero-btn-container {
     position: absolute;
     color: white;
-    bottom: 220px;
+    bottom: 100px;
     left: 300px;
 }
 
@@ -56,4 +55,31 @@
 
 .btn-about {
     padding: 15px 35px;
+}
+
+.about-section {
+    position: relative;
+    background-color: rgb(2, 3, 3);
+    width: 100%;
+    height: 70vh;
+}
+
+.about-gradient-overlay {
+    position: absolute;
+    top: 0;
+    height: 5%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 4), transparent);
+}
+
+.about-img-container {
+    width: 100%;
+    height: 100%;
+}
+
+.about-img-container img {
+    height: 100%;
+    object-fit: contain;
+    object-position: left;
+    display: block;
 }
