@@ -3,16 +3,17 @@
 {% load static %}
 
 {% block content %}
-    <div class="main-container">
+    <div class="main-container-register">
+    <div class="reg-form-gradient-overlay"></div>
 
         <section class="register-form-container d-flex-col">
-            <h1>Create Your New Account</h1>
+            <h1 class="title" style="color: #2e58a8">Create Your New Account</h1>
 
             <form method="post" class="register-form d-flex-col">
                 {% csrf_token %}
 
-                <div class="input-field">
-                    <h4 class="field-title">Email:</h4>
+                <div class="input-field ">
+                    <h4 class="field-title ">Email:</h4>
                     {{ form.email|placeholder:"Enter your email" }}
                     {{ form.email.errors }}
                 </div>
@@ -29,13 +30,12 @@
                     {{ form.password2.errors }}
                 </div>
 
-                <button type="submit" class="submit-btn">Register</button>
+                <button  type="submit" class="submit-btn glow-on-hover">Register</button>
             </form>
         </section>
 
         <section class="reg-page-img-container">
             <img src="{% static 'images/background_images/reg-page-image.png' %}" alt="Register Page Image">
         </section>
-
     </div>
 {% endblock %}
