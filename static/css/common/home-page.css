@@ -86,6 +86,6 @@
 .about-img-container img {
     height: 80%;
     object-fit: contain;
-    object-position: left;
     display: block;
+    object-position: left;
 }

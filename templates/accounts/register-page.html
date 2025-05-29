@@ -4,13 +4,12 @@
 
 {% block content %}
     <div class="main-container">
-        <section class="register-form-container d-flex-col">
 
+        <section class="register-form-container d-flex-col">
             <h1>Create Your New Account</h1>
 
             <form method="post" class="register-form d-flex-col">
                 {% csrf_token %}
-
 
                 <div class="input-field">
                     <h4 class="field-title">Email:</h4>
@@ -27,11 +26,16 @@
                 <div class="input-field">
                     <h4 class="field-title">Confirm Password:</h4>
                     {{ form.password2|placeholder:"Enter password again" }}
-                    {{ form.password2.error }}
+                    {{ form.password2.errors }}
                 </div>
 
                 <button type="submit" class="submit-btn">Register</button>
             </form>
         </section>
+
+        <section class="reg-page-img-container">
+            <img src="{% static 'images/background_images/reg-page-image.png' %}" alt="Register Page Image">
+        </section>
+
     </div>
 {% endblock %}
