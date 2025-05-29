@@ -1,3 +1,7 @@
+.main-container {
+    width: 100%;
+}
+
 .hidden {
     display: none;
 }
@@ -5,6 +9,27 @@
 .visible {
     display: block;
 }
+
+/* display flex */
+
+.d-flex {
+    display: flex;
+}
+
+.d-flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* --------------------- */
+
+/* buttons */
+.submit-btn {
+
+}
+
+/* ---------------------- */
+
 
 /* buttons glowing effect */
 .glow-on-hover {
@@ -71,5 +96,18 @@
     }
 }
 
-/* --------------- */
+/* --------------------- */
+
+
+/* Input fields */
+
+.input-field input {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    width: 400px;
+
+}
+
+/* --------------------- */
 

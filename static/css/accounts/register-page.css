@@ -1,0 +1,16 @@
+.register-form-container {
+    position: relative;
+    top: 200px;
+    background-color: whitesmoke;
+    width: 40%;
+    margin: 0 50px 50px 50px;
+    padding: 30px;
+    border: 1px solid #c8c8c8;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form {
+    gap: 20px;
+}

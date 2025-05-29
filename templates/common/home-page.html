@@ -3,9 +3,9 @@
 
 {% block content %}
     <div class="main-container">
-        <section class="hero-section">
+        <section class="hero-section d-flex">
 
-            <div class="hero-text-container">
+            <div class="hero-text-container d-flex">
                 <span class="title">Transform Your Fitness Journey</span>
                 <span class="title">Achieve your Goals with <strong style="color: #2e58a8">Body Forge</strong></span>
                 <br>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="hero-btn-container">
-                <a href="#" class="btn btn-get-started">
+                <a href="{% url 'register' %}" class="btn btn-get-started">
                     <button class="glow-on-hover" type="button">Get Started</button>
                 </a>
             </div>

@@ -1,5 +1,38 @@
 {% extends 'common/base.html' %}
+{% load placeholder_filter %}
 {% load static %}
 
 {% block content %}
+    <div class="main-container">
+        <section class="register-form-container d-flex-col">
+
+            <h1>Create Your New Account</h1>
+
+            <form method="post" class="register-form d-flex-col">
+                {% csrf_token %}
+
+
+                <div class="input-field">
+                    <h4 class="field-title">Email:</h4>
+                    {{ form.email|placeholder:"Enter your email" }}
+                    {{ form.email.errors }}
+                </div>
+
+                <div class="input-field">
+                    <h4 class="field-title">Password:</h4>
+                    {{ form.password1|placeholder:"Enter your new password" }}
+                    {{ form.password1.errors }}
+                </div>
+
+                <div class="input-field">
+                    <h4 class="field-title">Confirm Password:</h4>
+                    {{ form.password2|placeholder:"Enter password again" }}
+                    {{ form.password2.error }}
+                </div>
+
+                <button type="submit" class="submit-btn">Register</button>
+
+            </form>
+        </section>
+    </div>
 {% endblock %}
