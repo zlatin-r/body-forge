@@ -11,6 +11,7 @@
         </section>
 
         <section class="register-form-container d-flex-col">
+
             <h1 class="reg-page-title">Create Your New Account</h1>
 
             <form method="post" class="register-form d-flex-col">
@@ -38,14 +39,19 @@
                 </div>
 
                 <button type="submit" class="submit-btn glow-on-hover">Register</button>
+
             </form>
+
             <div class="login-link-container">
-                <span>You already have an account? Signin <a href="">here</a>!</span>
+                <span>You already have an account? Click <a href="{% url 'login' %}">here</a></span>
             </div>
+
         </section>
 
         <section class="reg-page-img-container">
-            <img class="fade-effect" src="{% static 'images/background_images/reg-page-image.png' %}" alt="Register Page Image">
+            <img class="fade-effect" src="{% static 'images/background_images/reg-page-image.png' %}"
+                 alt="Register Page Image">
         </section>
+
     </div>
 {% endblock %}
