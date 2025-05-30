@@ -13,7 +13,6 @@
 }
 
 /* display flex */
-
 .d-flex {
     display: flex;
 }
@@ -22,14 +21,7 @@
     display: flex;
     flex-direction: column;
 }
-
 /* --------------------- */
-
-/* buttons */
-
-
-/* ---------------------- */
-
 
 /* buttons glowing effect */
 .glow-on-hover {
@@ -92,11 +84,9 @@
         background-position: 0 0;
     }
 }
-
 /* --------------------- */
 
 /* Fade effect */
-
 @keyframes fadeSlideIn {
     0% {
         opacity: 0;
@@ -111,11 +101,9 @@
 .fade-effect {
     animation: fadeSlideIn 1.2s ease-out both;
 }
-
 /* ---------------------- */
 
 /* Input fields */
-
 .input-field input {
     font-size: 1.1rem;
     color: var(--smoke-white);
@@ -147,7 +135,6 @@
         box-shadow: 0 0 8px 2px rgba(46, 88, 168, 0.6);
     }
 }
-
 /* --------------------- */
 
 /* Error fields */
@@ -163,6 +150,4 @@
 .error-field:empty {
     opacity: 0;
 }
-
 /* ---------------------- */
-
