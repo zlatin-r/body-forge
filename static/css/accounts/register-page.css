@@ -3,6 +3,7 @@
     height: 100vh;
     position: relative;
     background-color: #050504;
+    overflow: hidden;
 }
 
 .reg-form-gradient-overlay {

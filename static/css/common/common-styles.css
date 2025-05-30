@@ -114,7 +114,6 @@
 
 /* ---------------------- */
 
-
 /* Input fields */
 
 .input-field input {
@@ -164,5 +163,6 @@
 .error-field:empty {
     opacity: 0;
 }
+
 /* ---------------------- */
 

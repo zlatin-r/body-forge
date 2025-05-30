@@ -19,7 +19,7 @@
                 <div class="input-field ">
                     <h4 class="field-title ">Email:</h4>
                     {{ form.email|placeholder:"Enter your email" }}
-                    <div class="error-field">
+                    <div class="error-field fade-effect">
                         {{ form.email.errors }}
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="input-field">
                     <h4 class="field-title">Confirm Password:</h4>
                     {{ form.password2|placeholder:"Enter password again" }}
-                    <div class="error-field">
+                    <div class="error-field fade-effect">
                         {{ form.password2.errors }}
                     </div>
                 </div>
@@ -45,7 +45,7 @@
         </section>
 
         <section class="reg-page-img-container">
-            <img src="{% static 'images/background_images/reg-page-image.png' %}" alt="Register Page Image">
+            <img class="fade-effect" src="{% static 'images/background_images/reg-page-image.png' %}" alt="Register Page Image">
         </section>
     </div>
 {% endblock %}
