@@ -19,9 +19,9 @@
     font-family: "Great Vibes", cursive;
     color: #2e58a8;
     position: absolute;
-    font-size: 50px;
+    font-size: 60px;
     top: 200px;
-    left: 200px;
+    left: 100px;
     z-index: 5;
 }
 
