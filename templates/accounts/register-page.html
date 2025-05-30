@@ -4,10 +4,10 @@
 
 {% block content %}
     <div class="main-container-register">
-    <div class="reg-form-gradient-overlay"></div>
+        <div class="reg-form-gradient-overlay"></div>
 
         <section class="reg-page-text-container">
-            <span>The hardest part is showing up. You've already done that.</span>
+            <span><strong>The hardest part is showing up. You've already done that.</strong></span>
         </section>
 
         <section class="register-form-container d-flex-col">
@@ -19,22 +19,28 @@
                 <div class="input-field ">
                     <h4 class="field-title ">Email:</h4>
                     {{ form.email|placeholder:"Enter your email" }}
-                    {{ form.email.errors }}
+                    <h1 class="error-filed">
+                        {{ form.email.errors }}
+                    </h1>
                 </div>
 
                 <div class="input-field">
                     <h4 class="field-title">Password:</h4>
                     {{ form.password1|placeholder:"Enter your new password" }}
-                    {{ form.password1.errors }}
+                    <h1 class="error-filed">
+                        {{ form.email.errors }}
+                    </h1>
                 </div>
 
                 <div class="input-field">
                     <h4 class="field-title">Confirm Password:</h4>
                     {{ form.password2|placeholder:"Enter password again" }}
-                    {{ form.password2.errors }}
+                    <h1 class="error-filed">
+                        {{ form.email.errors }}
+                    </h1>
                 </div>
 
-                <button  type="submit" class="submit-btn glow-on-hover">Register</button>
+                <button type="submit" class="submit-btn glow-on-hover">Register</button>
             </form>
             <div class="login-link-container">
                 <span>You already have an account? Signin <a href="">here</a>!</span>
