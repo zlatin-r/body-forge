@@ -3,18 +3,18 @@
 {% load static %}
 
 {% block content %}
-    <div class="main-container-register">
+    <div class="main-container-reg">
         <div class="reg-form-gradient-overlay"></div>
 
         <div class="reg-page-text-container fade-effect">
             <span>The hardest part is showing up. You've already done that.</span>
         </div>
 
-        <div class="register-form-container d-flex-col fade-effect">
+        <div class="reg-form-container d-flex-col fade-effect">
 
             <h1 class="reg-page-title">Create Your New Account</h1>
 
-            <form method="post" class="register-form d-flex-col">
+            <form method="post" class="reg-form d-flex-col">
                 {% csrf_token %}
 
                 <div class="input-field">
