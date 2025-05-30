@@ -6,18 +6,18 @@
     <div class="main-container-register">
         <div class="reg-form-gradient-overlay"></div>
 
-        <section class="reg-page-text-container fade-effect">
+        <div class="reg-page-text-container fade-effect">
             <span>The hardest part is showing up. You've already done that.</span>
-        </section>
+        </div>
 
-        <section class="register-form-container d-flex-col">
+        <div class="register-form-container d-flex-col fade-effect">
 
             <h1 class="reg-page-title">Create Your New Account</h1>
 
             <form method="post" class="register-form d-flex-col">
                 {% csrf_token %}
 
-                <div class="input-field ">
+                <div class="input-field">
                     <h4 class="field-title ">Email:</h4>
                     {{ form.email|placeholder:"Enter your email" }}
                     <div class="error-field fade-effect">
@@ -42,16 +42,16 @@
 
             </form>
 
-            <div class="login-link-container">
+            <div class="second-option-btn">
                 <span>You already have an account? Click <a href="{% url 'login' %}">here</a></span>
             </div>
 
-        </section>
+        </div>
 
-        <section class="reg-page-img-container">
+        <div class="reg-page-img-container">
             <img class="fade-effect" src="{% static 'images/background_images/reg-page-image.png' %}"
                  alt="Register Page Image">
-        </section>
+        </div>
 
     </div>
 {% endblock %}

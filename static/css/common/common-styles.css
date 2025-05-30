@@ -151,3 +151,14 @@
     opacity: 0;
 }
 /* ---------------------- */
+
+
+/* Account register/login link buttons */
+.second-option-btn {
+    color: #bababa;
+}
+
+.second-option-btn a {
+    color: var(--primary-blue);
+}
+/* ----------------------- */

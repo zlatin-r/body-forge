@@ -4,31 +4,45 @@
 
 {% block content %}
     <div class="main-container-login">
-        <div class="login-form-container">
-            <form method="post" class="login-form">
+        <div class="login-form-gradient-overlay"></div>
+
+        <div class="login-form-text-container fade-effect">
+            <span>Welcome back — your progress starts now.</span>
+        </div>
+
+        <div class="login-form-container d-flex-col fade-effect">
+
+            <h1 class="login-page-title">Login to your account</h1>
+
+            <form method="post" class="login-form d-flex-col">
                 {% csrf_token %}
 
-                <h1>Login</h1>
-
-                <div class="field">
-                    <h4 class="filed-title">Enter your Email:</h4>
+                <div class="input-field">
+                    <h4 class="field-title">Enter your Email:</h4>
                     {{ form.username|placeholder:"Email" }}
                     {{ form.username.errors }}
                 </div>
 
-                <div class="field">
-                    <h4 class="filed-title">Enter your password:</h4>
+                <div class="input-field">
+                    <h4 class="field-title">Enter your password:</h4>
                     {{ form.password|placeholder:"Password" }}
                     {{ form.password.errors }}
                 </div>
 
-                <button type="submit" class="login-btn">Login</button>
-
-                <div class="second-option">
-                    <p>Don't have an account? <a href="{% url 'register' %}" class="register-link">Click here</a></p>
-                </div>
+                <button type="submit" class="submit-btn glow-on-hover">Login</button>
 
             </form>
+
+            <div class="second-option-btn">
+                <p>Don't have an account? <a href="{% url 'register' %}" class="register-link">Click here</a></p>
+            </div>
+
         </div>
+
+        <div class="login-page-img-container">
+            <img class="fade-effect" src="{% static 'images/background_images/background12.png' %}"
+                 alt="Login Page Image">
+        </div>
+
     </div>
 {% endblock %}

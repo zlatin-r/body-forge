@@ -70,10 +70,3 @@
     width: 50%;
 }
 
-.login-link-container {
-    color: #bababa;
-}
-
-.login-link-container a {
-    color: var(--primary-blue);
-}
