@@ -155,7 +155,7 @@
 .error-field {
     color: #ff4b4b;
     font-size: 0.9rem;
-    margin-top: 15px;
+    margin-top: 5px;
     min-height: 20px; /* Reserve space */
     transition: opacity 0.3s ease-in-out;
     opacity: 1;

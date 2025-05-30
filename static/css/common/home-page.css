@@ -22,10 +22,10 @@
 .hero-img-gradient-overlay {
     position: absolute;
     right: 260px;
-    bottom: 250px;
+    bottom: 285px;
     height: 15%;
     width: 400px;
-    background: linear-gradient(to top, rgb(0, 0, 0), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0,3), transparent);
 }
 
 .hero-text-container {
