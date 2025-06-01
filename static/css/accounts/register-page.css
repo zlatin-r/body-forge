@@ -7,7 +7,7 @@
 }
 
 .reg-form-container {
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     bottom: 80px;
     left: 300px;

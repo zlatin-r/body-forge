@@ -1,6 +1,6 @@
 .navbar-container {
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     width: 100%;
     color: white;
     display: flex;
