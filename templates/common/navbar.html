@@ -11,7 +11,6 @@
 
     <div class="menu-container">
 
-
         {% if not user.is_authenticated %}
             <ul class="menu-items">
                 <li><a class="glow-on-hover" href="">Forum</a></li>
@@ -27,11 +26,11 @@
         <div class="dropdown-menu hidden" id="dropdown-menu">
             <ul>
                 <li><a href="" class="dropdown-item">Dashboard</a></li>
-                <li><a href="" class="dropdown-item">View Profile</a></li>
-                <li>
-                    <form action="">
+                <li><a href="{% url 'profile-details' pk=user.pk %}" class="dropdown-item">View Profile</a></li>
+                <li class="dropdown-item">
+                    <form action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button class="dropdown-item">Login</button>
+                        <button class="dropdown-item" type="submit">Logout</button>
                     </form>
                 </li>
             </ul>
@@ -41,4 +40,4 @@
 
 </section>
 
-<script src="{% static "/javascript/common/../../static/javascript/navbar/dropdown-menu.js" %}"></script>
+<script src="{% static "/javascript/navbar/dropdown-menu.js" %}"></script>

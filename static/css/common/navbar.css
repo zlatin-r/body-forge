@@ -33,13 +33,6 @@
     display: flex;
     align-items: center;
     padding-right: 10px;
-    gap: 20px;
-}
-
-.menu-container ul {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
 }
 
 .menu-container ul li a {
@@ -49,7 +42,7 @@
 
 .avatar {
     width: 40px;
-    border: 2px solid #ffffff;
+    border: 2px solid var(--primary-blue);
     border-radius: 50%;
     overflow: hidden;
     margin: 10px;
@@ -58,39 +51,26 @@
 .avatar:hover {
     transform: scale(1.1);
     transition: all 0.3s ease;
-
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 50px;
-    right: 17px;
+    top: 60px;
+    right: 20px;
     background-color: #2b2b2b;
-    color: white;
+    color: var(--primary-blue);
     border-radius: 10px;
-    padding: 5px 0; /* Add vertical padding */
     min-width: 150px; /* Set a minimum width */
     width: auto; /* Let it grow as needed */
+    overflow: hidden;
 }
 
-.dropdown-menu ul {
-    flex-direction: column;
-    gap: 0;
-    padding: 0; /* Remove padding from ul */
-    margin: 0; /* Remove default margins */
-    width: 100%; /* Make ul fill the container */
-}
-
-.dropdown-menu li {
-    width: 100%; /* Make li fill the container */
-    list-style: none; /* Remove bullet points */
+.dropdown-menu ul li {
+    text-align: center;
 }
 
 .dropdown-item {
     display: block;
-    padding: 8px 15px; /* Add padding to items */
-    color: white;
-    text-decoration: none;
 }
 
 .dropdown-item:hover {
@@ -100,12 +80,6 @@
 
 /* For the form button to match other items */
 .dropdown-menu button.dropdown-item {
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    font: inherit;
-    color: inherit;
     width: 100%;
     padding: 8px 15px;
 }
