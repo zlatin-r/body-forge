@@ -18,13 +18,13 @@
                 {% csrf_token %}
 
                 <div class="input-field">
-                    <h4 class="field-title">Enter your Email:</h4>
+                    <h4 class="label">Enter your Email:</h4>
                     {{ form.username|placeholder:"Email" }}
                     {{ form.username.errors }}
                 </div>
 
                 <div class="input-field">
-                    <h4 class="field-title">Enter your password:</h4>
+                    <h4 class="label">Enter your password:</h4>
                     {{ form.password|placeholder:"Password" }}
                     {{ form.password.errors }}
                 </div>

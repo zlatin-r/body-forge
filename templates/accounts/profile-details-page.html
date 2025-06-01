@@ -4,7 +4,7 @@
 {% block content %}
     <div class="main-container-details">
         <section class="text-area">
-            <div class="profile-card">
+            <div class="profile-card d-flex-col-cent">
 
                 <h1 class="profile-details-title">Profile Details</h1>
 
@@ -18,31 +18,33 @@
                     {% endif %}
                 </div>
 
-                <div class="profile-info">
-                    <div class="info-item">
+                <div class="change-pic-btn glow-on-hover">Change Picture</div>
+
+                <div class="profile-info d-flex-col-cent">
+                    <div class="info-field-item">
                         <span class="label">Username:</span>
                         <span class="value">{{ object.profile.username|default:"empty" }}</span>
                     </div>
 
-                    <div class="info-item">
+                    <div class="info-field-item">
                         <span class="label">First name:</span>
                         <span class="value">{{ object.profile.first_name|default:'empty' }}</span>
                     </div>
 
-                    <div class="info-item">
+                    <div class="info-field-item">
                         <span class="label">Last name:</span>
                         <span class="value">{{ object.profile.last_name|default:'empty' }}</span>
                     </div>
 
                     <div class="body-info">
-                        <div class="info-item">
+                        <div class="info-field-item">
                             <span class="label">Height:</span>
                             <span class="value">{{ object.profile.height }}</span>
                         </div>
 
                         <span class="border"></span>
 
-                        <div class="info-item">
+                        <div class="info-field-item">
                             <span class="label">Weight:</span>
                             <span class="value">{{ object.profile.body_weight }}</span>
                         </div>

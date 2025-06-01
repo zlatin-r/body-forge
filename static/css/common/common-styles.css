@@ -23,6 +23,13 @@
     flex-direction: column;
 }
 
+.d-flex-col-cent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* --------------------- */
 
 /* buttons glowing effect */
@@ -160,7 +167,7 @@
 
 
 /* Title fields */
-.field-title {
+.label {
     margin: 0 0 5px 0;
     color: var(--smoke-white);
 }
@@ -181,10 +188,12 @@
 /* Buttons */
 .submit-btn {
     padding: 5px 20px;
-    border: 1px solid var(--primary-blue);
-    border-radius: 10px;
     margin: 20px auto;
     width: 50%;
+}
+
+.change-pic-btn {
+    text-align: center;
 }
 
 /* ------------------------- */

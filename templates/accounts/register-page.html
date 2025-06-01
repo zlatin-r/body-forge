@@ -18,7 +18,7 @@
                 {% csrf_token %}
 
                 <div class="input-field">
-                    <h4 class="field-title ">Email:</h4>
+                    <h4 class="label">Email:</h4>
                     {{ form.email|placeholder:"Enter your email" }}
                     <div class="error-field fade-effect">
                         {{ form.email.errors }}
@@ -26,12 +26,12 @@
                 </div>
 
                 <div class="input-field">
-                    <h4 class="field-title">Password:</h4>
+                    <h4 class="label">Password:</h4>
                     {{ form.password1|placeholder:"Enter your new password" }}
                 </div>
 
                 <div class="input-field">
-                    <h4 class="field-title">Confirm Password:</h4>
+                    <h4 class="label">Confirm Password:</h4>
                     {{ form.password2|placeholder:"Enter password again" }}
                     <div class="error-field fade-effect">
                         {{ form.password2.errors }}

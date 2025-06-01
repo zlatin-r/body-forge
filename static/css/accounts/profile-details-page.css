@@ -1,0 +1,32 @@
+.main-container-details {
+    background-color: black;
+}
+
+.profile-card {
+    padding-top: 100px;
+}
+
+.profile-details-title {
+    padding: 30px 0;
+    font-size: 50px;
+}
+
+.profile-image img {
+    margin: 30px;
+    width: 300px;
+    border: 2px solid var(--primary-blue);
+    border-radius: 50%;
+}
+
+.profile-info {
+    gap: 30px;
+    width: 35%;
+}
+
+.info-field-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-bottom: 1px solid var(--primary-blue);
+    width: 100%;
+}
