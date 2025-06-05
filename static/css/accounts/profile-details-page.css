@@ -56,6 +56,10 @@
     width: 100%;
 }
 
+.info-field-item .value {
+    color: whitesmoke;
+}
+
 .body-info {
     margin: 30px 0;
     gap: 70px;
