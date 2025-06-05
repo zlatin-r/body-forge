@@ -12,32 +12,32 @@
     <div class="menu-container">
 
         {% if not user.is_authenticated %}
-            <ul class="menu-items">
+            <ul class="menu-items d-flex">
                 <li><a class="glow-on-hover" href="">Forum</a></li>
                 <li><a class="glow-on-hover" href="">About</a></li>
                 <li><a class="glow-on-hover" href="">Contact</a></li>
             </ul>
+
         {% else %}
             <a href="" class="avatar">
                 <img src="{% static '/images/profile_images/default-profile-image.jpeg' %}" alt="" id="avatar-img">
             </a>
+
+            <div class="dropdown-menu hidden" id="dropdown-menu">
+                <ul>
+                    <li><a href="" class="dropdown-item">Dashboard</a></li>
+                    <li><a href="{% url 'profile-details' pk=user.pk %}" class="dropdown-item">View Profile</a></li>
+                    <li class="dropdown-item">
+                        <form action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="dropdown-item" type="submit">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
         {% endif %}
-
-        <div class="dropdown-menu hidden" id="dropdown-menu">
-            <ul>
-                <li><a href="" class="dropdown-item">Dashboard</a></li>
-                <li><a href="{% url 'profile-details' pk=user.pk %}" class="dropdown-item">View Profile</a></li>
-                <li class="dropdown-item">
-                    <form action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button class="dropdown-item" type="submit">Logout</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-
     </div>
-
 </section>
 
 <script src="{% static "/javascript/navbar/dropdown-menu.js" %}"></script>

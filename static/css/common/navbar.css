@@ -35,6 +35,10 @@
     padding-right: 10px;
 }
 
+.menu-items {
+    gap: 20px;
+}
+
 .menu-container ul li a {
     padding: 10px;
     background-color: inherit;
