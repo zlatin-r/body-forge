@@ -1,7 +1,10 @@
+from typing import Any
+
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
+from django.template.context_processors import request
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
 
@@ -25,6 +28,9 @@ class AppUserRegisterView(CreateView):
 
 class AppUserLoginView(LoginView):
     template_name = "accounts/login-page.html"
+
+    def get_success_url(self):
+        return reverse_lazy("dashboard", kwargs={"pk": self.request.user.pk})
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):

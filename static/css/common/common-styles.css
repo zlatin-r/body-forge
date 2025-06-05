@@ -116,6 +116,7 @@
 
 /* Input fields */
 .input-field input {
+    background: none;
     font-size: 1.1rem;
     color: var(--smoke-white);
     outline: none;
