@@ -2,65 +2,125 @@
 {% load static %}
 
 {% block content %}
-    <div class="main-container-details d-flex">
+    <div class="container">
 
         <div class="background-img">
             <img src="{% static 'images/background_images/bg.png' %}" alt="">
         </div>
 
-        <section class="text-area">
-            <div class="profile-card d-flex-col-cent">
+        <div class="profile-card">
 
-                <h1 class="profile-details-title">Profile Details</h1>
+            <h1 class="profile-c-title">Profile Details</h1>
 
-                <div class="profile-image fade-effect">
-                    {% if object.profile.profile_picture %}
-                        <img src="{{ object.profile.profile_picture.url }}"
-                             alt="{{ object.username }}'s profile picture">
-                    {% else %}
-                        <img src="{% static 'images/profile_images/default-profile-image.jpeg' %}"
-                             alt="profile picture">
-                    {% endif %}
-                </div>
-
-                <button class="change-pic-btn glow-on-hover">Change Picture</button>
-
-                <div class="profile-info d-flex-col-cent fade-effect">
-                    <div class="info-field-item">
-                        <span class="label">Username:</span>
-                        <span class="value">{{ object.profile.username|default:"empty" }}</span>
-                    </div>
-
-                    <div class="info-field-item">
-                        <span class="label">First name:</span>
-                        <span class="value">{{ object.profile.first_name|default:'empty' }}</span>
-                    </div>
-
-                    <div class="info-field-item">
-                        <span class="label">Last name:</span>
-                        <span class="value">{{ object.profile.last_name|default:'empty' }}</span>
-                    </div>
-
-                    <div class="body-info d-flex">
-                        <div class="info-field-item">
-                            <span class="label">Height:</span>
-                            <span class="value">{{ object.profile.height }}</span>
-                        </div>
-
-                        <div class="info-field-item">
-                            <span class="label">Weight:</span>
-                            <span class="value">{{ object.profile.body_weight }}</span>
-                        </div>
-                    </div>
-
-                    <div class="profile-actions d-flex">
-                        <a href="#" class="glow-on-hover">Edit Profile</a>
-                        <a href="#" class="glow-on-hover">Back to Dashboard</a>
-                    </div>
-                </div>
-
+            <div class="profile-image fade-effect">
+                {% if object.profile.profile_picture %}
+                    <img src="{{ object.profile.profile_picture.url }}"
+                         alt="{{ object.username }}'s profile picture">
+                {% else %}
+                    <img src="{% static 'images/profile_images/default-profile-image.jpeg' %}"
+                         alt="profile picture">
+                {% endif %}
             </div>
-        </section>
-        <section class="image-area"></section>
+
+            <button class="change-pic-btn glow-on-hover">Change Picture</button>
+
+            <div class="profile-info d-flex-col-cent fade-effect">
+                <div class="info-field-item">
+                    <span class="label">Username:</span>
+                    <span class="value">{{ object.profile.username|default:"empty" }}</span>
+                </div>
+
+                <div class="info-field-item">
+                    <span class="label">First name:</span>
+                    <span class="value">{{ object.profile.first_name|default:'empty' }}</span>
+                </div>
+
+                <div class="info-field-item">
+                    <span class="label">Last name:</span>
+                    <span class="value">{{ object.profile.last_name|default:'empty' }}</span>
+                </div>
+
+                <div class="body-info d-flex">
+                    <div class="info-field-item">
+                        <span class="label">Height:</span>
+                        <span class="value">{{ object.profile.height }}</span>
+                    </div>
+
+                    <div class="info-field-item">
+                        <span class="label">Weight:</span>
+                        <span class="value">{{ object.profile.body_weight }}</span>
+                    </div>
+                </div>
+
+                <div class="profile-actions d-flex">
+                    <a href="#" class="glow-on-hover">Edit Profile</a>
+                    <a href="#" class="glow-on-hover">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+    {#    <div class="main-container-details d-flex">#}
+    {##}
+    {#        <div class="background-img">#}
+    {#            <img src="{% static 'images/background_images/bg.png' %}" alt="">#}
+    {#        </div>#}
+    {##}
+    {#        <section class="text-area">#}
+    {#            <div class="profile-card d-flex-col-cent">#}
+    {##}
+    {#                <h1 class="profile-details-title">Profile Details</h1>#}
+    {##}
+    {#                <div class="profile-image fade-effect">#}
+    {#                    {% if object.profile.profile_picture %}#}
+    {#                        <img src="{{ object.profile.profile_picture.url }}"#}
+    {#                             alt="{{ object.username }}'s profile picture">#}
+    {#                    {% else %}#}
+    {#                        <img src="{% static 'images/profile_images/default-profile-image.jpeg' %}"#}
+    {#                             alt="profile picture">#}
+    {#                    {% endif %}#}
+    {#                </div>#}
+    {##}
+    {#                <button class="change-pic-btn glow-on-hover">Change Picture</button>#}
+    {##}
+    {#                <div class="profile-info d-flex-col-cent fade-effect">#}
+    {#                    <div class="info-field-item">#}
+    {#                        <span class="label">Username:</span>#}
+    {#                        <span class="value">{{ object.profile.username|default:"empty" }}</span>#}
+    {#                    </div>#}
+    {##}
+    {#                    <div class="info-field-item">#}
+    {#                        <span class="label">First name:</span>#}
+    {#                        <span class="value">{{ object.profile.first_name|default:'empty' }}</span>#}
+    {#                    </div>#}
+    {##}
+    {#                    <div class="info-field-item">#}
+    {#                        <span class="label">Last name:</span>#}
+    {#                        <span class="value">{{ object.profile.last_name|default:'empty' }}</span>#}
+    {#                    </div>#}
+    {##}
+    {#                    <div class="body-info d-flex">#}
+    {#                        <div class="info-field-item">#}
+    {#                            <span class="label">Height:</span>#}
+    {#                            <span class="value">{{ object.profile.height }}</span>#}
+    {#                        </div>#}
+    {##}
+    {#                        <div class="info-field-item">#}
+    {#                            <span class="label">Weight:</span>#}
+    {#                            <span class="value">{{ object.profile.body_weight }}</span>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {##}
+    {#                    <div class="profile-actions d-flex">#}
+    {#                        <a href="#" class="glow-on-hover">Edit Profile</a>#}
+    {#                        <a href="#" class="glow-on-hover">Back to Dashboard</a>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#        </section>#}
+    {#        <section class="image-area"></section>#}
+    {#    </div>#}
 {% endblock %}
