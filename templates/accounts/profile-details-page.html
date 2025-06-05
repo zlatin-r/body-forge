@@ -53,11 +53,16 @@
                 </div>
 
                 <div class="profile-actions d-flex">
-                    <a href="#" class="glow-on-hover">Edit Profile</a>
+                    <a href="{% url 'profile-edit' pk=user.pk %}" class="glow-on-hover">Edit Profile</a>
                     <a href="#" class="glow-on-hover">Back to Dashboard</a>
                 </div>
             </div>
         </div>
+
+        <div class="delete-link">
+            <a href="#">Delete Profile</a>
+        </div>
+
     </div>
 
 
