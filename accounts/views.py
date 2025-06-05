@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
 
 from accounts.forms import AppUserCreationForm, ProfileEditForm
 from accounts.models import Profile
@@ -25,6 +25,10 @@ class AppUserRegisterView(CreateView):
 
 class AppUserLoginView(LoginView):
     template_name = "accounts/login-page.html"
+
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "accounts/dashboard.html"
 
 
 class ProfileDetailsView(LoginRequiredMixin, DetailView):
