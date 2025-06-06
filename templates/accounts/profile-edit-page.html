@@ -5,10 +5,10 @@
     <div class="container">
 
         <div class="background-img">
-            <img src="{% static 'images/background_images/bg2.png' %}" alt="">
+            <img src="{% static 'images/background_images/bg3.png' %}" alt="">
         </div>
 
-        <form class="profile-card" method="post" enctype="multipart/form-data">
+        <form class="profile-card blur-background" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <h1 class="profile-c-title">Edit Profile</h1>
@@ -70,7 +70,7 @@
         </form>
 
         <div class="delete-link">
-            <p>To delete the account <a href="#" class="delete-account-link">Click here</a></p>
+            <p>To delete the account <a href="{% url 'profile-delete' pk=user.pk %}" class="delete-account-link">Click here</a></p>
         </div>
 
     </div>

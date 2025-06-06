@@ -2,7 +2,12 @@
     /* Color Palette */
     --primary-blue: #2e58a8; /* Main brand blue */
     --smoke-white: rgba(250, 250, 250, 0.8);
-    --black: #000000
+    --black: #000000;
+
+    /* Font Sizes */
+    --bigestletters:40px;
+    --bigletters:30px;
+    --normalletters:16px;
 }
 
 .hidden {
@@ -29,8 +34,22 @@
     justify-content: center;
     align-items: center;
 }
-
 /* --------------------- */
+
+/* Font Sizes */
+.title {
+    font-size: var(--bigestletters);
+}
+
+.second-title {
+    font-size: var(--bigletters);
+}
+
+.normal-text {
+    font-size: var(--normalletters);
+}
+
+/* ---------------------- */
 
 .container {
     position: relative;
@@ -74,7 +93,6 @@
 
 .glow-on-hover:hover:before {
     opacity: 1;
-
 }
 
 .glow-on-hover:after {
@@ -155,8 +173,6 @@
     }
 }
 
-/* --------------------- */
-
 /* Error fields */
 .error-field {
     color: #ff4b4b;
@@ -201,3 +217,20 @@
 }
 
 /* ------------------------- */
+
+
+.blur-background {
+    position: absolute;
+    top: 120px;
+    right: auto;
+    width: 40%;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

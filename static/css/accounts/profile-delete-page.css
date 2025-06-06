@@ -1,0 +1,28 @@
+.container-del-page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container {
+    color: var(--smoke-white);
+    gap: 20px;
+}
+
+.delete-form {
+    display: flex;
+    gap: 50px;
+}
+
+.delete-form a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.todo-field {
+    text-align: left;
+}
