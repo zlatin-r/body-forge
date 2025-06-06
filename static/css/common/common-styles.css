@@ -74,6 +74,7 @@
 
 .glow-on-hover:hover:before {
     opacity: 1;
+
 }
 
 .glow-on-hover:after {
@@ -197,10 +198,6 @@
     padding: 5px 20px;
     margin: 20px auto;
     width: 50%;
-}
-
-.change-pic-btn {
-    text-align: center;
 }
 
 /* ------------------------- */

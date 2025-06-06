@@ -88,3 +88,37 @@
     color: red; /* Optional: highlight the delete link */
     text-decoration: underline;
 }
+
+/* Profile image container */
+.profile-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+/* Hide the default file input */
+.profile-image-container input[type="file"] {
+    display: none;
+}
+
+/* Style the change picture button */
+.transition-btn-ef {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Preview when new image is selected */
+/*.profile-image {*/
+/*    position: relative;*/
+/*}*/
+
+.transition-btn-ef:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.transition-btn-ef:active {
+    transform: translateY(1px);
+}
