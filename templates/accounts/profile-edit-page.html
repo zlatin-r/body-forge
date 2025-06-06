@@ -8,7 +8,7 @@
             <img src="{% static 'images/background_images/bg.png' %}" alt="">
         </div>
 
-        <div class="profile-card">
+        <form class="profile-card" method="post">
 
             <h1 class="profile-c-title">Edit Profile</h1>
 
@@ -24,11 +24,25 @@
 
             <button class="change-pic-btn glow-on-hover">Change Picture</button>
 
-        </div>
+            <div class="profile-info">
 
-{#        <div class="delete-link">#}
-{#            <a href="#">Delete Profile</a>#}
-{#        </div>#}
+                {% for field in form %}
 
+                    <div class="info-field-item">
+                        <span class="error">{{ field.error }}</span>
+                        <span class="label">{{ field.label }}:</span>
+                        <span class="value">{{ field }}</span>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </form>
     </div>
+
+    {#        <div class="delete-link">#}
+    {#            <a href="#">Delete Profile</a>#}
+    {#        </div>#}
+
+
 {% endblock %}

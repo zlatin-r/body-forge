@@ -30,6 +30,3 @@ class ProfileEditForm(forms.ModelForm):
         self.fields['profile_picture'].widget = forms.FileInput(attrs={
             'accept': 'image/*'
         })
-
-        self.fields['height'].help_text = "in centimeters"
-        self.fields['body_weight'].help_text = "in kilograms"
