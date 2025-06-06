@@ -32,6 +32,12 @@
 
 /* --------------------- */
 
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
 /* buttons glowing effect */
 .glow-on-hover {
     width: 220px;
