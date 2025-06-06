@@ -78,7 +78,7 @@
 
 .delete-link {
     position: absolute;
-    bottom: 100px;
+    bottom: 70px;
     margin: auto;
     text-align: center;
     color: var(--smoke-white);
@@ -86,7 +86,6 @@
 
 .delete-account-link {
     color: red; /* Optional: highlight the delete link */
-    text-decoration: underline;
 }
 
 /* Profile image container */
