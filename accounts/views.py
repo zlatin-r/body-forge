@@ -1,12 +1,12 @@
 from typing import Any
 
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.template.context_processors import request
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
+from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, DeleteView
 
 from accounts.forms import AppUserCreationForm, ProfileEditForm
 from accounts.models import Profile
@@ -53,3 +53,20 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("profile-details", kwargs={"pk": self.object.pk})
+
+
+class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Profile
+    template_name = "accounts/profile-delete-page.html"
+    success_url = reverse_lazy("home")
+
+    def test_func(self):
+        profile = get_object_or_404(Profile, pk=self.kwargs['pk'])
+        return self.request.user == profile.user
+
+    def post(self, request, *args, **kwargs):
+        profile = self.get_object()
+        user = profile.user
+        logout(request)
+        user.delete()
+        return redirect(self.success_url)
