@@ -9,6 +9,7 @@
         </div>
 
         <form class="profile-card" method="post">
+            {% csrf_token %}
 
             <h1 class="profile-c-title">Edit Profile</h1>
 
@@ -26,23 +27,50 @@
 
             <div class="profile-info">
 
-                {% for field in form %}
+                <div class="info-field-item">
+                    <span class="error">{{ form.error }}</span>
+                    <span class="label">Username:</span>
+                    <span class="value">{{ form.username }}</span>
+                </div>
 
+                <div class="info-field-item">
+                    <span class="error">{{ form.error }}</span>
+                    <span class="label">First name::</span>
+                    <span class="value">{{ form.first_name }}</span>
+                </div>
+
+                <div class="info-field-item">
+                    <span class="error">{{ form.error }}</span>
+                    <span class="label">Last name::</span>
+                    <span class="value">{{ form.last_name }}</span>
+                </div>
+
+                <div class="body-info d-flex">
                     <div class="info-field-item">
-                        <span class="error">{{ field.error }}</span>
-                        <span class="label">{{ field.label }}:</span>
-                        <span class="value">{{ field }}</span>
+                        <span class="error">{{ form.error }}</span>
+                        <span class="label">Height:</span>
+                        <span class="value">{{ form.height }}</span>
                     </div>
 
-                {% endfor %}
-
+                    <div class="info-field-item">
+                        <span class="error">{{ form.error }}</span>
+                        <span class="label">Weight:</span>
+                        <span class="value">{{ form.body_weight }}</span>
+                    </div>
+                </div>
             </div>
+
+            <button class="glow-on-hover" type="submit">Save Changes</button>
+
         </form>
+
+        <div class="delete-link">
+            <p>To delete the account <a href="#" class="delete-account-link">Click here</a></p>
+        </div>
+
     </div>
 
-    {#        <div class="delete-link">#}
-    {#            <a href="#">Delete Profile</a>#}
-    {#        </div>#}
+
 
 
 {% endblock %}

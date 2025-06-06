@@ -6,6 +6,7 @@
 .background-img img {
     padding-top: 50px;
     width: 100%;
+    height: 100%;
 }
 
 .profile-card {
@@ -77,6 +78,13 @@
 
 .delete-link {
     position: absolute;
+    bottom: 100px;
+    margin: auto;
+    text-align: center;
     color: var(--smoke-white);
-    bottom: -340px;
+}
+
+.delete-account-link {
+    color: red; /* Optional: highlight the delete link */
+    text-decoration: underline;
 }
