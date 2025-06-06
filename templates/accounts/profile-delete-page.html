@@ -41,9 +41,10 @@
             <br>
             <p class="second-title">Confirm Account Deletion:</p>
             <br>
-            <form class="delete-form" action="{% url 'profile-delete' pk=user.pk %}">
+            <form method="post" class="delete-form" action="{% url 'profile-delete' pk=user.pk %}">
                 {% csrf_token %}
-                <button class="glow-on-hover-red transition-btn-ef">Delete My Account</button>
+
+                <button class="glow-on-hover transition-btn-ef">Delete My Account</button>
                 <a class="glow-on-hover transition-btn-ef" href="javascript:history.back()">Cancel</a>
             </form>
 

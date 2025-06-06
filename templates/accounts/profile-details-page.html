@@ -53,7 +53,7 @@
 
                 <div class="profile-actions d-flex">
                     <a href="{% url 'profile-edit' pk=user.pk %}" class="glow-on-hover transition-btn-ef">Edit Profile</a>
-                    <a href="#" class="glow-on-hover transition-btn-ef">Back to Dashboard</a>
+                    <a href="{% url 'dashboard' pk=user.pk %}" class="glow-on-hover transition-btn-ef">Back to Dashboard</a>
                 </div>
 
             </div>
