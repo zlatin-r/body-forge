@@ -19,9 +19,17 @@
             </ul>
 
         {% else %}
-            <a href="" class="avatar transition-btn-ef">
-                <img src="{% static '/images/profile_images/default-profile-image.jpeg' %}" alt="" id="avatar-img">
-            </a>
+
+            {% if user.is_authenticated and user.profile.profile_picture %}
+                <a href="#" class="avatar transition-btn-ef">
+                    <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.username }}'s profile picture">
+                </a>
+            {% else %}
+                <a href="#" class="avatar transition-btn-ef">
+                    <img src="{% static 'images/profile_images/default-profile-image.jpeg' %}"
+                         alt="{{ user.username }}'s profile picture">
+                </a>
+            {% endif %}
 
             <div class="dropdown-menu hidden" id="dropdown-menu">
                 <ul>
