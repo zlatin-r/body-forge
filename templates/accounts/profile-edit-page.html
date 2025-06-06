@@ -8,23 +8,10 @@
             <img src="{% static 'images/background_images/bg.png' %}" alt="">
         </div>
 
-        <form class="profile-card" method="post">
+        <form class="profile-card" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <h1 class="profile-c-title">Edit Profile</h1>
-
-            {#            <div class="profile-image fade-effect">#}
-            {#                {% if object.profile.profile_picture %}#}
-            {#                    <img src="{{ object.profile.profile_picture.url }}"#}
-            {#                         alt="{{ object.username }}'s profile picture">#}
-            {#                {% else %}#}
-            {#                    <img src="{% static 'images/profile_images/default-profile-image.jpeg' %}"#}
-            {#                         alt="profile picture">#}
-            {#                {% endif %}#}
-            {#            </div>#}
-            {##}
-            {#            <span class="change-pic-btn glow-on-hover d-flex">Change Picture</span>#}
-
 
             <div class="profile-image-container">
 
@@ -87,8 +74,5 @@
         </div>
 
     </div>
-
-
-
 
 {% endblock %}
