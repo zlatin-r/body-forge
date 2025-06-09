@@ -12,12 +12,6 @@ class AppUserCreationForm(UserCreationForm):
         model = UserModel
         fields = ("email", "password1", "password2")
 
-        widgets = {
-            'email': forms.TextInput(attrs={"class": "form-control"}),
-            'password1': forms.PasswordInput(attrs={"class": "form-control"}),
-            'password2': forms.PasswordInput(attrs={"class": "form-control"}),
-        }
-
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:
