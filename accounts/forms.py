@@ -24,3 +24,4 @@ class ProfileEditForm(forms.ModelForm):
         self.fields['profile_picture'].widget = forms.FileInput(attrs={
             'accept': 'image/*'
         })
+
