@@ -25,3 +25,4 @@ class ProfileEditForm(forms.ModelForm):
             'accept': 'image/*'
         })
 
+
