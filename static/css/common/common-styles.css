@@ -5,9 +5,9 @@
     --black: #000000;
 
     /* Font Sizes */
-    --bigestletters:40px;
-    --bigletters:30px;
-    --normalletters:16px;
+    --bigestletters: 40px;
+    --bigletters: 30px;
+    --normalletters: 16px;
 }
 
 .hidden {
@@ -34,6 +34,7 @@
     justify-content: center;
     align-items: center;
 }
+
 /* --------------------- */
 
 /* Font Sizes */
@@ -211,6 +212,12 @@
 
 /* Buttons */
 .submit-btn {
+    padding: 5px 20px;
+    margin: 20px auto;
+    width: 50%;
+}
+
+.btn {
     padding: 5px 20px;
     margin: 20px auto;
     width: 50%;

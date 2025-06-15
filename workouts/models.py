@@ -15,11 +15,18 @@ class Workout(models.Model):
         choices=WorkoutTypes,
     )
     date = models.DateField(
-        auto_now_add=True
+        auto_now_add=True,
+    )
+    notes = models.TextField(
+        blank=True,
+        null=True,
     )
 
     def __str__(self):
         return f"{self.user} - {self.workout_type} on {self.date}"
+
+    class Meta:
+        ordering = ['-date']
 
 
 class MuscleGroup(models.Model):

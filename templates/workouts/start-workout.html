@@ -1,21 +1,32 @@
 {% extends "common/base.html" %}
+{% load static %}
 
 {% block content %}
 
     <div class="container-2 fade-effect">
+
         <h1 class="title">Start New Workout</h1>
+
         <form method="post" class="d-flex-col-cent" action="#">
             {% csrf_token %}
+
             <div class="form-group">
                 <label for="id_workout_type">Workout Type:</label>
                 {{ form.workout_type }}
             </div>
+
             <div class="form-group">
                 <label>Muscle Groups:</label>
-                {{ form.muscle_groups }}
+                {% if all_muscle_gps %}
+                    {{ form.muscle_groups }}
+                {% else %}
+                    <a class="glow-on-hover btn" href="">Add New Muscle Group</a>
+                {% endif %}
             </div>
+
             <button type="submit" class="submit-btn glow-on-hover">Start Workout</button>
         </form>
+
     </div>
 
 {% endblock %}
