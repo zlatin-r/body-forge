@@ -15,6 +15,10 @@ class StartWorkoutForm(forms.ModelForm):
         help_text="Muscle Groups to Train"
     )
 
+class CreateMuscleGroupForm(forms.ModelForm):
+    class Meta:
+        model = MuscleGroup
+        fields = ['name']
 
 # class StartWorkoutForm(forms.ModelForm):
 #     muscle_groups = forms.ModelMultipleChoiceField(

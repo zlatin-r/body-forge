@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, FormView
 
-from workouts.forms import StartWorkoutForm
+from workouts.forms import StartWorkoutForm, CreateMuscleGroupForm
 from workouts.models import MuscleGroup, Workout
 
 
@@ -14,7 +14,7 @@ class StartWorkoutView(LoginRequiredMixin, FormView):
 
 class CreateMuscleGroupView(LoginRequiredMixin, CreateView):
     model = MuscleGroup
-    form_class = StartWorkoutForm
+    form_class = CreateMuscleGroupForm
     success_url = reverse_lazy('workouts/start-workout')
 
     def get_context_data(self, **kwargs):

@@ -20,12 +20,24 @@
                 {% if all_muscle_gps %}
                     {{ form.muscle_groups }}
                 {% else %}
-                    <a class="glow-on-hover btn" href="">Add New Muscle Group</a>
+                    <a class="glow-on-hover" href="">Add New Muscle Group</a>
                 {% endif %}
             </div>
 
             <button type="submit" class="submit-btn glow-on-hover">Start Workout</button>
         </form>
+
+        <div class="container-3">
+            <div class="container fade-effect d-flex-col-cent">
+                <h1 class="title">Create Muscle Group</h1>
+
+                <form method="post" class="d-flex-col-cent">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="submit-btn glow-on-hover">Create</button>
+                </form>
+            </div>
+        </div>
 
     </div>
 
