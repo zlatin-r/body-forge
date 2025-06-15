@@ -24,7 +24,8 @@ class Workout(models.Model):
 
 class MuscleGroup(models.Model):
     name = models.CharField(
-        max_length=100
+        max_length=100,
+        unique=True,
     )
 
     def __str__(self):
@@ -45,11 +46,13 @@ class WorkoutMuscleGroup(models.Model):
 
 class Exercise(models.Model):
     name = models.CharField(
-        max_length=100
+        max_length=100,
+        unique=True,
     )
     muscle_group = models.ForeignKey(
         to=MuscleGroup,
-        on_delete=models.SET_NULL, null=True
+        on_delete=models.SET_NULL,
+        null=True
     )
 
     def __str__(self):

@@ -1,5 +1,3 @@
-# workouts/forms.py
-
 from django import forms
 from django.forms import modelformset_factory
 
@@ -32,7 +30,6 @@ class WorkoutSetForm(forms.ModelForm):
             'repetitions': forms.NumberInput(attrs={'class': 'form-control', 'min': 1}),
             'weight': forms.NumberInput(attrs={'class': 'form-control', 'step': 0.5}),
         }
-
 
 
 WorkoutSetFormSet = modelformset_factory(
