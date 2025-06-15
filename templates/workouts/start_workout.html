@@ -4,7 +4,7 @@
 
     <div class="container-2 fade-effect">
         <h1 class="title">Start New Workout</h1>
-        <form method="post" class="d-flex-col-cent">
+        <form method="post" class="d-flex-col-cent" action="{% url '' %}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="id_workout_type">Workout Type:</label>
