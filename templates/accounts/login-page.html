@@ -1,0 +1,48 @@
+{% extends 'common/base.html' %}
+{% load placeholder_filter %}
+{% load static %}
+
+{% block content %}
+    <div class="main-container-login">
+        <div class="login-form-gradient-overlay"></div>
+
+        <div class="login-page-text-container fade-effect">
+            <span>Welcome back — your progress starts now.</span>
+        </div>
+
+        <div class="login-form-container d-flex-col fade-effect">
+
+            <h1 class="login-page-title">Login to your account</h1>
+
+            <form method="post" class="login-form d-flex-col">
+                {% csrf_token %}
+
+                <div class="input-field">
+                    <h4 class="label">Enter your Email:</h4>
+                    {{ form.username|placeholder:"Email" }}
+                    {{ form.username.errors }}
+                </div>
+
+                <div class="input-field">
+                    <h4 class="label">Enter your password:</h4>
+                    {{ form.password|placeholder:"Password" }}
+                    {{ form.password.errors }}
+                </div>
+
+                <button type="submit" class="submit-btn transition-btn-ef glow-on-hover">Login</button>
+
+            </form>
+
+            <div class="second-option-btn">
+                <p>Don't have an account? <a href="{% url 'register' %}" class="register-link">Click here</a></p>
+            </div>
+
+        </div>
+
+        <div class="login-page-img-container">
+            <img class="fade-effect" src="{% static 'images/background_images/background12.png' %}"
+                 alt="Login Page Image">
+        </div>
+
+    </div>
+{% endblock %}

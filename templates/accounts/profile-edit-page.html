@@ -1,0 +1,78 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="background-img">
+            <img src="{% static 'images/background_images/bg3.png' %}" alt="">
+        </div>
+
+        <form class="profile-card blur-background" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <h1 class="profile-c-title">Edit Profile</h1>
+
+            <div class="profile-image-container d-flex-col-cent">
+
+                <div class="profile-image">
+                    {% if object.profile_picture %}
+                        <img id="profile-picture-preview" src="{{ object.profile_picture.url }}"
+                             alt="{{ object.username }}'s profile picture">
+                    {% else %}
+                        <img id="profile-picture-preview"
+                             src="{% static 'images/profile_images/default-profile-image.jpeg' %}"
+                             alt="{{ object.username }}'s profile picture">
+                    {% endif %}
+                </div>
+                <label for="id_profile_picture" class="transition-btn-ef glow-on-hover d-flex-col-cent">Change Profile
+                    Picture</label>
+                {{ form.profile_picture }}
+            </div>
+
+            <div class="profile-info">
+
+                <div class="info-field-item">
+                    <span class="error">{{ form.error }}</span>
+                    <span class="label">Username:</span>
+                    <span class="value">{{ form.username }}</span>
+                </div>
+
+                <div class="info-field-item">
+                    <span class="error">{{ form.error }}</span>
+                    <span class="label">First name::</span>
+                    <span class="value">{{ form.first_name }}</span>
+                </div>
+
+                <div class="info-field-item">
+                    <span class="error">{{ form.error }}</span>
+                    <span class="label">Last name::</span>
+                    <span class="value">{{ form.last_name }}</span>
+                </div>
+
+                <div class="body-info d-flex">
+                    <div class="info-field-item">
+                        <span class="error">{{ form.error }}</span>
+                        <span class="label">Height:</span>
+                        <span class="value">{{ form.height }}</span>
+                    </div>
+
+                    <div class="info-field-item">
+                        <span class="error">{{ form.error }}</span>
+                        <span class="label">Weight:</span>
+                        <span class="value">{{ form.body_weight }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="glow-on-hover transition-btn-ef" type="submit">Save Changes</button>
+
+        </form>
+
+        <div class="delete-link">
+            <p>To delete the account <a href="{% url 'profile-delete' pk=user.pk %}" class="delete-account-link">Click here</a></p>
+        </div>
+
+    </div>
+
+{% endblock %}
