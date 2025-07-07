@@ -15,11 +15,11 @@
 /*!* -------------------------------- *!*/
 /*!*            GENERAL               *!*/
 /*!* -------------------------------- *!*/
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: black;
-    color: var(--smoke-white);
-}
+/*body {*/
+/*    font-family: 'Segoe UI', sans-serif;*/
+/*    background-color: black;*/
+/*    color: var(--smoke-white);*/
+/*}*/
 
 /*.container {*/
 /*    max-width: 800px;*/
