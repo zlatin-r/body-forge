@@ -18,9 +18,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 PROJECT_APPS = [
-    'common',
-    'accounts',
-    'workouts',
+    # 'common',
+    # 'accounts',
+    # 'workouts',
 ]
 
 INSTALLED_APPS = [
@@ -120,6 +120,6 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.AppUser'
-
-LOGOUT_REDIRECT_URL = 'home'
+# AUTH_USER_MODEL = 'accounts.AppUser'
+#
+# LOGOUT_REDIRECT_URL = 'home'
