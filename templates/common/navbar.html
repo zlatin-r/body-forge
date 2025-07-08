@@ -4,7 +4,7 @@
 
     <div class="logo-container">
         <a href="{% url 'home' %}">
-            <img src="{% static '/images/logo/logo.png' %}" alt="logo">
+            <img src="{% static '/images/logo/logo4.png' %}" alt="logo">
             <span style="color: #2e58a8"><strong>Body Forge</strong></span>
         </a>
     </div>
@@ -33,10 +33,10 @@
 
             <div class="dropdown-menu hidden" id="dropdown-menu">
                 <ul>
-                    <li><a href="{% url 'dashboard' pk=user.pk %}" class="dropdown-item">Dashboard</a></li>
+                    <li><a href="#" class="dropdown-item">Dashboard</a></li>
                     <li><a href="{% url 'profile-details' pk=user.pk %}" class="dropdown-item">View Profile</a></li>
                     <li class="dropdown-item">
-                        <form action="{% url 'logout' %}" method="post">
+                        <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <button class="dropdown-item" type="submit">Logout</button>
                         </form>

@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from accounts.forms import AppUserCreationForm
+from accounts.models import Profile
 
 UserModel = get_user_model()
 
@@ -37,3 +38,8 @@ class AppUserAdmin(UserAdmin):
         ),
     )
     ordering = ("email",)
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    ...

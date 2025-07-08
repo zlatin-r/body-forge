@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, DeleteView
 
 from accounts.forms import AppUserCreationForm, ProfileEditForm
@@ -18,19 +17,13 @@ class AppUserRegisterView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        login(self.request, self.object)
+        if response.status_code in [301, 302]:
+            login(self.request, self.object)
         return response
 
     def get_success_url(self):
         profile = self.object.profile
         return reverse_lazy("profile-edit", kwargs={"pk": profile.pk})
-
-
-class AppUserLoginView(LoginView):
-    template_name = "accounts/login-page.html"
-
-    def get_success_url(self):
-        return reverse_lazy("dashboard", kwargs={"pk": self.request.user.pk})
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):
@@ -48,11 +41,10 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "accounts/profile-edit-page.html"
 
     def test_func(self):
-        profile = get_object_or_404(Profile, pk=self.kwargs['pk'])
-        return self.request.user == profile.user
+        return self.request.user.pk == self.kwargs['pk']
 
     def get_success_url(self):
-        return reverse_lazy("profile-details", kwargs={"pk": self.object.pk})
+        return reverse("profile-details", kwargs={"pk": self.object.pk})
 
 
 class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):

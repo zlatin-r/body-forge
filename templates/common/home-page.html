@@ -25,11 +25,11 @@
 
             <div class="hero-btn-container fade-effect">
                 {% if not user.is_authenticated %}
-                    <a href="#" class="btn-get-started">
+                    <a href="{% url 'login' %}" class="btn-get-started">
                         <button class="glow-on-hover" type="button">Get Started</button>
                     </a>
                 {% else %}
-                    <a href="{% url 'start-workout' %}" class="btn-get-started">
+                    <a href="#" class="btn-get-started">
                         <button class="glow-on-hover" type="button">Start Workout</button>
                     </a>
                 {% endif %}
