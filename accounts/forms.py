@@ -10,7 +10,7 @@ UserModel = get_user_model()
 class AppUserCreationForm(UserCreationForm):
     class Meta:
         model = UserModel
-        fields = ("email", "password1", "password2")
+        fields = ("email",)
 
 
 class ProfileEditForm(forms.ModelForm):

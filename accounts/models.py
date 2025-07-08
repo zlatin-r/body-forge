@@ -8,18 +8,16 @@ from accounts.managers import AppUserManager
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
-        unique=True
+        unique=True,
     )
-
     is_active = models.BooleanField(
-        default=True
+        default=True,
     )
     is_staff = models.BooleanField(
-        default=False
+        default=False,
     )
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
 
     objects = AppUserManager()
 
@@ -57,7 +55,7 @@ class Profile(models.Model):
     )
     height = models.DecimalField(
         max_digits=MAX_DIGITS,
-        decimal_places=DECIMAL_PLACES,  # Supports 999.99cm
+        decimal_places=DECIMAL_PLACES,
         blank=True,
         null=True,
         validators=[
@@ -66,7 +64,7 @@ class Profile(models.Model):
     )
     body_weight = models.DecimalField(
         max_digits=MAX_DIGITS,
-        decimal_places=DECIMAL_PLACES,  # Supports 9999.99kg
+        decimal_places=DECIMAL_PLACES,
         blank=True,
         null=True,
         validators=[
