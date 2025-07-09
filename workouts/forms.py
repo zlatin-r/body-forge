@@ -1,5 +1,11 @@
 from django import forms
-from .models import WorkoutSession
+from .models import WorkoutType, WorkoutSession
+
+
+class CreateWorkoutTypeForm(forms.ModelForm):
+    class Meta:
+        model = WorkoutType
+        fields = ("name",)
 
 
 class StartWorkoutSessionForm(forms.ModelForm):
@@ -19,7 +25,6 @@ class StartWorkoutSessionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(StartWorkoutSessionForm, self).__init__(*args, **kwargs)
         self.fields['workout_type'].empty_label = "Choose workout type"
-
 
 # class ExerciseForm(forms.ModelForm):
 #     class Meta:

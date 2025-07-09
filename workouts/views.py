@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
+
 from workouts.forms import StartWorkoutSessionForm
 from workouts.models import WorkoutSession, WorkoutType
 
@@ -11,10 +12,13 @@ class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["workout_types"] =WorkoutType.objects.all()
+        context["workout_types"] = WorkoutType.objects.all()
         return context
 
 
+class CreateWorkoutTypeView(LoginRequiredMixin, CreateView):
+    model = WorkoutType
+    
 
 # @login_required
 # def start_workout_view(request):

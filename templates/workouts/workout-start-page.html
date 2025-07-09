@@ -16,11 +16,14 @@
         <div class="form-container blur-background">
             {% if workout_types %}
 
-                <p class="second-title">Select Exercise Type:</p>
+                <p class="second-title">Select Workout Type:</p>
 
                 <ul class="exercises-list d-flex-col-cent" id="sourceList">
                     {% for type in workout_types %}
-                        <li class="exercise-type-element">{{ type }}</li>
+                        <li class="exercise-type-element">
+                            {{ type }}
+                            <i class="far fa-trash-alt" id="del-icon"></i>
+                        </li>
                     {% endfor %}
                 </ul>
 
@@ -28,7 +31,7 @@
                 No exercises yet.
             {% endif %}
 
-            <a class="btn glow-on-hover d-flex-col-cent" href="#">Create New Exercise</a>
+            <a class="btn glow-on-hover d-flex-col-cent" href="#">Add New Type</a>
 
             <p class="second-title">Selected Types:</p>
 
