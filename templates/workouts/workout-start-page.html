@@ -18,7 +18,7 @@
 
                 <p class="second-title">Select Exercise Type:</p>
 
-                <ul class="exercises-list d-flex-col-cent">
+                <ul class="exercises-list d-flex-col-cent" id="sourceList">
                     {% for type in workout_types %}
                         <li class="exercise-type-element">{{ type }}</li>
                     {% endfor %}
@@ -33,9 +33,7 @@
             <p class="second-title">Selected Types:</p>
 
             <div class="selected-exercises-container">
-                <ul class="selected-exercises-list">
-
-                </ul>
+                <ul class="selected-exercises-list" id="targetList"></ul>
             </div>
 
         </div>

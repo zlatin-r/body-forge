@@ -39,8 +39,9 @@
     width: 100%;
     padding: 12px 20px;
     margin: 10px 0;
-    background-color: #f2f2f2;
+    background-color: var(--smoke-white);
     border-radius: 10px;
+    text-align: center;
     font-size: 18px;
     font-weight: 500;
     color: #333;
@@ -50,8 +51,6 @@
 }
 
 .exercise-type-element:hover {
-    /*background-color: #5cb85c;*/
-    color: white;
     transform: translateY(-2px) scale(1.03);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
