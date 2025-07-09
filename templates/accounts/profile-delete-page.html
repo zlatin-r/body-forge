@@ -38,12 +38,13 @@
                 <br>
                 <p>✅ Consider contacting support if you need assistance.</p>
             </div>
+
             <br>
             <p class="second-title">Confirm Account Deletion:</p>
             <br>
+
             <form method="post" class="delete-form" action="{% url 'profile-delete' pk=user.pk %}">
                 {% csrf_token %}
-
                 <button class="glow-on-hover transition-btn-ef">Delete My Account</button>
                 <a class="glow-on-hover transition-btn-ef" href="javascript:history.back()">Cancel</a>
             </form>
