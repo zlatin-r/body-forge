@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="background-img">
+        <img src="{% static 'images/background_images/background4.png' %}" alt="">
+    </div>
+
+    <div class="workout-container">
+
+        <div class="title new-workout-title">
+            <p>Start New Workout</p>
+        </div>
+
+        <div class="form-container blur-background">
+            {% if workout_types %}
+
+                <p class="second-title">Select Exercise Type:</p>
+
+                <ul class="exercises-list d-flex-col-cent">
+                    {% for type in workout_types %}
+                        <li class="exercise-type-element">{{ type }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% else %}
+                No exercises yet.
+            {% endif %}
+
+            <a class="btn glow-on-hover d-flex-col-cent" href="#">Create New Exercise</a>
+
+            <p class="second-title">Selected Types:</p>
+
+            <div class="selected-exercises-container">
+                <ul class="selected-exercises-list">
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

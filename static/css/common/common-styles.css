@@ -50,6 +50,7 @@
     font-size: var(--normalletters);
 }
 
+
 /* ---------------------- */
 
 .container {
@@ -214,13 +215,13 @@
 .submit-btn {
     padding: 5px 20px;
     margin: 20px auto;
-    width: 50%;
+    width: 220px;
 }
 
 .btn {
     padding: 5px 20px;
     margin: 20px auto;
-    width: 50%;
+    width: 220px;
 }
 
 /* ------------------------- */
