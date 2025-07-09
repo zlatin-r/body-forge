@@ -22,7 +22,7 @@ ALLOWED_HOSTS = []
 PROJECT_APPS = [
     'common',
     'accounts',
-    # 'workouts',
+    'workouts',
 ]
 
 INSTALLED_APPS = [
