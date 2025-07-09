@@ -17,6 +17,8 @@ class AppUserRegisterView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        # Signal for profile creation
+
         if response.status_code in [301, 302]:
             login(self.request, self.object)
         return response
@@ -24,10 +26,6 @@ class AppUserRegisterView(CreateView):
     def get_success_url(self):
         profile = self.object.profile
         return reverse_lazy("profile-edit", kwargs={"pk": profile.pk})
-
-
-class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = "accounts/dashboard.html"
 
 
 class ProfileDetailsView(LoginRequiredMixin, DetailView):
@@ -62,3 +60,7 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         logout(request)
         user.delete()
         return redirect(self.success_url)
+
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "accounts/dashboard.html"
