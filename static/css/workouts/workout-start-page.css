@@ -16,8 +16,6 @@
     width: 70%;
     padding: 15px;
     margin: 35px 15px;
-    border: 1px solid var(--smoke-white);
-    border-radius: 10px;
 }
 
 .new-workout-title {
@@ -27,23 +25,26 @@
 }
 
 .selected-exercises-container {
-    border: 1px solid var(--smoke-white);
-    border-radius: 10px;
     padding: 15px;
     margin: 35px 15px;
-    height: 500px;
     width: 70%;
+    height: 100%;
 }
 
-.exercise-type-element {
+.workout-type-row {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.workout-type-element {
+    display: flex;
     width: 100%;
     padding: 12px 20px;
     margin: 10px 0;
     background-color: var(--smoke-white);
     border-radius: 10px;
-
     font-size: 18px;
     font-weight: 500;
     color: #333;
@@ -52,7 +53,19 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.exercise-type-element:hover {
+.workout-type-element:hover {
     transform: translateY(-2px) scale(1.03);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.workout-type-del-btn i {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10px;
+    align-content: center;
+    background-color: red;
+}
+
+.workout-type-del-btn i:hover {
+    color: red;
 }

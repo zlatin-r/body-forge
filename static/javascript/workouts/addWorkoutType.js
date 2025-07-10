@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const sourceList = document.getElementById('sourceList');
-    const targetList = document.getElementById('targetList');
+    const sourceList = document.getElementById('source-list');
+    const targetList = document.getElementById('target-list');
 
     sourceList.addEventListener('click', function (e) {
-        const clickedLI = e.target.closest('li');
+        const clickedLI = e.target.closest('p');
         if (!clickedLI) return;
 
         const text = clickedLI.textContent.trim();
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     targetList.addEventListener('click', function (e) {
-        const clickedLI = e.target.closest('li');
+        const clickedLI = e.target.closest('p');
         if (clickedLI) clickedLI.remove();
     });
 });

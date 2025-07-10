@@ -22,6 +22,7 @@ class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
 class CreateWorkoutTypeView(LoginRequiredMixin, CreateView):
     model = WorkoutType
     form_class = CreateWorkoutTypeForm
+    template_name = "workouts/workout-type-add-page.html"
     success_url = reverse_lazy("start-workout")
 
     def form_valid(self, form):

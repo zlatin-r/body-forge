@@ -18,17 +18,19 @@
 
                 <p class="second-title">Select Workout Type:</p>
 
-                <ul class="exercises-list d-flex-col-cent" id="sourceList">
+                <ul class="exercises-list d-flex-col-cent" id="source-list">
                     {% for type in workout_types %}
-                        <li class="exercise-type-element">
-                            {{ type }}
-                            <form method="post" action="{% url 'delete-workout-type' type.pk %}"
-                                  style="display: inline;">
+                        <li class="workout-type-row">
+                            <p class="workout-type-element">{{ type.name }}</p>
+
+                            <form class="workout-type-del-btn" method="post"
+                                  action="{% url 'delete-workout-type' type.pk %}">
                                 {% csrf_token %}
                                 <button type="submit" class="delete-btn">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </form>
+
                         </li>
                     {% endfor %}
                 </ul>
@@ -39,10 +41,8 @@
 
             <a class="btn glow-on-hover d-flex-col-cent" href="{% url 'add-workout-type' %}">Add New Type</a>
 
-            <p class="second-title">Selected Types:</p>
-
-            <div class="selected-exercises-container">
-                <ul class="selected-exercises-list" id="targetList"></ul>
+            <div class="selected-exercises-container" id="target-list-container">
+                <ul class="selected-exercises-list" id="target-list"></ul>
             </div>
 
         </div>
