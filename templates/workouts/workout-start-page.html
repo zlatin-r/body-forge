@@ -22,7 +22,13 @@
                     {% for type in workout_types %}
                         <li class="exercise-type-element">
                             {{ type }}
-                            <i class="far fa-trash-alt" id="del-icon"></i>
+                            <form method="post" action="{% url 'delete-workout-type' type.pk %}"
+                                  style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-btn">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </form>
                         </li>
                     {% endfor %}
                 </ul>
@@ -31,7 +37,7 @@
                 No exercises yet.
             {% endif %}
 
-            <a class="btn glow-on-hover d-flex-col-cent" href="#">Add New Type</a>
+            <a class="btn glow-on-hover d-flex-col-cent" href="{% url 'add-workout-type' %}">Add New Type</a>
 
             <p class="second-title">Selected Types:</p>
 

@@ -5,6 +5,10 @@ UserModel = get_user_model()
 
 
 class WorkoutType(models.Model):
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE
+    )
     name = models.CharField(
         max_length=50,
     )
