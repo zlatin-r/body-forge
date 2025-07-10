@@ -1,76 +1,42 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseForbidden
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, FormView
+from django.views.generic import CreateView, DeleteView
 
-from workouts.forms import StartWorkoutForm, CreateMuscleGroupForm
-from workouts.models import MuscleGroup, Workout
-
-
-class StartWorkoutView(LoginRequiredMixin, FormView):
-    model = Workout
-    form_class = StartWorkoutForm
-    template_name = 'workouts/start-workout.html'
+from workouts.forms import StartWorkoutSessionForm, CreateWorkoutTypeForm
+from workouts.models import WorkoutSession, WorkoutType
 
 
-class CreateMuscleGroupView(LoginRequiredMixin, CreateView):
-    model = MuscleGroup
-    form_class = CreateMuscleGroupForm
-    success_url = reverse_lazy('workouts/start-workout')
+class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
+    model = WorkoutSession
+    template_name = "workouts/workout-start-page.html"
+    form_class = StartWorkoutSessionForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['all_muscle_gps'] = MuscleGroup.objects.all()
+        context["workout_types"] = WorkoutType.objects.all()
         return context
 
 
+class CreateWorkoutTypeView(LoginRequiredMixin, CreateView):
+    model = WorkoutType
+    form_class = CreateWorkoutTypeForm
+    template_name = "workouts/workout-type-add-page.html"
+    success_url = reverse_lazy("start-workout")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
-# class StartWorkoutView(LoginRequiredMixin, FormView):
-#     template_name = 'workouts/start-workout.html'
-#     form_class = StartWorkoutForm
-#
-#     def form_valid(self, form):
-#         workout = form.save(commit=False)
-#         workout.user = self.request.user
-#         workout.save()
-#         return redirect('add-workout-sets', workout_id=workout.id)
-#
-#
-# class AddWorkoutSetsView(LoginRequiredMixin, FormView):
-#     template_name = 'workouts/add_sets.html'
-#     form_class = WorkoutSetFormSet
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         workout = get_object_or_404(Workout, id=self.kwargs['workout_id'], user=self.request.user)
-#         context['workout'] = workout
-#         return context
-#
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         workout = get_object_or_404(Workout, id=self.kwargs['workout_id'], user=self.request.user)
-#         kwargs['queryset'] = WorkoutSet.objects.filter(workout=workout)
-#         return kwargs
-#
-#     def form_valid(self, formset):
-#         workout = get_object_or_404(Workout, id=self.kwargs['workout_id'], user=self.request.user)
-#
-#         for form in formset:
-#             if form.cleaned_data:
-#                 set_obj = form.save(commit=False)
-#                 set_obj.workout = workout
-#                 set_obj.save()
-#
-#         return redirect('workout-summary', workout_id=workout.id)
-#
-#
-# class WorkoutSummaryView(LoginRequiredMixin, TemplateView):
-#     template_name = 'workouts/workout_summary.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         workout = get_object_or_404(Workout, id=self.kwargs['workout_id'], user=self.request.user)
-#         sets = WorkoutSet.objects.filter(workout=workout)
-#         context['workout'] = workout
-#         context['sets'] = sets
-#         return context
+class DeleteWorkoutTypeView(LoginRequiredMixin, DeleteView):
+    model = WorkoutType
+    success_url = reverse_lazy("start-workout")
+
+    def post(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if hasattr(obj, 'user') and obj.user != request.user:
+            return HttpResponseForbidden()
+        obj.delete()
+        return redirect(self.success_url)

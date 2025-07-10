@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="background-img">
+        <img src="{% static 'images/background_images/background4.png' %}" alt="">
+    </div>
+
+    <div class="workout-container">
+
+        <div class="title new-workout-title">
+            <p>Start New Workout</p>
+        </div>
+
+        <div class="form-container blur-background">
+            {% if workout_types %}
+
+                <p class="second-title">Select Workout Type:</p>
+
+                <ul class="exercises-list d-flex-col-cent" id="source-list">
+                    {% for type in workout_types %}
+                        <li class="workout-type-row">
+                            <p class="workout-type-element">{{ type.name }}</p>
+
+                            <form class="workout-type-del-btn" method="post"
+                                  action="{% url 'delete-workout-type' type.pk %}">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-btn">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </form>
+
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            {% else %}
+                No exercises yet.
+            {% endif %}
+
+            <a class="btn glow-on-hover d-flex-col-cent" href="{% url 'add-workout-type' %}">Add New Type</a>
+
+            <div class="selected-exercises-container" id="target-list-container">
+                <ul class="selected-exercises-list" id="target-list"></ul>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
