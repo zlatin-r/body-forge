@@ -1,0 +1,21 @@
+{% extends "common/base.html" %}
+
+{% block content %}
+
+    <div class="container fade-effect">
+        <h1 class="title">Workout Summary</h1>
+        <h2 class="second-title">{{ workout.workout_type }}</h2>
+
+        <ul class="normal-text">
+            {% for set in workout.sets.all %}
+                <li>
+                    <strong>{{ set.exercise.name }}</strong>:
+                    {{ set.repetitions }} reps × {{ set.weight }} kg (Set {{ set.set_number }})
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'dashboard' pk=request.user.pk %}" class="submit-btn glow-on-hover">Back to Dashboard</a>
+    </div>
+
+{% endblock %}

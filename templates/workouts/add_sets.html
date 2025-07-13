@@ -1,0 +1,36 @@
+{% extends "common/base.html" %}
+
+{% block content %}
+
+    <div class="container fade-effect">
+        <h1 class="title">Add Sets</h1>
+        <h3 class="second-title">Workout: {{ workout.workout_type }}</h3>
+
+        <form method="post" class="d-flex-col-cent">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+                <div class="form-row border p-3 mb-2 rounded" style="background: rgba(255,255,255,0.05);">
+                    <div class="form-group">
+                        {{ form.exercise.label_tag }}<br>
+                        {{ form.exercise }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.set_number.label_tag }}<br>
+                        {{ form.set_number }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.repetitions.label_tag }}<br>
+                        {{ form.repetitions }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.weight.label_tag }}<br>
+                        {{ form.weight }}
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn glow-on-hover">Save Sets</button>
+        </form>
+    </div>
+
+{% endblock %}

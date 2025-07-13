@@ -2,16 +2,28 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView, FormView, TemplateView
 
-from workouts.forms import StartWorkoutSessionForm, CreateWorkoutTypeForm, ExerciseSetForm
-from workouts.models import WorkoutSession, WorkoutType, ExerciseSet, Exercise
+from workouts.forms import (
+    StartWorkoutForm,
+    CreateMuscleGroupForm,
+    CreateWorkoutTypeForm,
+    ExerciseSetForm,
+)
+from workouts.models import (
+    Workout,
+    WorkoutType,
+    MuscleGroup,
+    WorkoutSession,
+    Exercise,
+    ExerciseSet,
+)
 
 
-class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
-    model = WorkoutSession
-    template_name = "workouts/wt-start-p.html"
-    form_class = StartWorkoutSessionForm
+class StartWorkoutView(LoginRequiredMixin, FormView):
+    model = Workout
+    form_class = StartWorkoutForm
+    template_name = 'workouts/start-workout.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -19,16 +31,16 @@ class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
         return context
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+        workout = form.save(commit=False)
+        workout.user = self.request.user
+        workout.save()
+        form.save_m2m()
+        return redirect('add-exercises-to-workout', pk=workout.pk)
 
     def get_form(self):
         form = super().get_form()
         form.fields["workout_type"].queryset = WorkoutType.objects.filter(user=self.request.user)
         return form
-
-    def get_success_url(self):
-        return reverse_lazy("add-exercises-to-workout", kwargs={"pk": self.object.pk})  # Adjust as needed
 
 
 class CreateWorkoutTypeView(LoginRequiredMixin, CreateView):
@@ -42,18 +54,15 @@ class CreateWorkoutTypeView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class DeleteWorkoutTypeView(LoginRequiredMixin, DeleteView):
-    model = WorkoutType
-    success_url = reverse_lazy("start-workout")
+class CreateMuscleGroupView(LoginRequiredMixin, CreateView):
+    model = MuscleGroup
+    form_class = CreateMuscleGroupForm
+    success_url = reverse_lazy('start-workout')
 
-    def post(self, request, *args, **kwargs):
-        obj = self.get_object()
-
-        if hasattr(obj, 'user') and obj.user != request.user:
-            return HttpResponseForbidden()
-
-        obj.delete()
-        return redirect(self.success_url)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['all_muscle_gps'] = MuscleGroup.objects.all()
+        return context
 
 
 class AddExerciseSetView(LoginRequiredMixin, CreateView):
@@ -67,7 +76,6 @@ class AddExerciseSetView(LoginRequiredMixin, CreateView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        # Limit exercises to the session's workout type
         form.fields['exercise'].queryset = Exercise.objects.filter(workout_type=self.session.workout_type)
         return form
 

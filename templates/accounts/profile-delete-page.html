@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'common/base.html' %}
 {% load static %}
 
 
@@ -6,7 +6,7 @@
     <div class="container-del-page">
 
         <div class="background-img">
-            <img src="{% static 'images/background_images/background.png' %}" alt="">
+            <img src="{% static 'images/background_images/bg.png' %}" alt="">
         </div>
 
         <div class="text-container blur-background d-flex-col-cent">
@@ -38,13 +38,12 @@
                 <br>
                 <p>✅ Consider contacting support if you need assistance.</p>
             </div>
-
             <br>
             <p class="second-title">Confirm Account Deletion:</p>
             <br>
-
             <form method="post" class="delete-form" action="{% url 'profile-delete' pk=user.pk %}">
                 {% csrf_token %}
+
                 <button class="glow-on-hover transition-btn-ef">Delete My Account</button>
                 <a class="glow-on-hover transition-btn-ef" href="javascript:history.back()">Cancel</a>
             </form>

@@ -8,4 +8,3 @@ urlpatterns = [
         path('add-set/', AddExerciseSetView.as_view(), name='add-set'),
         path('delete/', DeleteWorkoutTypeView.as_view(), name='delete-workout-type'),
     ])),
-]
