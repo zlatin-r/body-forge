@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load placeholder_filter %}
+
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="background-img">
+            <img src="{% static 'images/background_images/background.png' %}" alt="">
+        </div>
+
+
+        <div class="form-container">
+
+            <form method="post" class="add-workout-type-cont d-flex-col-cent">
+                {% csrf_token %}
+
+                <div class="input-field">
+                    {{ form.name|placeholder:"Enter workout type here" }}
+                </div>
+
+                <button type="submit" class="glow-on-hover">Add</button>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
