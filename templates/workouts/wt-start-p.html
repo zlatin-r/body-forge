@@ -3,49 +3,58 @@
 
 {% block content %}
 
-    <div class="background-img">
-        <img src="{% static 'images/background_images/background4.png' %}" alt="">
+<div class="background-img">
+    <img src="{% static 'images/background_images/background4.png' %}" alt="">
+</div>
+
+<div class="workout-container">
+
+    <div class="title new-workout-title">
+        <p>Start New Workout</p>
     </div>
 
-    <div class="workout-container">
+    <div class="form-container blur-background">
 
-        <div class="title new-workout-title">
-            <p>Start New Workout</p>
-        </div>
+        <!-- Start Workout Form -->
+        <form method="post" class="d-flex-col-cent">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
 
-        <div class="form-container blur-background">
+            <p class="second-title">Select Workout Type:</p>
+
             {% if workout_types %}
-
-                <p class="second-title">Select Workout Type:</p>
-
-                <ul class="exercises-list d-flex-col-cent" id="source-list">
+                <div class="workout-type-radio-list">
                     {% for type in workout_types %}
-                        <li class="workout-type-row">
-                            <p class="workout-type-element">{{ type.name }}</p>
+                        <div class="radio-option workout-type-row">
 
-                            <form class="workout-type-del-btn" method="post"
-                                  action="{% url 'delete-workout-type' type.pk %}">
+                            <label class="workout-type-element">
+                                <input type="radio" name="workout_type" value="{{ type.id }}" required>
+                                {{ type.name }}
+                            </label>
+
+                            <form method="post" action="{% url 'delete-workout-type' type.pk %}" class="workout-type-del-btn">
                                 {% csrf_token %}
-                                <button type="submit" class="delete-btn">
+                                <button type="submit" class="delete-btn" title="Delete workout type">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </form>
 
-                        </li>
+                        </div>
                     {% endfor %}
-                </ul>
-
+                </div>
             {% else %}
-                No exercises yet.
+                <p>No workout types yet. Add one below.</p>
             {% endif %}
 
-            <a class="btn glow-on-hover d-flex-col-cent" href="{% url 'add-workout-type' %}">Add New Type</a>
+            <button type="submit" class="btn glow-on-hover mt-3" name="start_workout">Start Workout</button>
+        </form>
 
-            <div class="selected-exercises-container" id="target-list-container">
-                <ul class="selected-exercises-list" id="target-list"></ul>
-            </div>
-
+        <!-- Link to add new workout type -->
+        <div class="d-flex-col-cent mt-4">
+            <a class="btn glow-on-hover" href="{% url 'add-workout-type' %}">Add New Type</a>
         </div>
+
     </div>
+</div>
 
 {% endblock %}
