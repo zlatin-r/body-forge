@@ -10,7 +10,7 @@ from workouts.models import WorkoutSession, WorkoutType
 
 class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
     model = WorkoutSession
-    template_name = "workouts/workout-start-page.html"
+    template_name = "workouts/wt-start-p.html"
     form_class = StartWorkoutSessionForm
 
     def get_context_data(self, **kwargs):
@@ -22,7 +22,7 @@ class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
 class CreateWorkoutTypeView(LoginRequiredMixin, CreateView):
     model = WorkoutType
     form_class = CreateWorkoutTypeForm
-    template_name = "workouts/workout-type-add-page.html"
+    template_name = "workouts/wt-type-add-p.html"
     success_url = reverse_lazy("start-workout")
 
     def form_valid(self, form):
