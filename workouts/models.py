@@ -80,3 +80,4 @@ class ExerciseSet(models.Model):
 
     def __str__(self):
         return f"{self.exercise.name} - {self.repetitions} reps @ {self.weight_kg} kg"
+
