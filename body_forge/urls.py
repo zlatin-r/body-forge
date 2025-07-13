@@ -8,7 +8,6 @@ urlpatterns = [
     path('', include('common.urls')),
     path('accounts/', include('accounts.urls')),
     path('workout/', include('workouts.urls')),
-
 ]
 
 if settings.DEBUG:

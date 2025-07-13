@@ -20,8 +20,8 @@
     position: absolute;
     top: 50%;
     left: 100px;
-    transform: translateY(-50%); /* Vertically center the text */
-    white-space: nowrap; /* Prevent text from wrapping */
+    transform: translateY(-50%);
+    white-space: nowrap;
     font-size: 32px;
 }
 
@@ -72,8 +72,8 @@
     background-color: #2b2b2b;
     color: var(--primary-blue);
     border-radius: 10px;
-    min-width: 150px; /* Set a minimum width */
-    width: auto; /* Let it grow as needed */
+    min-width: 150px;
+    width: auto;
     overflow: hidden;
 }
 
@@ -86,11 +86,10 @@
 }
 
 .dropdown-item:hover {
-    background-color: #333333; /* Darker hover color */
+    background-color: #333333;
     color: white;
 }
 
-/* For the form button to match other items */
 .dropdown-menu button.dropdown-item {
     width: 100%;
     padding: 8px 15px;

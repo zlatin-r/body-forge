@@ -1,2 +1,4 @@
-import './navbar/dropdown-menu.js';
-import './profile-edit/profile-pic-change.js';
+import './navbar/dropDownMenu.js';
+import './profilePicChange/profilePicChange.js';
+import './workouts/addWorkoutType.js';
+import './workouts/deleteWorkoutType.js';

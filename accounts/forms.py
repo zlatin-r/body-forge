@@ -10,12 +10,17 @@ UserModel = get_user_model()
 class AppUserCreationForm(UserCreationForm):
     class Meta:
         model = UserModel
-        fields = ("email", "password1", "password2")
+        fields = ("email",)
 
 
-class ProfileEditForm(forms.ModelForm):
+class ProfileBaseForm(forms.ModelForm):
     class Meta:
-        model = Profile
+        model =Profile
+        fields = "__all__"
+
+
+class ProfileEditForm(ProfileBaseForm):
+    class Meta(ProfileBaseForm.Meta):
         exclude = ("user", "date_joined", "date_of_birth")
 
     def __init__(self, *args, **kwargs):

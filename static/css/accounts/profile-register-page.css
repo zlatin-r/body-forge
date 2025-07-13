@@ -29,9 +29,7 @@
     top: 80px;
     height: 15%;
     width: 100%;
-    /*TODO Try background color: transparent */
     background: linear-gradient(to bottom, rgb(0, 0, 0), transparent);
-    /*background: linear-gradient(to bottom, rgb(0, 0, 0), transparent);*/
 }
 
 .reg-page-text-container {

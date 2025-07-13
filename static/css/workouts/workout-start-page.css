@@ -1,0 +1,71 @@
+.workout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    position: absolute;
+    top: 200px;
+    padding: 50px;
+    color: var(--smoke-white);
+}
+
+.exercises-list {
+    width: 70%;
+    padding: 15px;
+    margin: 35px 15px;
+}
+
+.new-workout-title {
+    position: absolute;
+    top: 100px;
+    color: var(--primary-blue);
+}
+
+.selected-exercises-container {
+    padding: 15px;
+    margin: 35px 15px;
+    width: 70%;
+    height: 100%;
+}
+
+.workout-type-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.workout-type-element {
+    display: flex;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    background-color: var(--smoke-white);
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.workout-type-element:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.workout-type-del-btn i {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10px;
+    align-content: center;
+    background-color: red;
+}
+
+.workout-type-del-btn i:hover {
+    color: red;
+}

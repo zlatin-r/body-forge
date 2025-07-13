@@ -7,5 +7,5 @@
 @import "accounts/profile-register-page.css";
 @import "accounts/profile-details-edit-pages.css";
 @import "accounts/profile-delete-page.css";
-@import "workouts/start-workout.css";
-@import "workouts/workout.css";
+@import "workouts/workout-start-page.css";
+@import "workouts/workout-add-exercise-page.css";

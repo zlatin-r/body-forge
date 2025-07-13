@@ -6,4 +6,4 @@ class AccountsConfig(AppConfig):
     name = 'accounts'
 
     def ready(self):
-        import accounts.signals  # 👈 This ensures the signal is registered
+        from accounts.signals import create_profile

@@ -8,6 +8,8 @@ UserModel = get_user_model()
 
 
 @receiver(post_save, sender=UserModel)
-def create_profile(sender: UserModel, instance: UserModel , created, **kwargs):
+def create_profile(sender: UserModel, instance: UserModel, created: bool, **kwargs: dict) -> None:
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(
+            pk=instance.pk,
+        )
