@@ -1,14 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const openBtn = document.getElementById("openPopupBtn");
     const modal = document.getElementById("popupModal");
-    const btn = document.getElementById("openPopupBtn");
-    const span = document.querySelector(".close-btn");
+    const closeBtn = document.querySelector(".close-btn");
 
-    btn.onclick = function () {
-        modal.style.display = "block";
+    if (openBtn) {
+        openBtn.onclick = function () {
+            modal.style.display = "block";
+        }
     }
 
-    span.onclick = function () {
-        modal.style.display = "none";
+    if (closeBtn) {
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
     }
 
     window.onclick = function (event) {

@@ -5,9 +5,17 @@ UserModel = get_user_model()
 
 
 class MuscleGroup(models.Model):
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+        related_name="muscle_groups",
+    )
     name = models.CharField(
         max_length=100,
     )
+
+    def __str__(self):
+        return self.name
 
 
 class Workout(models.Model):

@@ -24,11 +24,18 @@ class StartWorkout(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy("dashboard")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['mg_create_form'] = MuscleGroupCreateForm()
+        context['all_mg'] = MuscleGroup.objects.all()
+        return context
+
 
 class CreateMuscleGroup(LoginRequiredMixin, CreateView):
     model = MuscleGroup
     form_class = MuscleGroupCreateForm
-
+    template_name = "workouts/wt-start.html"
+    success_url = reverse_lazy("start-workout")
 
 # class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
 #     model = WorkoutSession

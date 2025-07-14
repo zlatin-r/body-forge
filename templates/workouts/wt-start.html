@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load placeholder_filter %}
 {% load static %}
 
 {% block content %}
@@ -14,7 +15,7 @@
         </div>
 
         <div class="form-container d-flex-col-cent">
-            {% if workout_types %}
+            {% if all_mg %}
 
                 <p class="second-title">Select Workout Type:</p>
 
@@ -31,9 +32,21 @@
 
                 <div id="popupModal" class="modal">
                     <div class="modal-content blur-background">
-                        <span class="close-btn">&times;</span>
-                        <h2>Popup Title</h2>
-                        <p>This is a popup window in Django!</p>
+
+
+                        <form class="d-flex-col-cent" method="post" action="{% url 'add-muscle-group' %}">
+                            {% csrf_token %}
+
+                            <span class="close-btn">&times;</span>
+
+                            <div class="input-field d-flex-col-cent gap25">
+                                <h4 class="label second-title">Enter New Muscle Group:</h4>
+                                <span class="value">{{ mg_create_form.name|placeholder:"Enter here" }}</span>
+                            </div>
+
+                            <button type="submit" class="glow-on-hover">Create</button>
+                        </form>
+
                     </div>
                 </div>
 

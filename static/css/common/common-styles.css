@@ -37,6 +37,18 @@
 
 /* --------------------- */
 
+/* Gap */
+
+.gap15 {
+    gap: 15px;
+}
+
+.gap25 {
+    gap: 25px;
+}
+
+/* ---------------------- */
+
 /* Font Sizes */
 .title {
     font-size: var(--bigestletters);
