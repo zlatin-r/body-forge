@@ -13,7 +13,7 @@ UserModel = get_user_model()
 class AppUserRegisterView(CreateView):
     model = UserModel
     form_class = AppUserCreationForm
-    template_name = "accounts/register-page.html"
+    template_name = "accounts/profile-register.html"
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -30,16 +30,16 @@ class AppUserRegisterView(CreateView):
 
 class ProfileDetailsView(LoginRequiredMixin, DetailView):
     model = UserModel
-    template_name = "accounts/profile-details-page.html"
+    template_name = "accounts/profile-details.html"
 
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     form_class = ProfileEditForm
-    template_name = "accounts/profile-edit-page.html"
+    template_name = "accounts/profile-edit.html"
 
     def test_func(self):
-        return self.request.user.pk == self.kwargs['pk']
+        return self.request.user.profile.pk == self.kwargs['pk']
 
     def get_success_url(self):
         return reverse("profile-details", kwargs={"pk": self.object.pk})
@@ -47,7 +47,7 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Profile
-    template_name = "accounts/profile-delete-page.html"
+    template_name = "accounts/profile-delete.html"
     success_url = reverse_lazy("home")
 
     def test_func(self):
