@@ -1,14 +1,14 @@
 from django import forms
-from .models import WorkoutType, WorkoutSession
+from .models import Workout, MuscleGroup
 
 
-class CreateWorkoutTypeForm(forms.ModelForm):
+class WorkoutStartForm(forms.ModelForm):
     class Meta:
-        model = WorkoutType
+        model = Workout
+        fields = ("muscle_group",)
+
+
+class MuscleGroupCreateForm(forms.ModelForm):
+    class Meta:
+        model = MuscleGroup
         fields = ("name",)
-
-
-class StartWorkoutSessionForm(forms.ModelForm):
-    class Meta:
-        model = WorkoutSession
-        fields = ("workout_type",)

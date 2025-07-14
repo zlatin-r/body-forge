@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="background-img">
+        <img src="{% static 'images/background_images/background.png' %}" alt="">
+    </div>
+
+    <div class="workout-container">
+
+        <div class="title new-workout-title">
+            <p>Start New Workout</p>
+        </div>
+
+        <div class="form-container d-flex-col-cent">
+            {% if workout_types %}
+
+                <p class="second-title">Select Workout Type:</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Start Workout</button>
+                </form>
+
+            {% else %}
+                <p>No exercises yet.</p>
+
+                <button class="glow-on-hover" id="openPopupBtn">Open Popup</button>
+
+                <div id="popupModal" class="modal">
+                    <div class="modal-content blur-background">
+                        <span class="close-btn">&times;</span>
+                        <h2>Popup Title</h2>
+                        <p>This is a popup window in Django!</p>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
