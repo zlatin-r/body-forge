@@ -17,40 +17,50 @@
         <div class="form-container d-flex-col-cent">
             {% if all_mg %}
 
-                <p class="second-title">Select Workout Type:</p>
-
-                <form method="post">
+                <form class="choose-mg-form d-flex-col-cent" method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Start Workout</button>
+
+                    <div class="mb-5">
+                        <label class="second-title" for="exampleMultipleSelect">Choose Muscle Group:</label>
+
+                        <select class="form-select mt-3" id="exampleMultipleSelect" multiple>
+                            {% for value, label in form.muscle_group.field.choices %}
+                                <option value="{{ value }}">{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button class="glow-on-hover" type="submit">Start Workout</button>
                 </form>
+
+                <button class="glow-on-hover" id="openPopupBtn">Add New Muscle Group</button>
 
             {% else %}
                 <p>No exercises yet.</p>
-
-                <button class="glow-on-hover" id="openPopupBtn">Open Popup</button>
-
-                <div id="popupModal" class="modal">
-                    <div class="modal-content blur-background">
-
-
-                        <form class="d-flex-col-cent" method="post" action="{% url 'add-muscle-group' %}">
-                            {% csrf_token %}
-
-                            <span class="close-btn">&times;</span>
-
-                            <div class="input-field d-flex-col-cent gap25">
-                                <h4 class="label second-title">Enter New Muscle Group:</h4>
-                                <span class="value">{{ mg_create_form.name|placeholder:"Enter here" }}</span>
-                            </div>
-
-                            <button type="submit" class="glow-on-hover">Create</button>
-                        </form>
-
-                    </div>
-                </div>
+                <button class="glow-on-hover" id="openPopupBtn">Add New Muscle Group</button>
 
             {% endif %}
+
+
+            <div id="popupModal" class="modal">
+                <div class="modal-content blur-background">
+
+                    <form class="d-flex-col-cent" method="post" action="{% url 'add-muscle-group' %}">
+                        {% csrf_token %}
+
+                        <span class="close-btn">&times;</span>
+
+                        <div class="input-field d-flex-col-cent gap25 modal-title">
+                            <span class="label second-title">Enter New Muscle Group:</span>
+                            <span class="value">{{ mg_create_form.name|placeholder:"Enter here" }}</span>
+                        </div>
+
+                        <button type="submit" class="glow-on-hover">Create</button>
+                    </form>
+
+                </div>
+            </div>
+
 
         </div>
     </div>

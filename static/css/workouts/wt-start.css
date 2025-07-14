@@ -56,3 +56,16 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.choose-mg-form {
+}
+
+.start-wt-btn {
+    position: absolute;
+    bottom: 0;
+}
+
+
+.modal-title {
+    color: var(--primary-blue);
+}

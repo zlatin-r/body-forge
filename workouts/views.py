@@ -27,7 +27,7 @@ class StartWorkout(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['mg_create_form'] = MuscleGroupCreateForm()
-        context['all_mg'] = MuscleGroup.objects.all()
+        context['all_mg'] = MuscleGroup.objects.filter(user=self.request.user)
         return context
 
 
@@ -36,6 +36,10 @@ class CreateMuscleGroup(LoginRequiredMixin, CreateView):
     form_class = MuscleGroupCreateForm
     template_name = "workouts/wt-start.html"
     success_url = reverse_lazy("start-workout")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 # class StartWorkoutSessionView(LoginRequiredMixin, CreateView):
 #     model = WorkoutSession
