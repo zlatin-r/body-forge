@@ -4,7 +4,7 @@ from .models import Workout
 
 @admin.register(Workout)
 class WorkoutTypeAdmin(admin.ModelAdmin):
-    list_display = ("id", "date_started", "muscle_group")
+    list_display = ("id", "date_started")
 #
 #
 # @admin.register(Exercise)

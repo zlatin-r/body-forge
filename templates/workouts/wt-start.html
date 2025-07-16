@@ -21,17 +21,25 @@
                     {% csrf_token %}
 
                     <div class="mb-5">
-                        <label class="second-title" for="exampleMultipleSelect">Choose Muscle Group:</label>
+                        <label class="second-title" for="{{ form.muscle_group.id_for_label }}">Choose Muscle
+                            Groups:</label>
 
-                        <select class="form-select mt-3" id="exampleMultipleSelect" multiple>
-                            {% for value, label in form.muscle_group.field.choices %}
-                                <option value="{{ value }}">{{ label }}</option>
+                        <div class="checkbox-container d-flex-col-cent gap15">
+                            {% for checkbox in form.muscle_group %}
+                                <div class="form-check form-check-reverse">
+                                    {{ checkbox.tag }}
+                                    <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                                        {{ checkbox.choice_label }}
+                                    </label>
+                                </div>
                             {% endfor %}
-                        </select>
+                        </div>
+
                     </div>
 
                     <button class="glow-on-hover" type="submit">Start Workout</button>
                 </form>
+
 
                 <button class="glow-on-hover" id="openPopupBtn">Add New Muscle Group</button>
 

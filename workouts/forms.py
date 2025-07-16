@@ -7,9 +7,15 @@ class WorkoutStartForm(forms.ModelForm):
         model = Workout
         fields = ("muscle_group",)
 
+        widgets = {
+            "muscle_group": forms.CheckboxSelectMultiple()
+        }
+
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
-        self.fields['muscle_group'].empty_label = None
+        if user:
+            self.fields['muscle_group'].queryset = MuscleGroup.objects.filter(user=user)
 
 
 class MuscleGroupCreateForm(forms.ModelForm):

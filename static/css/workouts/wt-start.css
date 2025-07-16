@@ -65,7 +65,12 @@
     bottom: 0;
 }
 
-
 .modal-title {
     color: var(--primary-blue);
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
