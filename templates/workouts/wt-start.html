@@ -25,34 +25,41 @@
                             Groups:</label>
 
                         <div class="checkbox-container d-flex-col-cent gap15">
-                            {% for checkbox in form.muscle_group %}
-                                <div class="form-check form-check-reverse">
-                                    {{ checkbox.tag }}
-                                    <label class="form-check-label" for="{{ checkbox.id_for_label }}">
-                                        {{ checkbox.choice_label }}
-                                    </label>
-                                </div>
-                            {% endfor %}
+                            <table>
+                                {% for mg in all_mg %}
+                                    <tr class="mg-table">
+                                        <td class="checkbox-item">
+                                            <input class="form-check-input" type="checkbox" value="{{ mg.name }}"
+                                                   id="checkDefault">
+                                        </td>
+                                        <td class="mg-name">
+                                            <label class="form-check-label" for="checkDefault">{{ mg.name }}</label>
+                                        </td>
+                                        <td class="delete-btn">
+                                            <span class="delete-mg-btn" data-mg="{{ mg.name }}"
+                                                  data-mg-id="{{ mg.id }}">&times;</span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
                         </div>
-
                     </div>
 
-                    <button class="glow-on-hover" type="submit">Start Workout</button>
+                    <button type="button" class="glow-on-hover" id="openPopupBtn">Add New Muscle Group</button>
+
+                    <button type="submit" class="glow-on-hover mt-4">Start Workout</button>
                 </form>
 
-
-                <button class="glow-on-hover" id="openPopupBtn">Add New Muscle Group</button>
-
             {% else %}
+
                 <p>No exercises yet.</p>
                 <button class="glow-on-hover" id="openPopupBtn">Add New Muscle Group</button>
 
             {% endif %}
 
-
+            <!-- Create Muscle Group Modal -->
             <div id="popupModal" class="modal">
                 <div class="modal-content blur-background">
-
                     <form class="d-flex-col-cent" method="post" action="{% url 'add-muscle-group' %}">
                         {% csrf_token %}
 
@@ -65,11 +72,27 @@
 
                         <button type="submit" class="glow-on-hover">Create</button>
                     </form>
-
                 </div>
             </div>
 
+            <!-- Delete Confirmation Modal -->
+            <div id="popupModal2" class="modal">
+                <div class="modal-content blur-background">
+                    <h2 class="second-title m-4">Confirm deletion</h2>
 
+                    <p>Are you sure you want to delete the muscle group:
+                        <strong id="mgNamePlaceholder">this</strong>?
+                    </p>
+
+                    <form method="post" class="mg-delete-form" id="deleteMgForm" action="">
+                        {% csrf_token %}
+                        <span class="close-btn">&times;</span>
+                        <button type="submit" class="btn btn-danger">Yes, delete</button>
+                        <a href="#" class="btn btn-secondary" id="cancelDelete">Cancel</a>
+                    </form>
+
+                </div>
+            </div>
         </div>
     </div>
 

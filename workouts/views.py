@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView
 
 from workouts.forms import WorkoutStartForm, MuscleGroupCreateForm
 from workouts.models import Workout, MuscleGroup
@@ -10,11 +10,16 @@ class StartWorkout(LoginRequiredMixin, CreateView):
     model = Workout
     form_class = WorkoutStartForm
     template_name = "workouts/wt-start.html"
-    success_url = reverse_lazy("dashboard")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        self.object = form.save()
         return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -32,3 +37,12 @@ class CreateMuscleGroup(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class DeleteMuscleGroup(LoginRequiredMixin, DeleteView):
+    model = MuscleGroup
+    success_url = reverse_lazy("start-workout")
+    template_name = "workouts/wt-start.html"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)

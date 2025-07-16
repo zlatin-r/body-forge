@@ -1,12 +1,8 @@
 from django.urls import path, include
-from workouts.views import StartWorkout, CreateMuscleGroup
+from workouts.views import StartWorkout, CreateMuscleGroup, DeleteMuscleGroup
 
 urlpatterns = [
     path('start-wt/', StartWorkout.as_view(), name='start-workout'),
-    path('add-muscle-group/', CreateMuscleGroup.as_view(), name='add-muscle-group'),
-
-    # path('add-workout-type/', CreateWorkoutTypeView.as_view(), name='add-workout-type'),
-    # path('workout-type/<int:pk>/', include([
-    # path('delete/', DeleteWorkoutTypeView.as_view(), name='delete-workout-type'),
-    # ])),
+    path('add-mg/', CreateMuscleGroup.as_view(), name='add-muscle-group'),
+    path("delete-mg/<int:pk>/", DeleteMuscleGroup.as_view(), name="delete-muscle-group"),
 ]
