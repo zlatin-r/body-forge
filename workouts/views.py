@@ -2,8 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView
 
-from workouts.forms import WorkoutStartForm, MuscleGroupCreateForm
-from workouts.models import Workout, MuscleGroup
+from workouts.forms import WorkoutStartForm, MuscleGroupCreateForm, WorkoutTypeCreateForm
+from workouts.models import Workout, MuscleGroup, WorkoutType
 
 
 class StartWorkout(LoginRequiredMixin, CreateView):
@@ -24,7 +24,9 @@ class StartWorkout(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["mg_create_form"] = MuscleGroupCreateForm()
+        context["wt_type_create_form"] = WorkoutTypeCreateForm()
         context["all_mg"] = MuscleGroup.objects.filter(user=self.request.user)
+        context["all_wt_types"] = WorkoutType.objects.all()
         return context
 
 
@@ -46,3 +48,9 @@ class DeleteMuscleGroup(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
+
+
+class CreateWorkoutType(LoginRequiredMixin, CreateView):
+    model = WorkoutType
+    form_class = WorkoutTypeCreateForm
+    success_url = reverse_lazy("start-workout")

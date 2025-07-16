@@ -30,6 +30,7 @@
 }
 
 .menu-container {
+    position: relative;
     display: flex;
     align-items: center;
     padding-right: 10px;
@@ -67,8 +68,8 @@
 
 .dropdown-menu {
     position: absolute;
-    top: 60px;
-    right: 20px;
+    top: 50px;
+    right: 0;
     background-color: #2b2b2b;
     color: var(--primary-blue);
     border-radius: 10px;

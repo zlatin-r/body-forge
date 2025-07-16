@@ -3,11 +3,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url("static/images/background_images/background.png");
+}
+
+.wt-type-container {
+    position: absolute;
+    top: 200px;
+    color: var(--smoke-white);
 }
 
 .form-container {
     position: absolute;
-    top: 200px;
+    top: 400px;
     padding: 50px;
     color: var(--smoke-white);
 }

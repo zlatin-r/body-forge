@@ -1,5 +1,5 @@
 from django import forms
-from .models import Workout, MuscleGroup
+from .models import Workout, MuscleGroup, WorkoutType
 
 
 class WorkoutStartForm(forms.ModelForm):
@@ -15,10 +15,16 @@ class WorkoutStartForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
-            self.fields['muscle_group'].queryset = MuscleGroup.objects.filter(user=user)
+            self.fields["muscle_group"].queryset = MuscleGroup.objects.filter(user=user)
 
 
 class MuscleGroupCreateForm(forms.ModelForm):
     class Meta:
         model = MuscleGroup
+        fields = ("name",)
+
+
+class WorkoutTypeCreateForm(forms.ModelForm):
+    class Meta:
+        model = WorkoutType
         fields = ("name",)
