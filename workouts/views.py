@@ -53,4 +53,9 @@ class DeleteMuscleGroup(LoginRequiredMixin, DeleteView):
 class CreateWorkoutType(LoginRequiredMixin, CreateView):
     model = WorkoutType
     form_class = WorkoutTypeCreateForm
+    template_name = "workouts/wt-start.html"
     success_url = reverse_lazy("start-workout")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
