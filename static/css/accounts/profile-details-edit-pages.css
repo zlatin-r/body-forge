@@ -9,6 +9,13 @@
     height: 100%;
 }
 
+.profile-card {
+    position: absolute;
+    top: 120px;
+    right: auto;
+    width: 40%;
+}
+
 .profile-c-title {
     font-size: 50px;
     color: var(--smoke-white);

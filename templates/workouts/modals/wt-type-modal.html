@@ -1,0 +1,22 @@
+<div id="wtTypeModal" class="wt-modal">
+    <div class="wt-modal-content">
+        <span class="wt-close-btn">&times;</span>
+        <form class="wt-type-form d-flex-col-cent" method="post" action="{% url 'create-wt-type' %}">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="wt-form-group">
+                <label for="{{ form.name.id_for_label }}">Workout Type Name:</label>
+                {{ form.name.errors }}
+                {{ form.name }}
+            </div>
+
+            <button type="submit" class="glow-on-hover">Create</button>
+        </form>
+    </div>
+</div>

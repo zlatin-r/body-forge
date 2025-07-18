@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 from django.views.generic import CreateView
 
 from workouts.forms import CreateWorkoutForm, CreateWorkoutTypeForm
@@ -20,7 +21,15 @@ class CreateWorkoutView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+
 class CreateWorkoutTypeView(LoginRequiredMixin, CreateView):
     model = WorkoutType
     form_class = CreateWorkoutTypeForm
-    template_name = 'workouts/modals/wt-create-type-modal.html'
+    template_name = 'workouts/modals/wt-type-modal.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('wt-start')  # Adjust to your start view URL name

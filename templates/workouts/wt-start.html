@@ -24,14 +24,15 @@
                 {% else %}
                     <p>You Dont Have Any Types.</p>
 
-                    <button ></button>
+                    <button type="button" class="glow-on-hover" id="openWtTypeModal">Add new workout type</button>
 
                 {% endif %}
 
                 <button type="submit">Start Workout</button>
             </form>
-
         </section>
     </div>
+
+    {% include 'workouts/modals/wt-type-modal.html' %}
 
 {% endblock %}
