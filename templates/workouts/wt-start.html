@@ -11,6 +11,7 @@
             <form method="post" class="wt-type-form d-flex-col-cent">
                 {% csrf_token %}
 
+
                 {% if wt_types %}
                     <label for="workoutType">Select Workout Type:</label>
 
@@ -22,6 +23,8 @@
 
                 {% else %}
                     <p>You Dont Have Any Types.</p>
+
+                    <button ></button>
 
                 {% endif %}
 

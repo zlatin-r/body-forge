@@ -1,7 +1,7 @@
 from django.urls import path, include
 
-from workouts.views import StartWorkoutView
+from workouts.views import CreateWorkoutView
 
 urlpatterns = [
-    path('start-wt/', StartWorkoutView.as_view(), name="start-wt"),
+    path('', CreateWorkoutView.as_view(), name='start-wt'),
 ]

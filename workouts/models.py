@@ -14,21 +14,12 @@ class MuscleGroup(models.Model):
         return self.name
 
 
-class Exercise(models.Model):
-    name = models.CharField(
-        max_length=100
-    )
-    muscle_group = models.ForeignKey(
-        'MuscleGroup',
-        on_delete=models.CASCADE,
-        related_name='exercises',
-    )
-
-    def __str__(self):
-        return f"{self.name} ({self.muscle_group})"
-
-
 class WorkoutType(models.Model):
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+        related_name='workout_types'
+    )
     name = models.CharField(
         max_length=100,
         unique=True,
@@ -62,35 +53,48 @@ class Workout(models.Model):
     def __str__(self):
         return f"Workout on {self.date_started.strftime('%Y-%m-%d %H:%M')} by {self.user.username}"
 
-
-class PerformedExercise(models.Model):
-    workout = models.ForeignKey(
-        Workout,
-        on_delete=models.CASCADE,
-        related_name='performed_exercises',
-    )
-    exercise = models.ForeignKey(
-        Exercise,
-        on_delete=models.CASCADE,
-        related_name='performed_instances',
-    )
-
-    def __str__(self):
-        return f"{self.exercise.name} in {self.workout}"
+# class Exercise(models.Model):
+#     name = models.CharField(
+#         max_length=100
+#     )
+#     muscle_group = models.ForeignKey(
+#         'MuscleGroup',
+#         on_delete=models.CASCADE,
+#         related_name='exercises',
+#     )
+#
+#     def __str__(self):
+#         return f"{self.name} ({self.muscle_group})"
 
 
-class ExerciseSet(models.Model):
-    performed_exercise = models.ForeignKey(
-        PerformedExercise,
-        on_delete=models.CASCADE,
-        related_name='sets',
-    )
-    set_number = models.PositiveIntegerField()
-    repetitions = models.PositiveIntegerField()
-    weight = models.DecimalField(
-        max_digits=5,
-        decimal_places=2,
-    )
+# class PerformedExercise(models.Model):
+#     workout = models.ForeignKey(
+#         Workout,
+#         on_delete=models.CASCADE,
+#         related_name='performed_exercises',
+#     )
+#     exercise = models.ForeignKey(
+#         Exercise,
+#         on_delete=models.CASCADE,
+#         related_name='performed_instances',
+#     )
+#
+#     def __str__(self):
+#         return f"{self.exercise.name} in {self.workout}"
 
-    def __str__(self):
-        return f"Set {self.set_number} - {self.repetitions} reps @ {self.weight} kg"
+
+# class ExerciseSet(models.Model):
+#     performed_exercise = models.ForeignKey(
+#         PerformedExercise,
+#         on_delete=models.CASCADE,
+#         related_name='sets',
+#     )
+#     set_number = models.PositiveIntegerField()
+#     repetitions = models.PositiveIntegerField()
+#     weight = models.DecimalField(
+#         max_digits=5,
+#         decimal_places=2,
+#     )
+#
+#     def __str__(self):
+#         return f"Set {self.set_number} - {self.repetitions} reps @ {self.weight} kg"
