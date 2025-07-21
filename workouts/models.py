@@ -34,6 +34,20 @@ class WorkoutType(models.Model):
         return self.name
 
 
+class Exercise(models.Model):
+    name = models.CharField(
+        max_length=100
+    )
+    muscle_group = models.ForeignKey(
+        'MuscleGroup',
+        on_delete=models.CASCADE,
+        related_name='exercises',
+    )
+
+    def __str__(self):
+        return f"{self.name} ({self.muscle_group})"
+
+
 class Workout(models.Model):
     user = models.ForeignKey(
         to=UserModel,
@@ -51,21 +65,7 @@ class Workout(models.Model):
     )
 
     def __str__(self):
-        return f"Workout on {self.date_started.strftime('%Y-%m-%d %H:%M')} by {self.user.username}"
-
-# class Exercise(models.Model):
-#     name = models.CharField(
-#         max_length=100
-#     )
-#     muscle_group = models.ForeignKey(
-#         'MuscleGroup',
-#         on_delete=models.CASCADE,
-#         related_name='exercises',
-#     )
-#
-#     def __str__(self):
-#         return f"{self.name} ({self.muscle_group})"
-
+        return f"Workout on {self.date_started.strftime('%Y-%m-%d %H:%M')} by {self.user.profile.username}"
 
 # class PerformedExercise(models.Model):
 #     workout = models.ForeignKey(

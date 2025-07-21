@@ -125,7 +125,7 @@
 
 .red-glow-on-hover:before {
     content: '';
-    background: linear-gradient(45deg, #fbb9b9, #ff7b7b, #ff0000, #ff0000, #00ffd5, #002bff, #7a00ff);
+    background: linear-gradient(45deg, #fbb9b9, #ff7b7b, #ff0000, #ff0000, #fbb9b9, #ff7b7b, #ff0000, #ff0000);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -378,4 +378,12 @@
     outline: none;
     border-color: #555;
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.hr-line {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(250, 250, 250, 0.5);
+    border: none;
+    margin: 20px 0;
 }

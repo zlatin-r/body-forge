@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="dashboard-container d-flex-col-cent background-img">
-        <h2 class="title">Hello {{ user.name }}</h2>
+        <h2 class="title">Hello {{ user.profile.username }}</h2>
 
         <div class="container d-flex-col-cent gap15">
 
@@ -12,7 +12,7 @@
                 <ul class="wt-list">
                     {% for workout in workouts %}
                         <li>
-                            <strong>{{ workout.workout_type.name }}</strong> on {{ workout.date_started }}
+                            <strong>{{ workout}}</strong>
                         </li>
                     {% endfor %}
                 </ul>
