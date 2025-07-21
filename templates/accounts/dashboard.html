@@ -2,4 +2,23 @@
 {% load static %}
 
 {% block content %}
+    <div class="dashboard-container d-flex-col-cent background-img">
+        <h2 class="title">Hello {{ user.name }}</h2>
+
+        <div class="container d-flex-col-cent gap15">
+
+            {% if workouts %}
+                <h2>Your Workouts:</h2>
+                <ul class="wt-list">
+                    {% for workout in workouts %}
+                        <li>
+                            <strong>{{ workout.workout_type.name }}</strong> on {{ workout.date_started }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h2>You dont have any workouts yet.</h2>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

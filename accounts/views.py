@@ -2,10 +2,11 @@ from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, DeleteView, ListView
 
 from accounts.forms import AppUserCreationForm, ProfileEditForm
 from accounts.models import Profile
+from workouts.models import Workout
 
 UserModel = get_user_model()
 
@@ -13,7 +14,7 @@ UserModel = get_user_model()
 class AppUserRegisterView(CreateView):
     model = UserModel
     form_class = AppUserCreationForm
-    template_name = "accounts/profile-register.html"
+    template_name = 'accounts/profile-register.html'
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -25,18 +26,18 @@ class AppUserRegisterView(CreateView):
 
     def get_success_url(self):
         profile = self.object.profile
-        return reverse_lazy("profile-edit", kwargs={"pk": profile.pk})
+        return reverse_lazy('profile-edit', kwargs={'pk': profile.pk})
 
 
 class ProfileDetailsView(LoginRequiredMixin, DetailView):
     model = UserModel
-    template_name = "accounts/profile-details.html"
+    template_name = 'accounts/profile-details.html'
 
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     form_class = ProfileEditForm
-    template_name = "accounts/profile-edit.html"
+    template_name = 'accounts/profile-edit.html'
 
     def test_func(self):
         return self.request.user.profile.pk == self.kwargs['pk']
@@ -47,8 +48,8 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Profile
-    template_name = "accounts/profile-delete.html"
-    success_url = reverse_lazy("home")
+    template_name = 'accounts/profile-delete.html'
+    success_url = reverse_lazy('home')
 
     def test_func(self):
         profile = get_object_or_404(Profile, pk=self.kwargs['pk'])
@@ -62,5 +63,10 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return redirect(self.success_url)
 
 
-class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = "accounts/dashboard.html"
+class DashboardView(LoginRequiredMixin, ListView):
+    model = Workout
+    template_name = 'accounts/dashboard.html'
+    context_object_name = 'workouts'
+
+    def get_queryset(self):
+        return Workout.objects.filter(user=self.request.user).order_by('-date_started')

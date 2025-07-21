@@ -1,3 +1,3 @@
 import './navbar/dropdownMenu.js';
 import './profilePicChange/profilePicChange.js';
-import './workout/wtTypeModal.js';
+import './workout/deleteWtType.js';

@@ -1,10 +1,4 @@
-.wt-container {
-    background-image: url("/static/images/background_images/background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh; /* Optional: makes sure it takes full screen height */
-}
+
 
 .wt-start-title {
     position: absolute;
@@ -17,10 +11,41 @@
 }
 
 .wt-type {
+    width: 50%;
     color: var(--smoke-white);
     gap: 20px;
 }
 
 .wt-type-form {
-    gap: 50px;
+    width: 100%;
+    gap: 30px;
+    padding: 35px;
+}
+
+
+
+select {
+    appearance: none; /* Remove default arrow */
+    background-color: #1e1e2f;
+    color: #ffffff;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #444;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    outline: none;
+}
+
+select:hover {
+    border-color: #5fc7ff;
+    box-shadow: 0 4px 10px rgba(95, 199, 255, 0.3);
+}
+
+select:focus {
+    border-color: #00aaff;
+    box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.2);
 }

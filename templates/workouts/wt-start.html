@@ -4,16 +4,16 @@
 
 {% block content %}
 
-    <div class="wt-container d-flex-col-cent">
+    <div class="background-img d-flex-col-cent">
         <section class="wt-type d-flex-col-cent">
             <h2 class="wt-start-title second-title">Start New Workout</h2>
 
-            <form method="post" class="wt-type-form d-flex-col-cent">
+            <form method="post" class="wt-type-form d-flex-col-cent blur-background">
                 {% csrf_token %}
-
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
                 {% if wt_types %}
-                    <label for="workoutType">Select Workout Type:</label>
+                    <label class="second-title" for="workoutType">Select Workout Type:</label>
 
                     <select name="workout_type" id="workoutType">
                         {% for wt in wt_types %}
@@ -23,16 +23,19 @@
 
                 {% else %}
                     <p>You Dont Have Any Types.</p>
-
-                    <button type="button" class="glow-on-hover" id="openWtTypeModal">Add new workout type</button>
-
                 {% endif %}
 
-                <button type="submit">Start Workout</button>
+                <div class="btn-container d-flex gap25">
+                    <a href="{% url 'wt-type-create' %}" class="glow-on-hover d-flex-col-cent">Add new workout type</a>
+                    <button type="button" id="deleteWorkoutTypeBtn" class="red-glow-on-hover danger-btn">
+                        Delete Selected Type
+                    </button>
+
+                </div>
+
+                <button type="submit" class="glow-on-hover">Start Workout</button>
             </form>
         </section>
     </div>
-
-    {% include 'workouts/modals/wt-type-modal.html' %}
 
 {% endblock %}

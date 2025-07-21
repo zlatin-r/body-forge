@@ -7,5 +7,6 @@
 @import "accounts/profile-register-page.css";
 @import "accounts/profile-details-edit-pages.css";
 @import "accounts/profile-delete-page.css";
+@import "accounts/dashboard.css";
 @import "workouts/wt-start.css";
-@import "workouts/modals/wtTypeModal.css";
+@import "workouts/wt-type-create.css";

@@ -32,7 +32,7 @@
 
             <div class="dropdown-menu hidden" id="dropdown-menu">
                 <ul>
-                    <li><a href="#" class="dropdown-item">Dashboard</a></li>
+                    <li><a href="{% url 'dashboard' pk=user.pk %}" class="dropdown-item">Dashboard</a></li>
                     <li><a href="{% url 'profile-details' pk=user.pk %}" class="dropdown-item">View Profile</a></li>
                     <li class="dropdown-item">
                         <form method="post" action="{% url 'logout' %}">
