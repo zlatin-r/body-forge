@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="background-img d-flex-col-cent">
+        <div class="container blur-background">
+            <form class="wt-type-form d-flex-col-cent" method="post">
+                {% csrf_token %}
+
+                <div class="info-field-item">
+                    <label for="{{ form.name.id_for_label }}">Enter Muscle group Name:</label>
+                    {{ form.name.errors }}
+                    {{ form.name }}
+                </div>
+
+                <button type="submit" class="glow-on-hover">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

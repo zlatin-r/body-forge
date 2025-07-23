@@ -37,8 +37,18 @@
 
                 <hr class="hr-line">
 
-                <section class="wt-exercises container d-flex-col-cent">
+                <section class="wt-exercises container d-flex-col-cent gap25">
                     <label for="" class="second-title">Exercises:</label>
+
+                    {% if exercises %}
+                        {% for ex in exercises %}
+                            {{ ex.name }}
+                        {% endfor %}
+                    {% else %}
+                        <p class="second-title">You Dont Have Any Exercises.</p>
+                    {% endif %}
+
+                    <a href="{% url 'ex-start' %}" class="glow-on-hover d-flex-col-cent">Start new exercise</a>
 
                 </section>
 

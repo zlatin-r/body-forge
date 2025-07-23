@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="background-img d-flex-col-cent">
+        <div class="container blur-background">
+            <form class="wt-type-form d-flex-col-cent" method="post" action="{% url 'ex-start' %}">
+                {% csrf_token %}
+
+                <div class="info-field-item">
+                    <label for="{{ form.name.id_for_label }}">Enter New Exercise Name:</label>
+                    {{ form.name.errors }}
+                    {{ form.name }}
+                </div>
+
+                {% if muscle_groups %}
+
+                    <div class="info-field-item">
+                        <label for="{{ form.muscle_group.id_for_label }}">Select Muscle Group:</label>
+                        {{ form.muscle_group.errors }}
+                        {{ form.muscle_group }}
+                    </div>
+
+                    {#                    <label class="" for="workoutType">Select Muscle Group:</label>#}
+                    {##}
+                    {#                    <select name="workout_type" id="workoutType">#}
+                    {#                        {% for mg in muscle_groups %}#}
+                    {#                            <option value="{{ mg.id }}">{{ mg.name }}</option>#}
+                    {#                        {% endfor %}#}
+                    {#                    </select>#}
+
+                {% else %}
+                    <p>You don't have any muscle groups yet.</p>
+                {% endif %}
+
+                <a href="{% url 'mg-create' %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
+
+                <button type="submit" class="glow-on-hover">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
