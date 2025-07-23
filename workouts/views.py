@@ -29,7 +29,7 @@ class CreateWorkoutTypeView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView
     template_name = 'workouts/wt-type-create.html'
 
     def get_success_url(self):
-        return reverse('wt-start')  # Adjust to your start view URL name
+        return reverse('wt-start')
 
 
 class DeleteWorkoutTypeView(LoginRequiredMixin, DeleteView):

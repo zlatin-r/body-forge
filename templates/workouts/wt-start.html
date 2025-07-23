@@ -41,9 +41,11 @@
                     <label for="" class="second-title">Exercises:</label>
 
                     {% if exercises %}
-                        {% for ex in exercises %}
-                            {{ ex.name }}
-                        {% endfor %}
+                        <ul>
+                            {% for ex in exercises %}
+                                <li>{{ ex.name }}</li>
+                            {% endfor %}
+                        </ul>
                     {% else %}
                         <p class="second-title">You Dont Have Any Exercises.</p>
                     {% endif %}

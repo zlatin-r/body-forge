@@ -387,3 +387,11 @@
     border: none;
     margin: 20px 0;
 }
+
+/* Select Input */
+.info-field-item-select {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}

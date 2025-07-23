@@ -69,4 +69,4 @@ class DashboardView(LoginRequiredMixin, ListView):
     context_object_name = 'workouts'
 
     def get_queryset(self):
-        return Workout.objects.filter(user=self.request.user).order_by('-date_started')
+        return Workout.objects.filter(user=self.request.user).order_by('-created')

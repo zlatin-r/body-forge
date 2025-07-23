@@ -15,19 +15,11 @@
 
                 {% if muscle_groups %}
 
-                    <div class="info-field-item">
+                    <div class="info-field-item-select">
                         <label for="{{ form.muscle_group.id_for_label }}">Select Muscle Group:</label>
                         {{ form.muscle_group.errors }}
                         {{ form.muscle_group }}
                     </div>
-
-                    {#                    <label class="" for="workoutType">Select Muscle Group:</label>#}
-                    {##}
-                    {#                    <select name="workout_type" id="workoutType">#}
-                    {#                        {% for mg in muscle_groups %}#}
-                    {#                            <option value="{{ mg.id }}">{{ mg.name }}</option>#}
-                    {#                        {% endfor %}#}
-                    {#                    </select>#}
 
                 {% else %}
                     <p>You don't have any muscle groups yet.</p>
