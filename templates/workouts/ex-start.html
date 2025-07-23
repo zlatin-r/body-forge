@@ -15,7 +15,7 @@
 
                 {% if muscle_groups %}
 
-                    <div class="info-field-item-select">
+                    <div class="info-field-item-select d-flex-col-cent">
                         <label for="{{ form.muscle_group.id_for_label }}">Select Muscle Group:</label>
                         {{ form.muscle_group.errors }}
                         {{ form.muscle_group }}
@@ -25,7 +25,20 @@
                     <p>You don't have any muscle groups yet.</p>
                 {% endif %}
 
-                <a href="{% url 'mg-create' %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
+                <div class="btn-container d-flex gap25">
+                    <a href="{% url 'mg-create' %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
+                    <button type="button" id="deleteWorkoutTypeBtn" class="red-glow-on-hover danger-btn">
+                        Delete Selected Group
+                    </button>
+                </div>
+
+                <hr class="hr-line">
+
+                <div class="info-field-item-select d-flex-col-cent">
+                    <label for="{{ form.muscle_group.id_for_label }}">Sets:</label>
+                    {{ form.muscle_group.errors }}
+                    {{ form.muscle_group }}
+                </div>
 
                 <button type="submit" class="glow-on-hover">Create</button>
             </form>
