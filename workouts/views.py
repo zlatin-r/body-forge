@@ -76,17 +76,30 @@ class ExerciseDetailsView(LoginRequiredMixin, DetailView):
     model = Exercise
     template_name = 'workouts/ex-details.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CreateSetForm()
+        return context
+
+
 class CreateSetView(LoginRequiredMixin, CreateView):
     model = ExerciseSet
     form_class = CreateSetForm
     template_name = 'workouts/set-create.html'
-    success_url = reverse_lazy('ex-start')
 
     def form_valid(self, form):
         exercise_id = self.kwargs.get('exercise_id')
         form.instance.exercise = Exercise.objects.get(pk=exercise_id, user=self.request.user)
         return super().form_valid(form)
 
+    def dispatch(self, request, *args, **kwargs):
+        self.exercise = Exercise.objects.get(pk=kwargs['exercise_id'], user=request.user)
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['exercise'] = self.exercise
+        return context
+
     def get_success_url(self):
-        exercise_id = self.kwargs.get('exercise_id')
-        return reverse_lazy('ex-details', kwargs={'pk': exercise_id})
+        return reverse_lazy('ex-details', kwargs={'pk': self.exercise.pk})

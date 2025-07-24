@@ -5,7 +5,6 @@
 {% block content %}
 
     <div class="background-img d-flex-col-cent">
-        <h2 class="wt-start-title">New Workout</h2>
         <div class="container d-flex-col-cent">
 
             <form method="post" class="wt-type-form d-flex-col-cent blur-background">
@@ -38,19 +37,30 @@
                 <hr class="hr-line">
 
                 <section class="wt-exercises container d-flex-col-cent gap25">
-                    <label for="" class="second-title">Exercises:</label>
+                    <label for="exercisesList" class="second-title">Select Exercise:</label>
 
                     {% if exercises %}
-                        <ul>
+
+                        <select name="exercises" id="exercisesList">
                             {% for ex in exercises %}
-                                <li>{{ ex.name }}</li>
+                                <option value="{{ ex.id }}">{{ ex.name }}</option>
                             {% endfor %}
-                        </ul>
+                        </select>
+
+                        <button type="button" id="startExerciseBtn" class="glow-on-hover d-flex-col-cent">Start Selected
+                            Exercise
+                        </button>
+
                     {% else %}
                         <p class="second-title">You Dont Have Any Exercises.</p>
                     {% endif %}
 
-                    <a href="{% url 'ex-start' %}" class="glow-on-hover d-flex-col-cent">Start new exercise</a>
+                    <div class="btn-container d-flex gap25">
+                        <a href="{% url 'ex-start' %}" class="glow-on-hover d-flex-col-cent">Add new exercise</a>
+                        <button type="button" id="deleteWorkoutTypeBtn" class="red-glow-on-hover danger-btn">
+                            Delete Selected Exercise
+                        </button>
+                    </div>
 
                 </section>
 

@@ -9,8 +9,7 @@
 
                 {% if exercises %}
                     {% for ex in exercises %}
-                        {{ ex.name }}
-                        <a href="{% url 'ex-details' pk=ex.pk %}">Details</a>
+                        <p><strong>{{ ex.name }}</strong> <a href="{% url 'ex-details' pk=ex.pk %}">Details</a></p>
                     {% endfor %}
                 {% else %}
                     <p>You don't have any exercises yet.</p>

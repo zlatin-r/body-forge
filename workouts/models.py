@@ -81,6 +81,7 @@ class Workout(TimeStampedModel):
         related_name="workouts",
     )
 
+
     def __str__(self):
         return f"Workout on {self.created.strftime('%Y-%m-%d %H:%M')} by {self.user.profile.username}"
 

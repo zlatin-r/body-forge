@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="background-img d-flex-col-cent">
-    <div class="container blur-background d-flex-col-cent">
+    <div class="container blur-background d-flex-col-cent gap15">
 
         <h2>Exercise Details: {{ object.name }}</h2>
         <p><strong>Muscle Group:</strong> {{ object.muscle_group.name }}</p>
@@ -38,7 +38,7 @@
             <button type="submit" class="glow-on-hover">Create</button>
         </form>
 
-        <a href="{% url 'ex-start' %}" class="glow-on-hover">Back to Exercises</a>
+        <a href="{% url 'ex-start' %}" class="red-glow-on-hover d-flex-col-cent">Back to Exercises</a>
 
     </div>
 </div>

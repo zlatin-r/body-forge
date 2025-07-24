@@ -7,9 +7,10 @@ urlpatterns = [
     path('', CreateWorkoutView.as_view(), name='wt-start'),
     path('type/create/', CreateWorkoutTypeView.as_view(), name='wt-type-create'),
     path('type/delete/<int:pk>/', DeleteWorkoutTypeView.as_view(), name='wt-type-delete'),
-    path('exercise/', include([
+    path('exercise/<int:pk>/', include([
         path('', CreateExerciseView.as_view(), name='ex-start'),
         path('mg-create/', CreateMuscleGroupView.as_view(), name='mg-create'),
-        path('details/<int:pk>/', ExerciseDetailsView.as_view(), name='ex-details'),
+        path('details/', ExerciseDetailsView.as_view(), name='ex-details'),
+        path('add-set', CreateSetView.as_view(), name='add-set'),
     ])),
 ]
