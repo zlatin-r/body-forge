@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="background-img d-flex-col-cent">
+    <div class="container blur-background d-flex-col-cent">
+
+        <h2>Exercise Details: {{ object.name }}</h2>
+        <p><strong>Muscle Group:</strong> {{ object.muscle_group.name }}</p>
+
+        <h3>Recorded Sets</h3>
+        {% if object.exerciseset_set.all %}
+            <ul>
+                {% for set in object.exerciseset_set.all %}
+                    <li>Repetitions: {{ set.repetitions }}, Weight: {{ set.weight }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No sets recorded yet.</p>
+        {% endif %}
+
+        <h3>Add New Set</h3>
+        <form class="wt-type-form d-flex-col-cent" method="post" action="#">
+            {% csrf_token %}
+
+            <div class="info-field-item">
+                <label for="{{ form.repetitions.id_for_label }}">Repetitions:</label>
+                {{ form.repetitions.errors }}
+                {{ form.repetitions }}
+            </div>
+
+            <div class="info-field-item">
+                <label for="{{ form.weight.id_for_label }}">Weight:</label>
+                {{ form.weight.errors }}
+                {{ form.weight }}
+            </div>
+
+            <button type="submit" class="glow-on-hover">Create</button>
+        </form>
+
+        <a href="{% url 'ex-start' %}" class="glow-on-hover">Back to Exercises</a>
+
+    </div>
+</div>
+{% endblock %}

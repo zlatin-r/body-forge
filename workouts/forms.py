@@ -1,6 +1,6 @@
 from django import forms
 
-from workouts.models import Workout, WorkoutType, Exercise, MuscleGroup
+from workouts.models import Workout, WorkoutType, Exercise, MuscleGroup, ExerciseSet
 
 
 class CreateWorkoutForm(forms.ModelForm):
@@ -37,3 +37,13 @@ class CreateMuscleGroupForm(forms.ModelForm):
     class Meta:
         model = MuscleGroup
         fields = ['name']
+
+
+class CreateSetForm(forms.ModelForm):
+    class Meta:
+        model = ExerciseSet
+        fields = ['repetitions', 'weight']
+        widgets = {
+            'repetitions': forms.NumberInput(attrs={'min': 1}),
+            'weight': forms.NumberInput(attrs={'min': 0, 'step': '0.01'}),
+        }

@@ -1,11 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView, DeleteView, DetailView
 
 from common.mixins import UserObjectOwnerMixin
-from workouts.forms import CreateWorkoutForm, CreateWorkoutTypeForm, CreateExerciseForm, CreateMuscleGroupForm
-from workouts.models import Workout, WorkoutType, Exercise, MuscleGroup
+from workouts.forms import CreateWorkoutForm, CreateWorkoutTypeForm, CreateExerciseForm, CreateMuscleGroupForm, \
+    CreateSetForm
+from workouts.models import Workout, WorkoutType, Exercise, MuscleGroup, ExerciseSet
 
 
 class CreateWorkoutView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
@@ -48,11 +49,14 @@ class CreateExerciseView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
     model = Exercise
     form_class = CreateExerciseForm
     template_name = 'workouts/ex-start.html'
-    success_url = reverse_lazy('wt-start')
+
+    def get_success_url(self):
+        return reverse_lazy('ex-details', kwargs={'pk': self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['muscle_groups'] = MuscleGroup.objects.filter(user=self.request.user)
+        context['exercises'] = Exercise.objects.filter(user=self.request.user)
         return context
 
     def get_form_kwargs(self):
@@ -66,3 +70,23 @@ class CreateMuscleGroupView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView
     form_class = CreateMuscleGroupForm
     template_name = 'workouts/mg-create.html'
     success_url = reverse_lazy('ex-start')
+
+
+class ExerciseDetailsView(LoginRequiredMixin, DetailView):
+    model = Exercise
+    template_name = 'workouts/ex-details.html'
+
+class CreateSetView(LoginRequiredMixin, CreateView):
+    model = ExerciseSet
+    form_class = CreateSetForm
+    template_name = 'workouts/set-create.html'
+    success_url = reverse_lazy('ex-start')
+
+    def form_valid(self, form):
+        exercise_id = self.kwargs.get('exercise_id')
+        form.instance.exercise = Exercise.objects.get(pk=exercise_id, user=self.request.user)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        exercise_id = self.kwargs.get('exercise_id')
+        return reverse_lazy('ex-details', kwargs={'pk': exercise_id})

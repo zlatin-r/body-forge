@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="background-img d-flex-col-cent">
+        <div class="container blur-background">
+            <form class="wt-type-form d-flex-col-cent" method="post">
+                {% csrf_token %}
+
+                <div class="info-field-item">
+                    <label for="{{ form.name.id_for_label }}">Repetitions:</label>
+                    {{ form.repetitions.errors }}
+                    {{ form.repetitions }}
+                </div>
+
+                <div class="info-field-item">
+                    <label for="{{ form.name.id_for_label }}">Weight:</label>
+                    {{ form.weight.errors }}
+                    {{ form.weight }}
+                </div>
+
+                <button type="submit" class="glow-on-hover">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

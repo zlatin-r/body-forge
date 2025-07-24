@@ -7,6 +7,15 @@
             <form class="wt-type-form d-flex-col-cent" method="post" action="{% url 'ex-start' %}">
                 {% csrf_token %}
 
+                {% if exercises %}
+                    {% for ex in exercises %}
+                        {{ ex.name }}
+                        <a href="{% url 'ex-details' pk=ex.pk %}">Details</a>
+                    {% endfor %}
+                {% else %}
+                    <p>You don't have any exercises yet.</p>
+                {% endif %}
+
                 <div class="info-field-item">
                     <label for="{{ form.name.id_for_label }}">Enter New Exercise Name:</label>
                     {{ form.name.errors }}
@@ -27,17 +36,9 @@
 
                 <div class="btn-container d-flex gap25">
                     <a href="{% url 'mg-create' %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
-                    <button type="button" id="deleteWorkoutTypeBtn" class="red-glow-on-hover danger-btn">
+                    <button type="button" id="deleteWorkoutTypeBtn" class="red-glow-on-hover">
                         Delete Selected Group
                     </button>
-                </div>
-
-                <hr class="hr-line">
-
-                <div class="info-field-item-select d-flex-col-cent">
-                    <label for="{{ form.muscle_group.id_for_label }}">Sets:</label>
-                    {{ form.muscle_group.errors }}
-                    {{ form.muscle_group }}
                 </div>
 
                 <button type="submit" class="glow-on-hover">Create</button>
