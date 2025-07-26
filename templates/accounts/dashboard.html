@@ -12,12 +12,15 @@
                 <ul class="wt-list">
                     {% for workout in workouts %}
                         <li>
-                            <strong>{{ workout}}</strong>
+                            <strong>{{ workout }}</strong>
                         </li>
                     {% endfor %}
                 </ul>
             {% else %}
                 <h2>You dont have any workouts yet.</h2>
+                <a href="{% url 'wt-start' %}" class="btn-get-started">
+                    <button class="glow-on-hover" type="button">Start Workout</button>
+                </a>
             {% endif %}
         </div>
     </div>

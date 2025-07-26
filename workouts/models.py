@@ -30,7 +30,6 @@ class WorkoutType(models.Model):
     )
     name = models.CharField(
         max_length=100,
-        unique=True,
     )
     muscle_group = models.ManyToManyField(
         'MuscleGroup',
@@ -58,6 +57,11 @@ class Exercise(TimeStampedModel):
         'MuscleGroup',
         on_delete=models.CASCADE,
         related_name='exercises',
+    )
+    workout = models.ForeignKey(
+        'Workout',
+        on_delete=models.CASCADE,
+        related_name='exercises'
     )
 
     class Meta:

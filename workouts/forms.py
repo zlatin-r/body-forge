@@ -20,6 +20,16 @@ class CreateWorkoutTypeForm(forms.ModelForm):
         model = WorkoutType
         fields = ['name']
 
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if WorkoutType.objects.filter(user=self.user, name__iexact=name).exists():
+            raise forms.ValidationError("You already have a workout type with this name.")
+        return name
+
 
 class CreateExerciseForm(forms.ModelForm):
     class Meta:
@@ -27,7 +37,7 @@ class CreateExerciseForm(forms.ModelForm):
         fields = ['name', 'muscle_group']
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)  # <-- important line
+        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
             self.fields['muscle_group'].queryset = MuscleGroup.objects.filter(user=user)

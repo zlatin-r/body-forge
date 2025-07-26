@@ -12,7 +12,7 @@ from workouts.models import Workout, WorkoutType, Exercise, MuscleGroup, Exercis
 class CreateWorkoutView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
     model = Workout
     form_class = CreateWorkoutForm
-    template_name = 'workouts/wt-start.html'
+    template_name = 'workouts/wt-create.html'
 
     def get_success_url(self):
         return reverse_lazy('dashboard', kwargs={'pk': self.request.user.pk})
@@ -20,7 +20,11 @@ class CreateWorkoutView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['wt_types'] = WorkoutType.objects.filter(user=self.request.user)
-        context['exercises'] = Exercise.objects.filter(user=self.request.user).prefetch_related('sets')
+
+        if self.object:
+            context['exercises'] = Exercise.objects.filter(workout=self.object).prefetch_related('sets')
+        else:
+            context['exercises'] = []
         return context
 
 
@@ -31,6 +35,11 @@ class CreateWorkoutTypeView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView
 
     def get_success_url(self):
         return reverse('wt-start')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 
 class DeleteWorkoutTypeView(LoginRequiredMixin, DeleteView):
@@ -48,10 +57,10 @@ class DeleteWorkoutTypeView(LoginRequiredMixin, DeleteView):
 class CreateExerciseView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
     model = Exercise
     form_class = CreateExerciseForm
-    template_name = 'workouts/ex-start.html'
+    template_name = 'workouts/ex-create.html'
 
     def get_success_url(self):
-        return reverse_lazy('ex-details', kwargs={'pk': self.object.pk})
+        return reverse_lazy('wt-start')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

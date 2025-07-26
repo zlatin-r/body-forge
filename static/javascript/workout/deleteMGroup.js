@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const deleteBtn = document.getElementById('deleteWorkoutTypeBtn');
-    const muscleGroupSelect = document.getElementById('id_muscle_group');
+    const deleteBtn = document.getElementById('deleteMgBtn');
+    const muscleGroupSelect = document.getElementById('muscleGroupsList');
 
     if (deleteBtn && muscleGroupSelect) {
         deleteBtn.addEventListener('click', () => {

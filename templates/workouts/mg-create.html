@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
+{% load placeholder_filter %}
 {% load static %}
 
 {% block content %}
     <div class="background-img d-flex-col-cent">
         <div class="container blur-background">
-            <form class="wt-type-form d-flex-col-cent" method="post">
+            <form class="wt-type-form d-flex-col-cent gap25" method="post">
                 {% csrf_token %}
 
-                <div class="info-field-item">
-                    <label for="{{ form.name.id_for_label }}">Enter Muscle group Name:</label>
-                    {{ form.name.errors }}
-                    {{ form.name }}
+                <div class="input-field">
+                    <h4 class="label">Exercise Muscle Group Name:</h4>
+                    {{ form.name|placeholder:"Enter here" }}
+                    <div class="error-field fade-effect">
+                        {{ form.name.errors }}
+                    </div>
                 </div>
 
                 <button type="submit" class="glow-on-hover">Create</button>

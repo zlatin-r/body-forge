@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load placeholder_filter %}
 {% load static %}
 
 {% block content %}
@@ -7,16 +8,19 @@
             <form class="d-flex-col-cent gap25" method="post">
                 {% csrf_token %}
 
-                <div class="info-field-item">
-                    <label for="{{ form.name.id_for_label }}">Repetitions:</label>
-                    {{ form.repetitions.errors }}
-                    {{ form.repetitions }}
+                <div class="input-field">
+                    <h4 class="label">Repetitions:</h4>
+                    {{ form.repetitions|placeholder:"Enter here" }}
+                    <div class="error-field fade-effect">
+                        {{ form.repetitions.errors }}
+                    </div>
                 </div>
-
-                <div class="info-field-item">
-                    <label for="{{ form.name.id_for_label }}">Weight:</label>
-                    {{ form.weight.errors }}
-                    {{ form.weight }}
+                <div class="input-field">
+                    <h4 class="label">Weight:</h4>
+                    {{ form.weight|placeholder:"Enter here" }}
+                    <div class="error-field fade-effect">
+                        {{ form.weight.errors }}
+                    </div>
                 </div>
 
                 <div class="btn-container d-flex gap25">

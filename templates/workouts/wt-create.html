@@ -21,25 +21,28 @@
                             {% endfor %}
                         </select>
 
+                        <div class="btn-container d-flex gap25">
+                            <a href="{% url 'wt-type-create' %}" class="glow-on-hover d-flex-col-cent">Add new workout
+                                type</a>
+                            <button type="button" id="deleteWorkoutTypeBtn" class="red-glow-on-hover danger-btn">
+                                Delete Selected Type
+                            </button>
+                        </div>
+
                     {% else %}
                         <p class="second-title">You Dont Have Any Types.</p>
-                    {% endif %}
-
-                    <div class="btn-container d-flex gap25">
                         <a href="{% url 'wt-type-create' %}" class="glow-on-hover d-flex-col-cent">Add new workout
                             type</a>
-                        <button type="button" id="deleteWorkoutTypeBtn" class="red-glow-on-hover danger-btn">
-                            Delete Selected Type
-                        </button>
-                    </div>
+                    {% endif %}
+
                 </section>
 
                 <hr class="hr-line">
 
                 <section class="wt-exercises container d-flex-col-cent gap25">
-                    <label for="exercisesList" class="second-title">Select Exercise:</label>
 
                     {% if exercises %}
+                        <label for="exercisesList" class="second-title">Select Exercise:</label>
 
                         <select name="exercises" id="exercisesList">
                             {% for ex in exercises %}
@@ -51,17 +54,17 @@
                             Exercise
                         </button>
 
+                        <div class="btn-container d-flex gap25">
+                            <a href="{% url 'ex-start' %}" class="glow-on-hover d-flex-col-cent">Add new exercise</a>
+                            <button type="button" id="deleteExerciseBtn" class="red-glow-on-hover danger-btn">
+                                Delete Selected Exercise
+                            </button>
+                        </div>
+
                     {% else %}
                         <p class="second-title">You Dont Have Any Exercises.</p>
-                    {% endif %}
-
-                    <div class="btn-container d-flex gap25">
                         <a href="{% url 'ex-start' %}" class="glow-on-hover d-flex-col-cent">Add new exercise</a>
-                        <button type="button" id="deleteExerciseBtn" class="red-glow-on-hover danger-btn">
-                            Delete Selected Exercise
-                        </button>
-                    </div>
-
+                    {% endif %}
                 </section>
 
                 <hr class="hr-line">
