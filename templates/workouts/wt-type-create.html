@@ -4,7 +4,7 @@
 {% block  content %}
     <div class="background-img d-flex-col-cent">
         <div class="container blur-background">
-            <form class="wt-type-form d-flex-col-cent" method="post" action="{% url 'wt-type-create' %}">
+            <form class="wt-type-form d-flex-col-cent gap25" method="post" action="{% url 'wt-type-create' %}">
                 {% csrf_token %}
 
                 <div class="info-field-item">
@@ -12,8 +12,10 @@
                     {{ form.name.errors }}
                     {{ form.name }}
                 </div>
-
-                <button type="submit" class="glow-on-hover">Create</button>
+                <div class="btn-container d-flex gap15">
+                    <button type="submit" class="glow-on-hover">Create</button>
+                    <a href="javascript:history.back()" class="red-glow-on-hover d-flex-col-cent">Back</a>
+                </div>
             </form>
         </div>
     </div>

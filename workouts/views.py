@@ -20,7 +20,7 @@ class CreateWorkoutView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['wt_types'] = WorkoutType.objects.filter(user=self.request.user)
-        context['exercises'] = Exercise.objects.filter(user=self.request.user)
+        context['exercises'] = Exercise.objects.filter(user=self.request.user).prefetch_related('sets')
         return context
 
 
@@ -75,6 +75,7 @@ class CreateMuscleGroupView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView
 class ExerciseDetailsView(LoginRequiredMixin, DetailView):
     model = Exercise
     template_name = 'workouts/ex-details.html'
+    context_object_name = 'exercise'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -88,12 +89,12 @@ class CreateSetView(LoginRequiredMixin, CreateView):
     template_name = 'workouts/set-create.html'
 
     def form_valid(self, form):
-        exercise_id = self.kwargs.get('exercise_id')
-        form.instance.exercise = Exercise.objects.get(pk=exercise_id, user=self.request.user)
+        exercise_pk = self.kwargs.get('pk')
+        form.instance.exercise = Exercise.objects.get(pk=exercise_pk, user=self.request.user)
         return super().form_valid(form)
 
     def dispatch(self, request, *args, **kwargs):
-        self.exercise = Exercise.objects.get(pk=kwargs['exercise_id'], user=request.user)
+        self.exercise = Exercise.objects.get(pk=kwargs['pk'], user=request.user)
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -102,4 +103,28 @@ class CreateSetView(LoginRequiredMixin, CreateView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('ex-details', kwargs={'pk': self.exercise.pk})
+        return reverse_lazy('wt-start')
+
+
+class DeleteExerciseView(LoginRequiredMixin, DeleteView):
+    model = Exercise
+
+    def post(self, request, *args, **kwargs):
+        exercise = self.get_object()
+
+        if exercise.user == request.user:
+            exercise.delete()
+            return JsonResponse({'success': True})
+        return JsonResponse({'success': False, 'error': 'Unauthorized'}, status=403)
+
+
+class DeleteMuscleGroupView(LoginRequiredMixin, DeleteView):
+    model = MuscleGroup
+
+    def post(self, request, *args, **kwargs):
+        muscle_group = self.get_object()
+
+        if muscle_group.user == request.user:
+            muscle_group.delete()
+            return JsonResponse({'success': True})
+        return JsonResponse({'success': False, 'error': 'Unauthorized'}, status=403)

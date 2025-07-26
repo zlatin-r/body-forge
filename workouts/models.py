@@ -45,7 +45,7 @@ class WorkoutType(models.Model):
         return self.name
 
 
-class Exercise(models.Model):
+class Exercise(TimeStampedModel):
     user = models.ForeignKey(
         to=UserModel,
         on_delete=models.CASCADE,
@@ -59,10 +59,10 @@ class Exercise(models.Model):
         on_delete=models.CASCADE,
         related_name='exercises',
     )
-    # sets = models.
 
     class Meta:
         unique_together = ('user', 'name', 'muscle_group')
+        ordering = ['-created']
 
     def __str__(self):
         return f"{self.name} ({self.muscle_group.name})"
@@ -81,7 +81,6 @@ class Workout(TimeStampedModel):
         related_name="workouts",
     )
 
-
     def __str__(self):
         return f"Workout on {self.created.strftime('%Y-%m-%d %H:%M')} by {self.user.profile.username}"
 
@@ -97,6 +96,9 @@ class ExerciseSet(TimeStampedModel):
         max_digits=5,
         decimal_places=2,
     )
+
+    class Meta:
+        ordering = ['-created']
 
     def __str__(self):
         return f"{self.repetitions} reps @ {self.weight} kg"
