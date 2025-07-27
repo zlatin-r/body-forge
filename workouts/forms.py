@@ -11,6 +11,7 @@ class CreateWorkoutForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
+
         if user:
             self.fields['workout_type'].queryset = WorkoutType.objects.filter(user=user)
 
@@ -47,6 +48,16 @@ class CreateMuscleGroupForm(forms.ModelForm):
     class Meta:
         model = MuscleGroup
         fields = ['name']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if MuscleGroup.objects.filter(user=self.user, name__iexact=name).exists():
+            raise forms.ValidationError("You already have a muscle group with this name.")
+        return name
 
 
 class CreateSetForm(forms.ModelForm):

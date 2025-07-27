@@ -65,6 +65,7 @@
 
 .second-title {
     font-size: var(--bigletters);
+    color: var(--smoke-white);
 }
 
 .normal-text {

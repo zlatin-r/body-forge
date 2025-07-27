@@ -5,7 +5,7 @@
 {% block content %}
     <div class="background-img d-flex-col-cent">
         <div class="container blur-background">
-            <form class="wt-type-form d-flex-col-cent gap25" method="post">
+            <form class="wt-type-form d-flex-col-cent" method="post">
                 {% csrf_token %}
 
                 <div class="input-field">
@@ -16,7 +16,13 @@
                     </div>
                 </div>
 
-                <button type="submit" class="glow-on-hover">Create</button>
+                <hr class="hr-line">
+
+                <div class="btn-container d-flex gap25">
+                    <button type="submit" class="glow-on-hover">Create</button>
+                    <a href="{% url 'ex-create' %}" class="red-glow-on-hover d-flex-col-cent">Back</a>
+                </div>
+
             </form>
         </div>
     </div>
