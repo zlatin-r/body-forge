@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const deleteBtn = document.getElementById('deleteWorkoutTypeBtn');
+    const deleteBtn = document.getElementById('deleteWtBtn');
     const select = document.getElementById('workoutType');
 
     if (deleteBtn && select) {
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedId = select.value;
             if (!selectedId) return;
 
-            fetch(`/workout/type/delete/${selectedId}/`, {
+            fetch(`/workout/delete-type/${selectedId}/`, {
                 method: "POST",
                 headers: {
                     'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
