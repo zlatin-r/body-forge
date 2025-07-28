@@ -6,9 +6,9 @@
         <h2 class="title">Hello {{ user.profile.username }}</h2>
 
         <div class="container d-flex-col-cent gap15">
-
             {% if workouts %}
                 <h2>Your Workouts:</h2>
+
                 <ul class="wt-list">
                     {% for workout in workouts %}
                         <li>
@@ -16,6 +16,7 @@
                         </li>
                     {% endfor %}
                 </ul>
+
             {% else %}
                 <h2>You dont have any workouts yet.</h2>
                 <a href="{% url 'wt-create' %}" class="glow-on-hover d-flex-col-cent">Start Workout</a>
