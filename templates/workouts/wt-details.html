@@ -12,7 +12,7 @@
                     {% if exercises %}
                         <label for="exercisesList" class="second-title">Select Exercise:</label>
 
-                        <select name="exercises" id="exercisesList">
+                        <select name="exercises" id="exercisesList" data-workout-pk="{{ workout.pk }}">
                             {% for ex in exercises %}
                                 <option value="{{ ex.id }}">{{ ex.name }}</option>
                             {% endfor %}
@@ -30,36 +30,39 @@
                             </button>
                         </div>
 
+                        <hr class="hr-line">
+
+                        <section class="exercise-logs">
+                            <h2>Conducted Exercises and Sets</h2>
+                            {% if exercises %}
+                                {% for exercise in exercises %}
+                                    <div class="exercise-log">
+                                        <h3>{{ exercise.name }} (Muscle Group: {{ exercise.muscle_group.name }})</h3>
+
+                                        {% if exercise.sets.all %}
+                                            <ul>
+                                                {% for set in exercise.sets.all %}
+                                                    <li>Repetitions: {{ set.repetitions }}, Weight: {{ set.weight }}
+                                                        kg
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                            <p>No sets recorded yet for this exercise.</p>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>No exercises recorded yet.</p>
+                            {% endif %}
+                        </section>
+
                     {% else %}
                         <p class="second-title">You Dont Have Any Exercises.</p>
                         <a href="{% url 'ex-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add
                             new exercise</a>
                     {% endif %}
-                </section>
 
-                <hr class="hr-line">
-
-                <section class="exercise-logs">
-                    <h2>Conducted Exercises and Sets</h2>
-                    {% if exercises %}
-                        {% for exercise in exercises %}
-                            <div class="exercise-log">
-                                <h3>{{ exercise.name }} (Muscle Group: {{ exercise.muscle_group.name }})</h3>
-
-                                {% if exercise.sets.all %}
-                                    <ul>
-                                        {% for set in exercise.sets.all %}
-                                            <li>Repetitions: {{ set.repetitions }}, Weight: {{ set.weight }} kg</li>
-                                        {% endfor %}
-                                    </ul>
-                                {% else %}
-                                    <p>No sets recorded yet for this exercise.</p>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        <p>No exercises recorded yet.</p>
-                    {% endif %}
                 </section>
             </div>
         </div>

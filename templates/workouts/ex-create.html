@@ -6,7 +6,7 @@
     <div class="background-img d-flex-col-cent">
         <div class="container blur-background">
             <form class="wt-type-form d-flex-col-cent gap25" method="post"
-                  action="{% url 'ex-create' workout_pk=workout.pk %}">
+                  action="#">
                 {% csrf_token %}
 
                 <div class="input-field">
@@ -28,7 +28,7 @@
                     </select>
 
                     <div class="btn-container d-flex gap25">
-                        <a href="{% url 'mg-create' %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
+                        <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
                         <button type="button" id="deleteMgBtn" class="red-glow-on-hover">
                             Delete Selected Group
                         </button>
@@ -36,14 +36,14 @@
 
                 {% else %}
                     <p>You don't have any muscle groups yet.</p>
-                    <a href="{% url 'mg-create' %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
+                    <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
                 {% endif %}
 
                 <hr class="hr-line">
 
                 <div class="btn-container d-flex gap25">
                     <button type="submit" class="glow-on-hover">Create</button>
-                    <a href="{% url 'wt-details' pk=workout.pk %}" class="red-glow-on-hover d-flex-col-cent">Back</a>
+                    <a href="{% url 'wt-details' workout_pk=workout.pk %}" class="red-glow-on-hover d-flex-col-cent">Back</a>
                 </div>
             </form>
         </div>

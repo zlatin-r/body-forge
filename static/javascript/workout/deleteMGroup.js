@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedId = muscleGroupSelect.value;
             if (!selectedId) return;
 
-            fetch(`/workout/muscle-group/delete/${selectedId}/`, {
+            fetch(`/workout/delete-muscle-group/${selectedId}/`, {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,

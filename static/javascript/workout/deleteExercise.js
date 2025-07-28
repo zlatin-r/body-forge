@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedId = exerciseSelect.value;
             if (!selectedId) return;
 
-            fetch(`/workout/exercise/${selectedId}/delete/`, {
+            fetch(`/workout/delete-exercise/${selectedId}/`, {
                 method: "POST",
                 headers: {
                     'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
