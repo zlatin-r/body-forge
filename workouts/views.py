@@ -143,17 +143,6 @@ class DeleteExerciseView(LoginRequiredMixin, DeleteView):
         return JsonResponse({'success': False, 'error': 'Unauthorized'}, status=403)
 
 
-# class ExerciseDetailsView(LoginRequiredMixin, DetailView):
-#     model = Exercise
-#     template_name = 'workouts/ex-details.html'
-#     context_object_name = 'exercise'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['form'] = CreateSetForm()
-#         return context
-#
-#
 class CreateSetView(LoginRequiredMixin, CreateView):
     model = ExerciseSet
     form_class = CreateSetForm
@@ -164,9 +153,7 @@ class CreateSetView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def dispatch(self, request, *args, **kwargs):
-        # The URL now provides 'workout_pk' and 'exercise_pk'
         self.workout = get_object_or_404(Workout, pk=kwargs['workout_pk'], user=request.user)
-        # Fetch exercise, ensuring it belongs to the current user AND the current workout
         self.exercise = get_object_or_404(Exercise, pk=kwargs['exercise_pk'], user=request.user, workout=self.workout)
         return super().dispatch(request, *args, **kwargs)
 
@@ -182,7 +169,6 @@ class CreateSetView(LoginRequiredMixin, CreateView):
         return kwargs
 
     def get_success_url(self):
-        # Redirect back to the workout details page, using workout.pk
         return reverse_lazy('wt-details', kwargs={'workout_pk': self.workout.pk})
 #
 #

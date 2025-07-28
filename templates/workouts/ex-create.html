@@ -5,16 +5,15 @@
 {% block content %}
     <div class="background-img d-flex-col-cent">
         <div class="container blur-background">
-            <form class="wt-type-form d-flex-col-cent gap25" method="post"
-                  action="#">
+            <form class="wt-type-form d-flex-col-cent gap25" method="post">
                 {% csrf_token %}
 
                 <div class="input-field">
                     <h4 class="label">Exercise Name:</h4>
                     {{ form.name|placeholder:"Enter here" }}
                     <div class="error-field fade-effect">
-                        {{ form.name.errors }}
                         {{ form.non_field_errors }}
+                        {{ form.name.errors }}
                     </div>
                 </div>
 
@@ -28,7 +27,8 @@
                     </select>
 
                     <div class="btn-container d-flex gap25">
-                        <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
+                        <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add
+                            New Muscle Group</a>
                         <button type="button" id="deleteMgBtn" class="red-glow-on-hover">
                             Delete Selected Group
                         </button>
@@ -36,7 +36,11 @@
 
                 {% else %}
                     <p>You don't have any muscle groups yet.</p>
-                    <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add New Muscle Group</a>
+                    <div class="error-field fade-effect">
+                        {{ form.muscle_group.errors }}
+                    </div>
+                    <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add New
+                        Muscle Group</a>
                 {% endif %}
 
                 <hr class="hr-line">
