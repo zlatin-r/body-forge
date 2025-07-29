@@ -198,7 +198,8 @@
 /* ---------------------- */
 
 /* Input fields */
-.input-field input {
+.input-field input,
+.input-field textarea {
     background: none;
     font-size: 1.1rem;
     color: var(--smoke-white);
@@ -210,7 +211,8 @@
     width: 500px;
 }
 
-.input-field input:focus {
+.input-field input:focus,
+.input-field textarea:focus {
     border-color: var(--primary-blue); /* Change border color on focus */
     outline: none;
     position: relative;

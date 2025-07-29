@@ -23,6 +23,7 @@ PROJECT_APPS = [
     'common',
     'accounts',
     'workouts',
+    'forum',
 ]
 
 INSTALLED_APPS = [

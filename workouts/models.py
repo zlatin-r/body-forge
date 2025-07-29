@@ -65,7 +65,6 @@ class Exercise(TimeStampedModel):
     )
 
     class Meta:
-        unique_together = ('workout', 'name', 'muscle_group')
         ordering = ['-created']
 
     def __str__(self):

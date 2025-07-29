@@ -6,6 +6,7 @@ from django.views.generic import CreateView, UpdateView, DetailView, TemplateVie
 
 from accounts.forms import AppUserCreationForm, ProfileEditForm
 from accounts.models import Profile
+from forum.models import Question
 from workouts.models import Workout
 
 UserModel = get_user_model()
@@ -69,4 +70,11 @@ class DashboardView(LoginRequiredMixin, ListView):
     context_object_name = 'workouts'
 
     def get_queryset(self):
-        return Workout.objects.filter(user=self.request.user).order_by('-created')
+        return (Workout.objects.filter(user=self.request.user)
+                .order_by('-created')
+                .prefetch_related('exercises', 'exercises__sets'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_questions'] = Question.objects.filter(user=self.request.user)
+        return context

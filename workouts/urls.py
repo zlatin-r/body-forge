@@ -1,5 +1,6 @@
 from django.urls import path, include
 
+from forum.views import CreateQuestion
 from workouts.views import (
     CreateWorkoutView, CreateWorkoutTypeView, DeleteWorkoutTypeView, DetailsWorkoutView, CreateExerciseView,
     CreateMuscleGroupView, DeleteMuscleGroupView, DeleteExerciseView, CreateSetView,
@@ -17,8 +18,11 @@ urlpatterns = [
 
         path('add-exercise/', CreateExerciseView.as_view(), name='ex-create'),
         path('add-muscle-group/', CreateMuscleGroupView.as_view(), name='mg-create'),
-        path('exercise/<int:exercise_pk>/', include([  # Added a new level for exercise PK
+        path('exercise/<int:exercise_pk>/', include([
             path('add-set/', CreateSetView.as_view(), name='set-create'),
         ])),
-    ]))
+    ])),
+    path('forum/', include([
+        path('add-question/', CreateQuestion.as_view(), name='qu-create'),
+    ])),
 ]

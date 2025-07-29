@@ -10,19 +10,19 @@ UserModel = get_user_model()
 
 @admin.register(UserModel)
 class AppUserAdmin(UserAdmin):
-    list_display = ("email", "is_active", "is_staff")
+    list_display = ('email', 'is_active', 'is_staff')
     add_form = AppUserCreationForm
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (None, {'fields': ('email', 'password')}),
         (
-            "Permissions",
+            'Permissions',
             {
-                "fields": (
-                    "is_active",
-                    "is_staff",
-                    "is_superuser",
-                    "groups",
-                    "user_permissions",
+                'fields': (
+                    'is_active',
+                    'is_staff',
+                    'is_superuser',
+                    'groups',
+                    'user_permissions',
                 ),
             },
         ),
@@ -32,12 +32,12 @@ class AppUserAdmin(UserAdmin):
         (
             None,
             {
-                "classes": ("wide",),
-                "fields": ("email", "password1", "password2"),
+                'classes': ('wide',),
+                'fields': ('email', 'password1', 'password2'),
             },
         ),
     )
-    ordering = ("email",)
+    ordering = ('email',)
 
 
 @admin.register(Profile)

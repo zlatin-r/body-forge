@@ -4,23 +4,47 @@
 {% block content %}
     <div class="dashboard-container d-flex-col-cent background-img">
         <h2 class="title">Hello {{ user.profile.username }}</h2>
+        <section>
+            <div class="container d-flex-col-cent gap15">
+                {% if workouts %}
+                    <h2>Your Workouts:</h2>
 
-        <div class="container d-flex-col-cent gap15">
-            {% if workouts %}
-                <h2>Your Workouts:</h2>
+                    <ul class="wt-list">
+                        {% for workout in workouts %}
+                            <li>
+                                <strong>{{ workout.created }}</strong>
+                                <strong>{{ workout.workout_type }}</strong>
+                                <strong>{{ workout.exercises.count }}</strong>
+                            </li>
+                        {% endfor %}
+                    </ul>
 
-                <ul class="wt-list">
-                    {% for workout in workouts %}
-                        <li>
-                            <strong>{{ workout }}</strong>
-                        </li>
-                    {% endfor %}
-                </ul>
+                {% else %}
+                    <h2>You dont have any workouts yet.</h2>
+                    <a href="{% url 'wt-create' %}" class="glow-on-hover d-flex-col-cent">Start Workout</a>
+                {% endif %}
+            </div>
+        </section>
 
-            {% else %}
-                <h2>You dont have any workouts yet.</h2>
-                <a href="{% url 'wt-create' %}" class="glow-on-hover d-flex-col-cent">Start Workout</a>
-            {% endif %}
-        </div>
+        <hr class="hr-line">
+
+        <section>
+            <div class="container d-flex-col-cent gap15">
+                {% if user_questions %}
+                    <h2>Your Questions:</h2>
+
+                    <ul class="qu_list">
+                        {% for qu in user_questions %}
+                            <li>Title: {{ qu.title }}</li>
+                            <li>Content: {{ qu.content }}</li>
+                        {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <h2>You dont have any questions yet.</h2>
+                    <a href="{% url 'qu-create' %}" class="glow-on-hover d-flex-col-cent">Ask Question</a>
+                {% endif %}
+            </div>
+        </section>
     </div>
 {% endblock %}
