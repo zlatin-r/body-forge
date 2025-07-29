@@ -1,0 +1,23 @@
+.question-li {
+    width: 100%;
+    border: 1px solid rgba(75, 85, 99, 0.7); /* Subtle border */
+    border-radius: 10px;
+    margin: 15px 0;
+    padding: 20px;
+    color: var(--smoke-white, #f3f4f6); /* Default to light gray if var not defined */
+    text-align: center;
+    font-size: 28px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Indicate it's clickable */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial subtle shadow */
+}
+
+.question-li:hover {
+    transform: translateY(-5px) scale(1.01); /* Lift up slightly and grow a bit */
+    background-color: rgba(45, 62, 80, 0.95); /* Slightly lighter on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+}
+
+.qu-container{
+    width: 80%;
+}

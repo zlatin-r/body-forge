@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load placeholder_filter %}
+{% load static %}
+
+{% block content %}
+    <div class="background-img d-flex-col-cent">
+        <ul class="qu-container">
+            {% for qu in all_questions %}
+
+                <li>
+                    <div class="blur-background question-li">
+                        Question by: {{ qu.user.profile.username }},
+                        Title: {{ qu.title }},
+                        Created at: {{ qu.created }}
+                    </div>
+                </li>
+
+            {% empty %}
+                <h2>No Questions yet.</h2>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

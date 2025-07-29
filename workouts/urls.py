@@ -1,6 +1,5 @@
 from django.urls import path, include
 
-from forum.views import CreateQuestion
 from workouts.views import (
     CreateWorkoutView, CreateWorkoutTypeView, DeleteWorkoutTypeView, DetailsWorkoutView, CreateExerciseView,
     CreateMuscleGroupView, DeleteMuscleGroupView, DeleteExerciseView, CreateSetView,
@@ -21,8 +20,5 @@ urlpatterns = [
         path('exercise/<int:exercise_pk>/', include([
             path('add-set/', CreateSetView.as_view(), name='set-create'),
         ])),
-    ])),
-    path('forum/', include([
-        path('add-question/', CreateQuestion.as_view(), name='qu-create'),
     ])),
 ]
