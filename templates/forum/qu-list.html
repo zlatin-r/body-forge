@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load placeholder_filter %}
 {% load static %}
 
 {% block content %}
@@ -8,11 +7,21 @@
             {% for qu in all_questions %}
 
                 <li>
-                    <div class="blur-background question-li">
-                        Question by: {{ qu.user.profile.username }},
-                        Title: {{ qu.title }},
-                        Created at: {{ qu.created }}
-                    </div>
+                    <a href="{% url 'qu-details' qu.pk %}">
+                        <div class="blur-background question-li">
+                            Question by: {{ qu.user.profile.username }},
+                            Title: {{ qu.title }},
+                            Created at: {{ qu.created }}
+
+                            {% if perms.forum.approve_question %}
+                                {% if qu.approved %}
+                                    <p style="color: green;">Approved</p>
+                                {% else %}
+                                    <p style="color: red;">Pending Approval</p>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </a>
                 </li>
 
             {% empty %}

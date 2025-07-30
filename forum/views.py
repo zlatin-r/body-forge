@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 
 from forum.forms import QuestionCreateForm
 from forum.models import Question
@@ -12,14 +13,32 @@ class ListQuestionsView(ListView, PermissionRequiredMixin):
     permission_required = 'forum.approve_question'
 
     def get_queryset(self):
-        if self.request.user.has_perm('forum.approve_question'):
-            return Question.objects.all()
-        return Question.objects.filter(approved=True)
+        queryset = self.model.objects.all()
+        if not self.has_permission():
+            queryset = queryset.filter(approved=True)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['all_questions'] = Question.objects.all()
+        context['all_questions'] = self.get_queryset()
         return context
+
+
+def approve_question(request, pk):
+    if request.method == 'POST':
+        question = Question.objects.get(pk=pk)
+        question.approved = True
+        question.save()
+
+    return redirect('qu-list')
+
+
+def delete_question(request, pk):
+    if request.method == 'POST':
+        question = get_object_or_404(Question, pk=pk)
+        question.delete()
+
+    return redirect('qu-list')
 
 
 class CreateQuestion(LoginRequiredMixin, CreateView):
@@ -33,3 +52,9 @@ class CreateQuestion(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('dashboard', kwargs={'pk': self.request.user.pk})
+
+
+class DetailsQuestionView(LoginRequiredMixin, DetailView):
+    model = Question
+    template_name = 'forum/qu-details.html'
+    context_object_name = 'question'

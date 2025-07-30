@@ -32,14 +32,20 @@
             <div class="container d-flex-col-cent gap15">
                 {% if user_questions %}
                     <h2>Your Questions:</h2>
-
-                    <ul class="qu_list">
+                    <ul class="qu-container">
                         {% for qu in user_questions %}
-                            <li>Title: {{ qu.title }}</li>
-                            <li>Content: {{ qu.content }}</li>
+
+                            <li>
+                                <a href="{% url 'qu-details' qu.pk %}">
+                                    <div class="blur-background question-li">
+                                        <strong>Created at:</strong> {{ qu.created }},
+                                        <strong>Title:</strong> {{ qu.title }},
+                                    </div>
+                                </a>
+                            </li>
+
                         {% endfor %}
                     </ul>
-
                 {% else %}
                     <h2>You dont have any questions yet.</h2>
                     <a href="{% url 'qu-create' %}" class="glow-on-hover d-flex-col-cent">Ask Question</a>
