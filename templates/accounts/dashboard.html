@@ -4,17 +4,19 @@
 {% block content %}
     <div class="dashboard-container d-flex-col-cent background-img">
         <h2 class="title">Hello {{ user.profile.username }}</h2>
-        <section>
+        <section class="wt-section">
             <div class="container d-flex-col-cent gap15">
                 {% if workouts %}
                     <h2>Your Workouts:</h2>
 
-                    <ul class="wt-list">
+                    <ul class="wt-container">
                         {% for workout in workouts %}
                             <li>
-                                <strong>{{ workout.created }}</strong>
-                                <strong>{{ workout.workout_type }}</strong>
-                                <strong>{{ workout.exercises.count }}</strong>
+                                <div class="blur-background question-li d-flex-sp-between">
+                                    <strong>{{ workout.created }}</strong>
+                                    <p><strong>Type:</strong> {{ workout.workout_type }}</p>
+                                    <strong>{{ workout.muscle_group }}</strong>
+                                </div>
                             </li>
                         {% endfor %}
                     </ul>
@@ -28,18 +30,18 @@
 
         <hr class="hr-line">
 
-        <section>
+        <section class="qu-section">
             <div class="container d-flex-col-cent gap15">
                 {% if user_questions %}
-                    <h2>Your Questions:</h2>
+                    <h2 class="title">Your Questions:</h2>
                     <ul class="qu-container">
                         {% for qu in user_questions %}
 
                             <li>
                                 <a href="{% url 'qu-details' qu.pk %}">
-                                    <div class="blur-background question-li">
-                                        <strong>Created at:</strong> {{ qu.created }},
-                                        <strong>Title:</strong> {{ qu.title }},
+                                    <div class="blur-background question-li d-flex-sp-between user-qu">
+                                        <p><strong>Title:&nbsp;</strong> {{ qu.title }}, &nbsp;</p>
+                                        <p> {{ qu.created }} </p>
                                     </div>
                                 </a>
                             </li>

@@ -27,3 +27,21 @@ class Question(TimeStampedModel):
         permissions = [
             ('approve_question', 'Can approve question'),
         ]
+
+class Answer(TimeStampedModel):
+    question = models.ForeignKey(
+        'Question',
+        on_delete=models.CASCADE,
+        related_name='answers'
+    )
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+        related_name='answers',
+    )
+    content = models.TextField(
+        verbose_name='Your Answer'
+    )
+
+    def __str__(self):
+        return f'Answer by {self.user.email} on "{self.question.title}"'

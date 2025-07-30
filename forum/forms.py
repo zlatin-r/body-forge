@@ -1,6 +1,6 @@
 from django import forms
 
-from forum.models import Question
+from forum.models import Question, Answer
 
 
 class QuestionBaseForm(forms.ModelForm):
@@ -11,3 +11,12 @@ class QuestionBaseForm(forms.ModelForm):
 
 class QuestionCreateForm(QuestionBaseForm):
     pass
+
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Write your answer here...'}),
+        }

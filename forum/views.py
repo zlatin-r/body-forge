@@ -3,7 +3,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView
 
-from forum.forms import QuestionCreateForm
+from forum.forms import QuestionCreateForm, AnswerForm
 from forum.models import Question
 
 
@@ -58,3 +58,26 @@ class DetailsQuestionView(LoginRequiredMixin, DetailView):
     model = Question
     template_name = 'forum/qu-details.html'
     context_object_name = 'question'
+    form_class = AnswerForm
+
+    def get_success_url(self):
+        return reverse_lazy('qu-details', kwargs={'pk': self.object.pk})
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.question = self.object
+            answer.user = self.request.user
+            answer.save()
+            return redirect(self.get_success_url())
+        else:
+            return self.form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.get_form()
+        context['answers'] = self.object.answers.all()
+        return context

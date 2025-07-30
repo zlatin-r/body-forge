@@ -5,7 +5,6 @@
     margin: 15px 0;
     padding: 20px;
     text-align: center;
-
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer; /* Indicate it's clickable */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial subtle shadow */
@@ -17,9 +16,9 @@
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
 }
 
-.qu-container {
+.qu-container,
+.wt-container {
     width: 80%;
-    min-height: 400px;
     color: var(--smoke-white, #f3f4f6);
     font-size: 28px;
     margin: 20px;

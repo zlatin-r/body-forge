@@ -35,6 +35,11 @@
     align-items: center;
 }
 
+.d-flex-sp-between {
+    display: flex;
+    justify-content: space-between;
+}
+
 .background-img {
     background-image: url("/static/images/background_images/background.png");
     background-size: cover;
@@ -199,7 +204,8 @@
 
 /* Input fields */
 .input-field input,
-.input-field textarea {
+.input-field textarea,
+.qu-content {
     background: none;
     font-size: 1.1rem;
     color: var(--smoke-white);
@@ -213,7 +219,7 @@
 
 .input-field input:focus,
 .input-field textarea:focus {
-    border-color: var(--primary-blue); /* Change border color on focus */
+    border-color: var(--primary-blue);
     outline: none;
     position: relative;
     z-index: 1;

@@ -1,35 +1,82 @@
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block content %}#}
+{#    <div class="background-img d-flex-col-cent">#}
+{#        <div class="qu-container blur-background d-flex-col-cent">#}
+{##}
+{#            <label for="qu-content">Title: {{ question.title }}</label>#}
+{#            <p class="qu-content" id="qu-content">{{ question.content }}</p>#}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="btn-container d-flex gap25">#}
+{#            {% if perms.forum.approve_question and not question.approved %}#}
+{#                <a class="glow-on-hover d-flex-col-cent"#}
+{#                   onclick="event.preventDefault(); document.getElementById('approve-form').submit()">Approve Question#}
+{#                </a>#}
+{##}
+{#                <form id="delete-form" method="post" action="{% url 'qu-delete' question.pk %}">#}
+{#                    {% csrf_token %}#}
+{#                    <button type="submit" class="red-glow-on-hover">Delete Question</button>#}
+{#                </form>#}
+{##}
+{#                <form id="approve-form" style="display: none;" method="post"#}
+{#                      action="{% url 'qu-approve' question.pk %}">#}
+{#                    {% csrf_token %}#}
+{#                </form>#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#        <div class="btn-container d-flex gap25">#}
+{#            <a href="">Answer</a>#}
+{#            <a href="javascript:history.back()" class="red-glow-on-hover d-flex-col-cent">Back</a>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
     <div class="background-img d-flex-col-cent">
         <div class="qu-container blur-background d-flex-col-cent">
-
-            <p><strong>Asked by:</strong> {{ question.user.profile.username }}</p>
-            <p><strong>Created:</strong> {{ question.created }}</p>
-
-            <label for="qu-content">{{ question.title }}</label>
+            <label for="qu-content">Title: {{ question.title }}</label>
             <p class="qu-content" id="qu-content">{{ question.content }}</p>
-
         </div>
 
-        <div class="btn-container d-flex gap25">
-            {% if perms.forum.approve_question and not question.approved %}
-                <a class="glow-on-hover d-flex-col-cent"
-                   onclick="event.preventDefault(); document.getElementById('approve-form').submit()">Approve Question
-                </a>
+        {% if perms.forum.approve_question and not question.approved %}
+            <form method="post" action="{% url 'qu-approve' question.pk %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="glow-on-hover">Approve Question</button>
+            </form>
 
-                <form id="delete-form" method="post" action="{% url 'qu-delete' question.pk %}">
-                    {% csrf_token %}
-                    <button type="submit" class="red-glow-on-hover">Delete Question</button>
-                </form>
+            <form method="post" action="{% url 'qu-delete' question.pk %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="red-glow-on-hover">Delete Question</button>
+            </form>
+        {% endif %}
 
-                <form id="approve-form" style="display: none;" method="post"
-                      action="{% url 'qu-approve' question.pk %}">
-                    {% csrf_token %}
-                </form>
-            {% endif %}
+        <div class="qu-container blur-background d-flex-col-cent">
+            <h3>Answers</h3>
+            {% for answer in answers %}
+                <div class="answer-block">
+                    <p><strong>{{ answer.user.profile.username }}</strong> answered:</p>
+                    <p>{{ answer.content }}</p>
+                    <small>At {{ answer.created }}</small>
+                </div>
+            {% empty %}
+                <p>No answers yet. Be the first to answer.</p>
+            {% endfor %}
         </div>
+
+        <form method="post" class="answer-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="glow-on-hover">Submit Answer</button>
+        </form>
+
         <a href="javascript:history.back()" class="red-glow-on-hover d-flex-col-cent">Back</a>
     </div>
 {% endblock %}
