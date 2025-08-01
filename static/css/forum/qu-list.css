@@ -1,13 +1,13 @@
 .question-li {
     width: 100%;
-    border: 1px solid rgba(75, 85, 99, 0.7); /* Subtle border */
+    border: 1px solid rgba(75, 85, 99, 0.7);
     border-radius: 10px;
     margin: 15px 0;
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer; /* Indicate it's clickable */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial subtle shadow */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .question-li:hover {

@@ -13,7 +13,7 @@ class QuestionCreateForm(QuestionBaseForm):
     pass
 
 
-class AnswerForm(forms.ModelForm):
+class AnswerCreateForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['content']

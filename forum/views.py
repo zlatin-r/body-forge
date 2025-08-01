@@ -3,8 +3,8 @@ from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView
 
-from forum.forms import QuestionCreateForm, AnswerForm
-from forum.models import Question
+from forum.forms import QuestionCreateForm, AnswerCreateForm
+from forum.models import Question, Answer
 
 
 class ListQuestionsView(ListView, PermissionRequiredMixin):
@@ -58,26 +58,32 @@ class DetailsQuestionView(LoginRequiredMixin, DetailView):
     model = Question
     template_name = 'forum/qu-details.html'
     context_object_name = 'question'
-    form_class = AnswerForm
-
-    def get_success_url(self):
-        return reverse_lazy('qu-details', kwargs={'pk': self.object.pk})
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        form = self.get_form()
-
-        if form.is_valid():
-            answer = form.save(commit=False)
-            answer.question = self.object
-            answer.user = self.request.user
-            answer.save()
-            return redirect(self.get_success_url())
-        else:
-            return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = self.get_form()
         context['answers'] = self.object.answers.all()
+        return context
+
+
+class AnswerCreateView(LoginRequiredMixin, CreateView):
+    model = Answer
+    form_class = AnswerCreateForm
+    template_name = 'forum/an-create.html'
+    context_object_name = 'answer'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.question = get_object_or_404(Question, pk=kwargs['question_pk'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.question = self.question
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('qu-details', kwargs={'pk': self.question.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['question'] = self.question
         return context

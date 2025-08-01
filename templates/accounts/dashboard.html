@@ -4,10 +4,13 @@
 {% block content %}
     <div class="dashboard-container d-flex-col-cent background-img">
         <h2 class="title">Hello {{ user.profile.username }}</h2>
+
+        <hr class="hr-line">
+
         <section class="wt-section">
             <div class="container d-flex-col-cent gap15">
                 {% if workouts %}
-                    <h2>Your Workouts:</h2>
+                    <h2 class="second-title">Your Workouts:</h2>
 
                     <ul class="wt-container">
                         {% for workout in workouts %}
@@ -39,7 +42,7 @@
 
                             <li>
                                 <a href="{% url 'qu-details' qu.pk %}">
-                                    <div class="blur-background question-li d-flex-sp-between user-qu">
+                                    <div class="blur-background question-li d-flex-sp-between">
                                         <p><strong>Title:&nbsp;</strong> {{ qu.title }}, &nbsp;</p>
                                         <p> {{ qu.created }} </p>
                                     </div>

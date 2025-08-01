@@ -3,30 +3,32 @@
 
 {% block content %}
     <div class="background-img d-flex-col-cent">
-        <ul class="qu-container">
-            {% for qu in all_questions %}
+        <div class="content-stack-grow">
+            <ul class="qu-container">
+                {% for qu in all_questions %}
 
-                <li>
-                    <a href="{% url 'qu-details' qu.pk %}">
-                        <div class="blur-background question-li">
-                            Question by: {{ qu.user.profile.username }},
-                            Title: {{ qu.title }},
-                            Created at: {{ qu.created }}
+                    <li>
+                        <a href="{% url 'qu-details' qu.pk %}">
+                            <div class="blur-background question-li">
+                                Question by: {{ qu.user.profile.username }},
+                                Title: {{ qu.title }},
+                                Created at: {{ qu.created }}
 
-                            {% if perms.forum.approve_question %}
-                                {% if qu.approved %}
-                                    <p style="color: green;">Approved</p>
-                                {% else %}
-                                    <p style="color: red;">Pending Approval</p>
+                                {% if perms.forum.approve_question %}
+                                    {% if qu.approved %}
+                                        <p style="color: green;">Approved</p>
+                                    {% else %}
+                                        <p style="color: red;">Pending Approval</p>
+                                    {% endif %}
                                 {% endif %}
-                            {% endif %}
-                        </div>
-                    </a>
-                </li>
+                            </div>
+                        </a>
+                    </li>
 
-            {% empty %}
-                <h2>No Questions yet.</h2>
-            {% endfor %}
-        </ul>
+                {% empty %}
+                    <h2>No Questions yet.</h2>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}

@@ -23,6 +23,11 @@
     display: flex;
 }
 
+.d-flex-al-center {
+    display: flex;
+    align-items: center;
+}
+
 .d-flex-col {
     display: flex;
     flex-direction: column;
@@ -38,6 +43,7 @@
 .d-flex-sp-between {
     display: flex;
     justify-content: space-between;
+
 }
 
 .background-img {
@@ -83,6 +89,25 @@
     position: relative;
     display: flex;
     justify-content: center;
+    color: var(--smoke-white);
+}
+
+.btn-container {
+    display: flex;
+    margin: 25px;
+    gap: 25px;
+}
+
+.content-stack-grow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Default spacing between major blocks */
+    min-width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    padding: 20px;
+    margin-top: 100px;
+    box-sizing: border-box;
     color: var(--smoke-white);
 }
 
@@ -204,8 +229,7 @@
 
 /* Input fields */
 .input-field input,
-.input-field textarea,
-.qu-content {
+.input-field textarea {
     background: none;
     font-size: 1.1rem;
     color: var(--smoke-white);

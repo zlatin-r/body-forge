@@ -5,11 +5,11 @@
 {% block content %}
     <h4 class="wt-info second-title">Workout {{ workout.workout_type }} Created: {{ workout.created }}</h4>
     <div class="background-img d-flex-col-cent">
-        <div class="container d-flex-col-cent">
+        <div class="content-stack-grow d-flex-col-cent">
             <input type="hidden" id="workoutPkInput" value="{{ workout.pk }}">
 
-            <div class="container blur-background d-flex-col-cent gap15">
-                <section class="wt-exercises container d-flex-col-cent gap25">
+            <div class="content-stack-grow blur-background d-flex-col-cent gap15">
+                <section class="wt-exercises d-flex-col-cent gap25">
                     {% if exercises %}
                         <label for="exercisesList" class="second-title">Select Exercise:</label>
 
