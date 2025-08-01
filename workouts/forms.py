@@ -44,22 +44,18 @@ class CreateExerciseForm(forms.ModelForm):
         if self.user:
             self.fields['muscle_group'].queryset = MuscleGroup.objects.filter(user=self.user)
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     name = cleaned_data.get('name')
-    #     muscle_group = cleaned_data.get('muscle_group')
-    #
-    #     if name and muscle_group:
-    #         if Exercise.objects.filter(user=self.user, name__iexact=name, muscle_group=muscle_group).exists():
-    #             raise ValidationError("You already have an exercise with this name and muscle group.")
-    #
-    #     return cleaned_data
-
 
 class CreateMuscleGroupForm(forms.ModelForm):
     class Meta:
         model = MuscleGroup
         fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'required': True,
+                'maxlength': 100,
+                'placeholder': 'Enter muscle group name...'
+            })
+        }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)

@@ -2,60 +2,62 @@
 {% load static %}
 
 {% block content %}
-    <div class="dashboard-container d-flex-col-cent background-img">
-        <h2 class="title">Hello {{ user.profile.username }}</h2>
+    <div class="d-flex-col-cent background-img">
+        <div class="content-stack-grow">
+            <h2 class="title">Hello {{ user.profile.username }}</h2>
 
-        <hr class="hr-line">
+            <hr class="hr-line">
 
-        <section class="wt-section">
-            <div class="container d-flex-col-cent gap15">
-                {% if workouts %}
-                    <h2 class="second-title">Your Workouts:</h2>
+            <section class="wt-section">
+                <div class="container d-flex-col-cent gap15">
+                    {% if workouts %}
+                        <h2 class="second-title">Your Workouts:</h2>
 
-                    <ul class="wt-container">
-                        {% for workout in workouts %}
-                            <li>
-                                <div class="blur-background question-li d-flex-sp-between">
-                                    <strong>{{ workout.created }}</strong>
-                                    <p><strong>Type:</strong> {{ workout.workout_type }}</p>
-                                    <strong>{{ workout.muscle_group }}</strong>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-
-                {% else %}
-                    <h2>You dont have any workouts yet.</h2>
-                    <a href="{% url 'wt-create' %}" class="glow-on-hover d-flex-col-cent">Start Workout</a>
-                {% endif %}
-            </div>
-        </section>
-
-        <hr class="hr-line">
-
-        <section class="qu-section">
-            <div class="container d-flex-col-cent gap15">
-                {% if user_questions %}
-                    <h2 class="title">Your Questions:</h2>
-                    <ul class="qu-container">
-                        {% for qu in user_questions %}
-
-                            <li>
-                                <a href="{% url 'qu-details' qu.pk %}">
+                        <ul class="wt-container">
+                            {% for workout in workouts %}
+                                <li>
                                     <div class="blur-background question-li d-flex-sp-between">
-                                        <p><strong>Title:&nbsp;</strong> {{ qu.title }}, &nbsp;</p>
-                                        <p> {{ qu.created }} </p>
+                                        <strong>{{ workout.created }}</strong>
+                                        <p><strong>Type:</strong> {{ workout.workout_type }}</p>
+                                        <strong>{{ workout.muscle_group }}</strong>
                                     </div>
-                                </a>
-                            </li>
+                                </li>
+                            {% endfor %}
+                        </ul>
 
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <h2>You dont have any questions yet.</h2>
-                    <a href="{% url 'qu-create' %}" class="glow-on-hover d-flex-col-cent">Ask Question</a>
-                {% endif %}
-            </div>
-        </section>
+                    {% else %}
+                        <h2>You dont have any workouts yet.</h2>
+                        <a href="{% url 'wt-create' %}" class="glow-on-hover d-flex-col-cent">Start Workout</a>
+                    {% endif %}
+                </div>
+            </section>
+
+            <hr class="hr-line">
+
+            <section class="qu-section">
+                <div class="container d-flex-col-cent gap15">
+                    {% if user_questions %}
+                        <h2 class="title">Your Questions:</h2>
+                        <ul class="qu-container">
+                            {% for qu in user_questions %}
+
+                                <li>
+                                    <a href="{% url 'qu-details' qu.pk %}">
+                                        <div class="blur-background question-li d-flex-sp-between">
+                                            <p><strong>Title:&nbsp;</strong> {{ qu.title }}, &nbsp;</p>
+                                            <p> {{ qu.created }} </p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <h2>You dont have any questions yet.</h2>
+                        <a href="{% url 'qu-create' %}" class="glow-on-hover d-flex-col-cent">Ask Question</a>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
     </div>
 {% endblock %}
