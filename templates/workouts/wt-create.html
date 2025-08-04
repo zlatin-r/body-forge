@@ -13,7 +13,7 @@
 
                 <section class="wt-type-section d-flex-col-cent gap25">
                     {% if wt_types %}
-                        <label class="second-title" for="workoutType">Select Workout Type:</label>
+                        <label class="second-title" for="workoutType">Select a Workout Type:</label>
 
                         <select name="workout_type" id="workoutType">
                             {% for wt in wt_types %}
@@ -22,20 +22,19 @@
                         </select>
 
                         <div class="btn-container d-flex gap25">
-                            <a href="{% url 'wt-type-create' %}" class="glow-on-hover d-flex-col-cent">Add Type</a>
+                            <a href="{% url 'wt-type-create' %}" class="glow-on-hover d-flex-col-cent">Add a New Workout Type</a>
                             <button type="button" id="deleteWtBtn" class="red-glow-on-hover danger-btn">
-                                Delete Selected Type
+                                Delete Selected Workout Type
                             </button>
                         </div>
 
                         <hr class="hr-line">
 
-                        <button type="submit" class="glow-on-hover">Start Workout</button>
+                        <button type="submit" class="glow-on-hover">Start Your Workout</button>
 
                     {% else %}
-                        <p class="second-title">You Dont Have Any Types.</p>
-                        <a href="{% url 'wt-type-create' %}" class="glow-on-hover d-flex-col-cent">Add new workout
-                            type</a>
+                        <p class="second-title">You don't have any workout types yet.</p>
+                        <a href="{% url 'wt-type-create' %}" class="glow-on-hover d-flex-col-cent">Create Your First Workout Type</a>
                     {% endif %}
 
                 </section>

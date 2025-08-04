@@ -4,14 +4,14 @@
 {% block content %}
     <div class="d-flex-col-cent background-img">
         <div class="content-stack-grow">
-            <h2 class="title">Hello {{ user.profile.username }}</h2>
+            <h2 class="title">Welcome back, {{ user.profile.username }}!</h2>
 
             <hr class="hr-line">
 
             <section class="wt-section">
                 <div class="container d-flex-col-cent gap15">
                     {% if workouts %}
-                        <h2 class="second-title">Your Workouts:</h2>
+                        <h2 class="second-title">Your Recent Workouts:</h2>
 
                         <ul class="wt-container">
                             {% for workout in workouts %}
@@ -26,8 +26,8 @@
                         </ul>
 
                     {% else %}
-                        <h2>You dont have any workouts yet.</h2>
-                        <a href="{% url 'wt-create' %}" class="glow-on-hover d-flex-col-cent">Start Workout</a>
+                        <h2>Ready to train?</h2>
+                        <a href="{% url 'wt-create' %}" class="glow-on-hover d-flex-col-cent">Start a New Workout</a>
                     {% endif %}
                 </div>
             </section>
@@ -53,8 +53,8 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <h2>You dont have any questions yet.</h2>
-                        <a href="{% url 'qu-create' %}" class="glow-on-hover d-flex-col-cent">Ask Question</a>
+                        <h2>Have a question?</h2>
+                        <a href="{% url 'qu-create' %}" class="glow-on-hover d-flex-col-cent">Ask the Community</a>
                     {% endif %}
                 </div>
             </section>

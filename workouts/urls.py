@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from workouts.views import (
     CreateWorkoutView, CreateWorkoutTypeView, DeleteWorkoutTypeView, DetailsWorkoutView, CreateExerciseView,
-    CreateMuscleGroupView, DeleteMuscleGroupView, DeleteExerciseView, CreateSetView,
+    CreateMuscleGroupView, DeleteMuscleGroupView, DeleteExerciseView, CreateSetView, WorkoutViewSet,
 )
 
 urlpatterns = [
@@ -21,4 +21,9 @@ urlpatterns = [
             path('add-set/', CreateSetView.as_view(), name='set-create'),
         ])),
     ])),
+
+#     API
+    path('api/', include([
+        path('all-workouts/', WorkoutViewSet.as_view(), name='api-workouts'),
+    ]))
 ]

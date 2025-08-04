@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <h4 class="wt-info second-title">Workout {{ workout.workout_type }} Created: {{ workout.created }}</h4>
+    <h4 class="wt-info second-title">{{ workout.workout_type }} Workout on {{ workout.created|date:"F d, Y" }}</h4>
     <div class="background-img d-flex-col-cent">
         <div class="content-stack-grow d-flex-col-cent">
             <input type="hidden" id="workoutPkInput" value="{{ workout.pk }}">
@@ -11,7 +11,7 @@
             <div class="container blur-background d-flex-col-cent gap15">
                 <section class="wt-exercises d-flex-col-cent gap25">
                     {% if exercises %}
-                        <label for="exercisesList" class="second-title">Select Exercise:</label>
+                        <label for="exercisesList" class="second-title">Select an Exercise:</label>
 
                         <select name="exercises" id="exercisesList">
                             {% for ex in exercises %}
@@ -19,13 +19,10 @@
                             {% endfor %}
                         </select>
 
-                        <button type="button" id="startExerciseBtn" class="glow-on-hover d-flex-col-cent">Start Selected
-                            Exercise
-                        </button>
+                        <button type="button" id="startExerciseBtn" class="glow-on-hover d-flex-col-cent">Start Selected Exercise</button>
 
                         <div class="btn-container d-flex gap25">
-                            <a href="{% url 'ex-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add
-                                new exercise</a>
+                            <a href="{% url 'ex-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add a New Exercise</a>
                             <button type="button" id="deleteExerciseBtn" class="red-glow-on-hover danger-btn">
                                 Delete Selected Exercise
                             </button>
@@ -34,7 +31,7 @@
                         <hr class="hr-line">
 
                         <section class="exercise-logs">
-                            <h2>Conducted Exercises and Sets</h2>
+                            <h2>Workout Log</h2>
                             {% if exercises %}
                                 {% for exercise in exercises %}
                                     <div class="exercise-log">
@@ -43,29 +40,25 @@
                                         {% if exercise.sets.all %}
                                             <ul>
                                                 {% for set in exercise.sets.all %}
-                                                    <li>Repetitions: {{ set.repetitions }}, Weight: {{ set.weight }}
-                                                        kg
-                                                    </li>
+                                                    <li>Reps: {{ set.repetitions }}, Weight: {{ set.weight }} kg</li>
                                                 {% endfor %}
                                             </ul>
                                         {% else %}
-                                            <p>No sets recorded yet for this exercise.</p>
+                                            <p>No sets have been logged for this exercise yet.</p>
                                         {% endif %}
 
                                     </div>
                                 {% endfor %}
                             {% else %}
-                                <p>No exercises recorded yet.</p>
+                                <p>You haven't logged any exercises for this workout yet.</p>
                             {% endif %}
                         </section>
 
-                        <a href="{% url 'dashboard' pk=user.pk %}" class="glow-on-hover d-flex-col-cent">Finish
-                            Workout</a>
+                        <a href="{% url 'dashboard' pk=user.pk %}" class="glow-on-hover d-flex-col-cent">Finish and Save Workout</a>
 
                     {% else %}
-                        <p class="second-title">You Dont Have Any Exercises.</p>
-                        <a href="{% url 'ex-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add
-                            new exercise</a>
+                        <p class="second-title">You haven't added any exercises to this workout yet.</p>
+                        <a href="{% url 'ex-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add Your First Exercise</a>
                     {% endif %}
                 </section>
             </div>

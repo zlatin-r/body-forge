@@ -9,8 +9,8 @@
                 {% csrf_token %}
 
                 <div class="input-field">
-                    <h4 class="label">Exercise Muscle Group Name:</h4>
-                    {{ form.name|placeholder:"Enter here" }}
+                    <h4 class="label">Muscle Group Name:</h4>
+                    {{ form.name|placeholder:"e.g., Chest, Back, Legs" }}
                     <div class="error-field fade-effect">
                         {{ form.name.errors }}
                     </div>
@@ -19,8 +19,8 @@
                 <hr class="hr-line">
 
                 <div class="btn-container d-flex gap25">
-                    <button type="submit" class="glow-on-hover">Create</button>
-                    <a href="{% url 'ex-create' workout_pk=workout_pk %}" class="red-glow-on-hover d-flex-col-cent">Back</a>
+                    <button type="submit" class="glow-on-hover">Save Muscle Group</button>
+                    <a href="{% url 'ex-create' workout_pk=workout_pk %}" class="red-glow-on-hover d-flex-col-cent">Back to Exercise</a>
                 </div>
 
             </form>

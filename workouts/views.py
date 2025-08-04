@@ -3,11 +3,15 @@ from django.http import JsonResponse, request
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from common.mixins import UserObjectOwnerMixin
 from workouts.forms import (CreateWorkoutForm, CreateWorkoutTypeForm, CreateExerciseForm, CreateMuscleGroupForm,
                             CreateSetForm, )
 from workouts.models import Workout, WorkoutType, Exercise, MuscleGroup, ExerciseSet
+from workouts.serializers import WorkoutSerializer
 
 
 class CreateWorkoutView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
@@ -170,5 +174,11 @@ class CreateSetView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('wt-details', kwargs={'workout_pk': self.workout.pk})
-#
-#
+
+
+class WorkoutViewSet(APIView):
+    async def get(self, req):
+        workouts = [workout async for workout in Workout.objects.all()]
+        serializer = WorkoutSerializer(workouts, many=True)
+        return Response({'workouts': serializer.data})
+

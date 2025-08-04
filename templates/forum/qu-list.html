@@ -10,15 +10,15 @@
                     <li>
                         <a href="{% url 'qu-details' qu.pk %}">
                             <div class="blur-background question-li">
-                                Question by: {{ qu.user.profile.username }},
-                                Title: {{ qu.title }},
-                                Created at: {{ qu.created }}
+                                <p><strong>Question by:</strong> {{ qu.user.profile.username }}</p>
+                                <p><strong>Title:</strong> {{ qu.title }}</p>
+                                <p><strong>Posted on:</strong> {{ qu.created }}</p>
 
                                 {% if perms.forum.approve_question %}
                                     {% if qu.approved %}
-                                        <p style="color: green;">Approved</p>
+                                        <p style="color: green;">Status: Approved</p>
                                     {% else %}
-                                        <p style="color: red;">Pending Approval</p>
+                                        <p style="color: red;">Status: Pending Approval</p>
                                     {% endif %}
                                 {% endif %}
                             </div>
@@ -26,7 +26,9 @@
                     </li>
 
                 {% empty %}
-                    <h2>No Questions yet.</h2>
+                    <h2>The forum is quiet right now.</h2>
+                    <p>Be the first to ask a question and get the conversation started!</p>
+                    <a href="{% url 'qu-create' %}" class="glow-on-hover d-flex-col-cent">Ask a Question</a>
                 {% endfor %}
             </ul>
         </div>

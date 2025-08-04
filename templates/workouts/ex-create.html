@@ -10,7 +10,7 @@
 
                 <div class="input-field">
                     <h4 class="label">Exercise Name:</h4>
-                    {{ form.name|placeholder:"Enter here" }}
+                    {{ form.name|placeholder:"e.g., Bench Press, Squats" }}
                     <div class="error-field fade-effect">
                         {{ form.non_field_errors }}
                         {{ form.name.errors }}
@@ -18,7 +18,7 @@
                 </div>
 
                 {% if muscle_groups %}
-                    <label for="muscleGroupsList" class="second-title">Select Muscle Group:</label>
+                    <label for="muscleGroupsList" class="second-title">Select a Muscle Group:</label>
 
                     <select name="muscle_group" id="muscleGroupsList">
                         {% for mg in muscle_groups %}
@@ -27,27 +27,25 @@
                     </select>
 
                     <div class="btn-container d-flex gap25">
-                        <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add
-                            New Muscle Group</a>
+                        <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add a New Muscle Group</a>
                         <button type="button" id="deleteMgBtn" class="red-glow-on-hover">
-                            Delete Selected Group
+                            Delete Selected Muscle Group
                         </button>
                     </div>
 
                 {% else %}
-                    <p>You don't have any muscle groups yet.</p>
+                    <p>You haven't added any muscle groups yet.</p>
                     <div class="error-field fade-effect">
                         {{ form.muscle_group.errors }}
                     </div>
-                    <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Add New
-                        Muscle Group</a>
+                    <a href="{% url 'mg-create' workout_pk=workout.pk %}" class="glow-on-hover d-flex-col-cent">Create Your First Muscle Group</a>
                 {% endif %}
 
                 <hr class="hr-line">
 
                 <div class="btn-container d-flex gap25">
-                    <button type="submit" class="glow-on-hover">Create</button>
-                    <a href="{% url 'wt-details' workout_pk=workout.pk %}" class="red-glow-on-hover d-flex-col-cent">Back</a>
+                    <button type="submit" class="glow-on-hover">Save Exercise</button>
+                    <a href="{% url 'wt-details' workout_pk=workout.pk %}" class="red-glow-on-hover d-flex-col-cent">Back to Workout</a>
                 </div>
             </form>
         </div>

@@ -9,23 +9,23 @@
                 {% csrf_token %}
 
                 <div class="input-field">
-                    <h4 class="label">Repetitions:</h4>
-                    {{ form.repetitions|placeholder:"Enter here" }}
+                    <h4 class="label">Number of Repetitions:</h4>
+                    {{ form.repetitions|placeholder:"e.g., 12" }}
                     <div class="error-field fade-effect">
                         {{ form.repetitions.errors }}
                     </div>
                 </div>
                 <div class="input-field">
-                    <h4 class="label">Weight:</h4>
-                    {{ form.weight|placeholder:"Enter here" }}
+                    <h4 class="label">Weight (kg):</h4>
+                    {{ form.weight|placeholder:"e.g., 50" }}
                     <div class="error-field fade-effect">
                         {{ form.weight.errors }}
                     </div>
                 </div>
 
                 <div class="btn-container d-flex gap25">
-                    <button type="submit" class="glow-on-hover">Create</button>
-                    <a href="javascript:history.back()" class="red-glow-on-hover d-flex-col-cent">Back</a>
+                    <button type="submit" class="glow-on-hover">Add Set</button>
+                    <a href="javascript:history.back()" class="red-glow-on-hover d-flex-col-cent">Cancel</a>
                 </div>
             </form>
         </div>

@@ -1,86 +1,23 @@
-{#{% load placeholder_filter %}#}
-{#<div class="form-container"#}
-{#     style="background-image: url('https://placehold.co/1920x1080/2c3e50/ecf0f1?text=Answer+Form+Background');">#}
-{#    <div class="form-overlay"></div>#}
-{##}
-{#    <div class="form-wrapper">#}
-        {# Access the question object here #}
-{#        <h2 class="form-title">Answer Question: <br>"{{ question.title }}"</h2>#}
-{#        <p class="text-gray-400 text-sm mb-4">Asked by: {{ question.user.username }}</p>#}
-{#        <p class="text-gray-300 mb-6">{{ question.content }}</p>#}
-{##}
-{#        <form method="post" action="{% url 'an-create' question_pk=question.pk %}">#}
-{#            {% csrf_token %}#}
-{##}
-{#            <div class="input-field">#}
-{#                <label for="{{ form.content.id_for_label }}">Your Answer:</label>#}
-{#                {{ form.content|placeholder:"Type your answer here..." }}#}
-{#                {% if form.content.errors %}#}
-{#                    <div class="error-field">{{ form.content.errors }}</div>{% endif %}#}
-{#                {% if form.non_field_errors %}#}
-{#                    <div class="error-field">{{ form.non_field_errors }}</div>{% endif %}#}
-{#            </div>#}
-{##}
-{#            <button type="submit" class="submit-button">Submit Answer</button>#}
-{#        </form>#}
-{##}
-{#        <a href="{% url 'qu-details' pk=question.pk %}" class="back-link">Back to Question</a>#}
-{#    </div>#}
-{#</div>#}
-
-{#{% extends 'base.html' %}#}
-{#{% load placeholder_filter %}#}
-{#{% load static %}#}
-{##}
-{#{% block content %}#}
-{#    <div class="background-img d-flex-col-cent">#}
-{#        <div class="container blur-background">#}
-{#            <form class="d-flex-col-cent gap25" method="post" action="{% url 'an-create' question_pk=question.pk %}">#}
-{#                {% csrf_token %}#}
-{##}
-{#                <div class="input-field">#}
-{#                    <h4 class="label">Question Title</h4>#}
-{#                    {{ form.title|placeholder:"Enter here" }}#}
-{#                    <div class="error-field fade-effect">#}
-{#                        {{ form.title.errors }}#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="input-field">#}
-{#                    <h4 class="label">Question Details</h4>#}
-{#                    {{ form.content|placeholder:"Type here" }}#}
-{#                    <div class="error-field fade-effect">#}
-{#                        {{ form.content.errors }}#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                {{ form.non_field_errors }}#}
-{##}
-{#                <button type="submit" class="glow-on-hover">Submit</button>#}
-{#            </form>#}
-{#        </div>#}
-{#    </div>#}
-{#{% endblock %}#}
-
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
     <div class="background-img d-flex-col-cent">
         <div class="qu-container blur-background d-flex-col-cent">
-            <label for="qu-content">Title: {{ question.title }}</label>
-            <p class="qu-content" id="qu-content">{{ question.content }}</p>
+            <h2 class="second-title">{{ question.title }}</h2>
+            <p class="qu-content">{{ question.content }}</p>
         </div>
 
 
         <form method="post" class="qu-container blur-background d-flex-col-cent">
             {% csrf_token %}
             <div class="qu-content">
-                {{ form }}
+                <h4 class="label">Your Answer:</h4>
+                {{ form.content }}
             </div>
-            <button type="submit" class="glow-on-hover">Submit Answer</button>
+            <button type="submit" class="glow-on-hover">Submit Your Answer</button>
         </form>
 
-        <a href="{% url 'qu-details' pk=question.pk %}" class="red-glow-on-hover d-flex-col-cent">Back</a>
+        <a href="{% url 'qu-details' pk=question.pk %}" class="red-glow-on-hover d-flex-col-cent">Back to Question</a>
     </div>
 {% endblock %}

@@ -12,7 +12,7 @@
 
         <div class="reg-form-container d-flex-col fade-effect">
 
-            <h1 class="reg-page-title">Create Your New Account</h1>
+            <h1 class="reg-page-title">Create Your Account</h1>
 
             <form method="post" class="reg-form d-flex-col">
                 {% csrf_token %}
@@ -27,12 +27,12 @@
 
                 <div class="input-field">
                     <h4 class="label">Password:</h4>
-                    {{ form.password1|placeholder:"Enter your new password" }}
+                    {{ form.password1|placeholder:"Create a password" }}
                 </div>
 
                 <div class="input-field">
                     <h4 class="label">Confirm Password:</h4>
-                    {{ form.password2|placeholder:"Enter password again" }}
+                    {{ form.password2|placeholder:"Confirm your password" }}
                     <div class="error-field fade-effect">
                         {{ form.password2.errors }}
                     </div>
@@ -43,7 +43,7 @@
             </form>
 
             <div class="second-option-btn">
-                <span>You already have an account? Click <a href="{% url 'login' %}">here</a></span>
+                <span>Already have an account? <a href="{% url 'login' %}">Log in</a></span>
             </div>
 
         </div>

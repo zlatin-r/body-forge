@@ -12,29 +12,29 @@
 
         <div class="login-form-container d-flex-col fade-effect">
 
-            <h1 class="login-page-title">Login to your account</h1>
+            <h1 class="login-page-title">Welcome Back</h1>
 
             <form method="post" class="login-form d-flex-col">
                 {% csrf_token %}
 
                 <div class="input-field">
-                    <h4 class="label">Enter your Email:</h4>
+                    <h4 class="label">Your Email:</h4>
                     {{ form.username|placeholder:"Email" }}
                     {{ form.username.errors }}
                 </div>
 
                 <div class="input-field">
-                    <h4 class="label">Enter your password:</h4>
+                    <h4 class="label">Your Password:</h4>
                     {{ form.password|placeholder:"Password" }}
                     {{ form.password.errors }}
                 </div>
 
-                <button type="submit" class="submit-btn transition-btn-ef glow-on-hover">Login</button>
+                <button type="submit" class="submit-btn transition-btn-ef glow-on-hover">Log In</button>
 
             </form>
 
             <div class="second-option-btn">
-                <p>Don't have an account? <a href="{% url 'register' %}" class="register-link">Click here</a></p>
+                <p>Don't have an account yet? <a href="{% url 'register' %}" class="register-link">Sign up here</a></p>
             </div>
 
         </div>

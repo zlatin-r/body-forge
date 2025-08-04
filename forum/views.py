@@ -7,14 +7,13 @@ from forum.forms import QuestionCreateForm, AnswerCreateForm
 from forum.models import Question, Answer
 
 
-class ListQuestionsView(ListView, PermissionRequiredMixin):
+class ListQuestionsView(LoginRequiredMixin, ListView):
     model = Question
     template_name = 'forum/qu-list.html'
-    permission_required = 'forum.approve_question'
 
     def get_queryset(self):
         queryset = self.model.objects.all()
-        if not self.has_permission():
+        if not self.request.user.has_perm('forum.approve_question'):
             queryset = queryset.filter(approved=True)
         return queryset
 

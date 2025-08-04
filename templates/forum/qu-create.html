@@ -9,16 +9,16 @@
                 {% csrf_token %}
 
                 <div class="input-field">
-                    <h4 class="label">Question Title</h4>
-                    {{ form.title|placeholder:"Enter here" }}
+                    <h4 class="label">What is your question?</h4>
+                    {{ form.title|placeholder:"Enter your question title here" }}
                     <div class="error-field fade-effect">
                         {{ form.title.errors }}
                     </div>
                 </div>
 
                 <div class="input-field">
-                    <h4 class="label">Question Details</h4>
-                    {{ form.content|placeholder:"Type here" }}
+                    <h4 class="label">Provide more details:</h4>
+                    {{ form.content|placeholder:"Explain your question in more detail" }}
                     <div class="error-field fade-effect">
                         {{ form.content.errors }}
                     </div>
@@ -26,7 +26,7 @@
 
                 {{ form.non_field_errors }}
 
-                <button type="submit" class="glow-on-hover">Submit</button>
+                <button type="submit" class="glow-on-hover">Post Your Question</button>
             </form>
         </div>
     </div>

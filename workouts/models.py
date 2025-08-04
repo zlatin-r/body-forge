@@ -104,4 +104,4 @@ class ExerciseSet(TimeStampedModel):
         ordering = ['-created']
 
     def __str__(self):
-        return f"{self.repetitions} reps @ {self.weight} kg"
+        return f"{self.repetitions} reps @ {self.weight:.2f} kg"

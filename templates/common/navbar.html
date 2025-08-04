@@ -3,7 +3,7 @@
 <section class="navbar-container">
 
     <div class="logo-container">
-        <a href="{% url 'home' %}">
+        <a href="{% url 'home' %}" title="Body Forge Home">
             <img src="{% static '/images/logo/logo4.png' %}" alt="logo">
             <span style="color: #2e58a8"><strong>Body Forge</strong></span>
         </a>
@@ -12,9 +12,9 @@
     <div class="menu-container">
 
         <ul class="menu-items d-flex">
-            <li><a class="glow-on-hover" href="{% url 'qu-list' %}">Forum</a></li>
-            <li><a class="glow-on-hover" href="">About</a></li>
-            <li><a class="glow-on-hover" href="">Contact</a></li>
+            <li><a class="glow-on-hover" href="{% url 'qu-list' %}">Community Forum</a></li>
+            <li><a class="glow-on-hover" href="">About Us</a></li>
+            <li><a class="glow-on-hover" href="">Contact Us</a></li>
         </ul>
 
         {% if user.is_authenticated %}
@@ -34,13 +34,13 @@
             <div class="dropdown-menu hidden" id="dropdown-menu">
                 <ul>
                     <li><a href="{% url 'home' %}" class="dropdown-item">Home</a></li>
-                    <li><a href="{% url 'dashboard' pk=user.pk %}" class="dropdown-item">Dashboard</a></li>
-                    <li><a href="{% url 'qu-create' %}" class="dropdown-item">Ask Question</a></li>
-                    <li><a href="{% url 'profile-details' pk=user.pk %}" class="dropdown-item">View Profile</a></li>
+                    <li><a href="{% url 'dashboard' pk=user.pk %}" class="dropdown-item">My Dashboard</a></li>
+                    <li><a href="{% url 'qu-create' %}" class="dropdown-item">Ask a Question</a></li>
+                    <li><a href="{% url 'profile-details' pk=user.pk %}" class="dropdown-item">View My Profile</a></li>
                     <li class="dropdown-item">
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
-                            <button class="dropdown-item" type="submit">Logout</button>
+                            <button class="dropdown-item" type="submit">Log Out</button>
                         </form>
                     </li>
                 </ul>

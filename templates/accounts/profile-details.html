@@ -10,7 +10,7 @@
 
         <div class="profile-card blur-background d-flex-col-cent">
 
-            <h1 class="profile-c-title">Profile Details</h1>
+            <h1 class="profile-c-title">Your Profile</h1>
 
             <div class="profile-image fade-effect">
                 {% if object.profile.profile_picture %}
@@ -26,27 +26,27 @@
 
                 <div class="info-field-item">
                     <span class="label">Username:</span>
-                    <span class="value">{{ object.profile.username|default:"empty" }}</span>
+                    <span class="value">{{ object.profile.username|default:"Not set" }}</span>
                 </div>
 
                 <div class="info-field-item">
-                    <span class="label">First name:</span>
-                    <span class="value">{{ object.profile.first_name|default:'empty' }}</span>
+                    <span class="label">First Name:</span>
+                    <span class="value">{{ object.profile.first_name|default:'Not set' }}</span>
                 </div>
 
                 <div class="info-field-item">
-                    <span class="label">Last name:</span>
-                    <span class="value">{{ object.profile.last_name|default:'empty' }}</span>
+                    <span class="label">Last Name:</span>
+                    <span class="value">{{ object.profile.last_name|default:'Not set' }}</span>
                 </div>
 
                 <div class="body-info d-flex">
                     <div class="info-field-item">
-                        <span class="label">Height:</span>
+                        <span class="label">Height (cm):</span>
                         <span class="value">{{ object.profile.height }}</span>
                     </div>
 
                     <div class="info-field-item">
-                        <span class="label">Weight:</span>
+                        <span class="label">Weight (kg):</span>
                         <span class="value">{{ object.profile.body_weight }}</span>
                     </div>
                 </div>
