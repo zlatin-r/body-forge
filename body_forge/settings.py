@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import cloudinary
 from decouple import config, Csv
 from django.urls import reverse_lazy
 
@@ -36,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'cloudinary',
+    'cloudinary_storage',
     ] + PROJECT_APPS
 
 MIDDLEWARE = [
@@ -69,15 +72,21 @@ TEMPLATES = [
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-        "OPTIONS": {
-            "location": BASE_DIR / "media",
-        },
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': config('CLOUD_NAME'),
+#     'API_KEY': config('API_KEY'),
+#     'API_SECRET': config('API_SECRET'),
+# }
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 WSGI_APPLICATION = 'body_forge.wsgi.application'
 
@@ -143,3 +152,11 @@ AUTH_USER_MODEL = 'accounts.AppUser'
 
 LOGOUT_REDIRECT_URL = reverse_lazy('home')
 LOGIN_REDIRECT_URL = reverse_lazy('home')
+
+
+cloudinary.config(
+    cloud_name=config('CLOUD_NAME'),
+    api_key=config('API_KEY'),
+    api_secret=config('API_SECRET'),
+    secure=True
+)

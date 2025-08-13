@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
@@ -53,11 +54,12 @@ class Profile(models.Model):
         blank=True,
         null=True,
     )
-    profile_picture = models.ImageField(
-        upload_to='profile_pictures/',
+    profile_picture = CloudinaryField(
+        'image',
         blank=True,
         null=True,
     )
+
 
     def __str__(self):
         return self.username or self.user.email
