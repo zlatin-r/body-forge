@@ -86,3 +86,4 @@ class AnswerCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['question'] = self.question
         return context
+
