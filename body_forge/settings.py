@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from decouple import config
+from decouple import config, Csv
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -17,6 +17,7 @@ SECRET_KEY = config('SECRET_KEY', None)
 DEBUG = config('DEBUG', None, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', '').split(',')
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='', cast=Csv())
 
 # Application definition
 
@@ -115,7 +116,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = 'static_files'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / "mediafiles"

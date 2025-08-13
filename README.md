@@ -1,6 +1,6 @@
 # Body Forge
 
-![Body Forge Logo](https://via.placeholder.com/150)  <!-- Replace with your actual logo URL -->
+![Body Forge Logo](https://via.placeholder.com/150) <!-- Replace with your actual logo URL -->
 
 **Body Forge** is a powerful and intuitive web application built with Django, designed to help fitness enthusiasts create, track, and manage their workouts. It also features a community forum for users to connect, share knowledge, and support each other on their fitness journeys.
 
@@ -50,6 +50,8 @@ Follow these instructions to get a local copy of Body Forge up and running on yo
 *   [Python 3.11+](https://www.python.org/downloads/)
 *   [PostgreSQL](https://www.postgresql.org/download/)
 *   [Git](https://git-scm.com/downloads/)
+*   [Docker](https://www.docker.com/get-started) (for deployment with Docker Compose)
+*   [Nginx](https://nginx.org/en/download.html) (for serving static/media files in production-like environments)
 
 ### Installation
 
@@ -80,7 +82,7 @@ Follow these instructions to get a local copy of Body Forge up and running on yo
     ```
     SECRET_KEY=your_secret_key_here
     DEBUG=True
-    ALLOWED_HOSTS=127.0.0.1,localhost
+    ALLOWED_HOSTS=127.0.0.1,localhost # Ensure these are configured for CSRF protection
     ```
     Replace `your_secret_key_here` with a strong, unique secret key.
 
@@ -94,13 +96,54 @@ Follow these instructions to get a local copy of Body Forge up and running on yo
     python manage.py migrate
     ```
 
-6.  **Run the development server:**
+7.  **Run the development server:**
     ```bash
     python manage.py runserver
     ```
 
-7.  **Access the application:**
+8.  **Access the application:**
     Open your favorite web browser and navigate to `http://127.0.0.1:8000/`.
+
+---
+
+## 🐳 Deployment with Docker and Nginx
+
+For production-like environments, Body Forge can be deployed using Docker Compose with Nginx serving static and media files.
+
+### Docker Compose Setup
+
+The `docker-compose.yml` file defines an Nginx service that acts as a reverse proxy and serves static/media files.
+
+1.  **Build and run the Docker containers:**
+    ```bash
+    docker-compose up --build -d
+    ```
+
+2.  **Static and Media Files:**
+    Nginx is configured to serve static and media files directly from bind mounts.
+    *   **Static Files:** Ensure you run `python manage.py collectstatic` to gather all static files into the `static_files` directory (as defined by `STATIC_ROOT` in `settings.py`). This directory is then bind-mounted into the Nginx container.
+    *   **Media Files:** User-uploaded media files are expected in the `mediafiles` directory (as defined by `MEDIA_ROOT` in `settings.py`), which is also bind-mounted into the Nginx container.
+
+3.  **Nginx Configuration:**
+    The Nginx configuration is bind-mounted from `./nginx/nginx.conf`. Ensure this file is correctly configured to serve your Django application and the static/media files. A typical Nginx configuration for static and media files would include `location` blocks like:
+
+    ```nginx
+    # In your nginx.conf
+    location /static/ {
+        alias /usr/share/nginx/html/static_files/; # Matches STATIC_ROOT bind mount
+    }
+
+    location /media/ {
+        alias /path/to/your/project/mediafiles/; # Matches MEDIA_ROOT bind mount
+    }
+    ```
+    **Note:** Replace `/path/to/your/project/mediafiles/` with the absolute path to your `mediafiles` directory on the host machine if it's not already correctly configured in your `nginx.conf`.
+
+---
+
+## ⚡ Asynchronous Operations
+
+Body Forge is designed with potential for asynchronous operations to enhance performance, particularly for I/O-bound tasks like database queries and external API calls. Views that interact heavily with the database are candidates for conversion to `async def` functions, leveraging Django's asynchronous ORM capabilities.
 
 ---
 
