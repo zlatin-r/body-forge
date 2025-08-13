@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse, request
+from django.db.models import Sum, F
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView
-from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -28,9 +29,26 @@ class CreateWorkoutView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
         return context
 
 
+class DetailsWorkoutView(LoginRequiredMixin, DetailView):
+    model = Workout
+    template_name = 'workouts/wt-details.html'
+    context_object_name = 'workout'
+    pk_url_kwarg = 'workout_pk'
+
+    def get_queryset(self):
+        return Workout.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        workout = self.get_object()
+        context['workout'] = workout
+        context['exercises'] = self.object.exercises.all().prefetch_related('sets')
+        return context
+
+
 class StartWorkoutView(LoginRequiredMixin, DetailView):
     model = Workout
-    template_name = 'workouts/wt-start.html'
+    template_name = 'workouts/wt-create.html'
     context_object_name = 'workout'
     pk_url_kwarg = 'workout_pk'
 
@@ -44,35 +62,22 @@ class StartWorkoutView(LoginRequiredMixin, DetailView):
         context['exercises'] = self.object.exercises.all().prefetch_related('sets')
 
 
-from django.db.models import Sum, F
-from rest_framework.permissions import IsAuthenticated
-
-
-class WorkoutProgressAPIView(LoginRequiredMixin, APIView):
+class WorkoutProgressAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
-    async def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         user = request.user
 
-        # Calculate total workouts completed
-        total_workouts = await Workout.objects.filter(user=user).acount()
-
-        # Calculate total weight lifted
-        # This requires iterating through exercises and sets, which can be complex
-        # For simplicity, let's calculate total volume (reps * weight) for all sets
-        total_volume_lifted = await ExerciseSet.objects.filter(
+        total_workouts = Workout.objects.filter(user=user).count()
+        total_volume_lifted = ExerciseSet.objects.filter(
             exercise__workout__user=user
-        ).aaggregate(total_volume=Sum(F('reps') * F('weight')))
-
-        # You can add more complex calculations here, e.g., personal records, trends
+        ).aggregate(total_volume=Sum(F('repetitions') * F('weight')))
 
         data = {
             'total_workouts_completed': total_workouts,
-            'total_volume_lifted': total_volume_lifted['total_volume'] if total_volume_lifted['total_volume'] else 0,
-            # Add more progress metrics here
+            'total_volume_lifted': total_volume_lifted['total_volume'] or 0,
         }
         return Response(data)
-        return context
 
 
 class CreateWorkoutTypeView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
