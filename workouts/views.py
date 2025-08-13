@@ -62,6 +62,13 @@ class StartWorkoutView(LoginRequiredMixin, DetailView):
         context['exercises'] = self.object.exercises.all().prefetch_related('sets')
 
 
+class WorkoutViewSet(APIView):
+    def get(self, request):
+        workouts = Workout.objects.all()
+        serializer = WorkoutSerializer(workouts, many=True)
+        return Response({'workouts': serializer.data})
+
+
 class WorkoutProgressAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -209,10 +216,3 @@ class CreateSetView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('wt-details', kwargs={'workout_pk': self.workout.pk})
-
-
-class WorkoutViewSet(APIView):
-    def get(self, request):
-        workouts = Workout.objects.all()
-        serializer = WorkoutSerializer(workouts, many=True)
-        return Response({'workouts': serializer.data})

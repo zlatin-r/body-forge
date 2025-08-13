@@ -30,11 +30,11 @@
             </div>
             <p style="color: var(--smoke-white)">{{ answer.created }}</p>
         {% empty %}
-            <p>No answers yet. Be the first to share your knowledge!</p>
+            <p>No answers yet.</p>
         {% endfor %}
 
         <div class="btn-container d-flex gap25">
-            {% if user.is_authenticated and user != question.user %}
+            {% if user.is_authenticated and user != question.user and perms.forum.add_answer %}
                 <a class="glow-on-hover d-flex-col-cent" href="{% url 'an-create' question_pk=question.pk %}">Post Your Answer</a>
             {% endif %}
             <a href="{% url 'qu-list' %}" class="red-glow-on-hover d-flex-col-cent">Back to Forum</a>
