@@ -177,8 +177,7 @@ class CreateSetView(LoginRequiredMixin, CreateView):
 
 
 class WorkoutViewSet(APIView):
-    async def get(self, req):
-        workouts = [workout async for workout in Workout.objects.all()]
+    def get(self, request):
+        workouts = Workout.objects.all()
         serializer = WorkoutSerializer(workouts, many=True)
         return Response({'workouts': serializer.data})
-

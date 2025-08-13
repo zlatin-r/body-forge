@@ -1,8 +1,6 @@
-from django.contrib.auth import get_user_model, SESSION_KEY, BACKEND_SESSION_KEY, HASH_SESSION_KEY
-from django.contrib.sessions.models import Session
-from django.test import TestCase, Client, AsyncClient, TransactionTestCase
+from django.contrib.auth import get_user_model
+from django.test import TestCase, Client
 from django.urls import reverse
-from asgiref.sync import sync_to_async
 
 from workouts.models import MuscleGroup, WorkoutType, Workout, Exercise, ExerciseSet
 
