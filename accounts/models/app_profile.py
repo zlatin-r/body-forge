@@ -55,7 +55,7 @@ class Profile(models.Model):
         null=True,
     )
     profile_picture = CloudinaryField(
-        'image',
+        resource_type='image',
         blank=True,
         null=True,
     )
