@@ -14,6 +14,39 @@ The application is deployed on Azure and can be accessed at the following URL:
 
 ---
 
+## 🔌 API Endpoints
+
+Body Forge exposes the following RESTful API endpoints for programmatic access to workout data:
+
+### 🏋️ Workouts API
+
+*   **`/api/all-workouts/`**
+    *   **Methods:** `GET`, `POST`
+    *   **Description:**
+        *   `GET`: Retrieve a list of all workouts.
+        *   `POST`: Create a new workout.
+    *   **Request Body (POST):**
+        ```json
+        {
+            "title": "string",
+            "description": "string",
+            "date": "YYYY-MM-DD",
+            "duration_minutes": "integer",
+            "workout_type": "integer" // ID of the workout type
+        }
+        ```
+        *(Note: The 'user' field is automatically set based on the authenticated user and should not be included in the request body.)*
+    *   **Response Body (GET/POST):** Returns a JSON object or array of objects representing workout details.
+
+### 📈 Workout Progress API
+
+*   **`/api/progress/`**
+    *   **Methods:** `GET`
+    *   **Description:** Retrieve workout progress data. (Specific data structure depends on implementation in `WorkoutProgressAPIView`)
+    *   **Response Body (GET):** Returns a JSON object representing workout progress.
+
+---
+
 ## ✨ Features
 
 *   **👤 User Authentication & Profiles:**
@@ -115,7 +148,7 @@ Follow these instructions to get a local copy of Body Forge up and running on yo
 
 ## ⚡ Asynchronous Operations
 
-Body Forge is designed with potential for asynchronous operations to enhance performance, particularly for I/O-bound tasks like database queries and external API calls. Views that interact heavily with the database are candidates for conversion to `async def` functions, leveraging Django\'s asynchronous ORM capabilities.
+Body Forge is designed with potential for asynchronous operations to enhance performance, particularly for I/O-bound tasks like database queries and external API calls. Views that interact heavily with the database are candidates for conversion to `async def` functions, leveraging Django's asynchronous ORM capabilities.
 
 ---
 
