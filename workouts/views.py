@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse, request
+from django.db.models import Sum, F
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView
-from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -43,6 +44,40 @@ class DetailsWorkoutView(LoginRequiredMixin, DetailView):
         context['workout'] = workout
         context['exercises'] = self.object.exercises.all().prefetch_related('sets')
         return context
+
+
+class StartWorkoutView(LoginRequiredMixin, DetailView):
+    model = Workout
+    template_name = 'workouts/wt-create.html'
+    context_object_name = 'workout'
+    pk_url_kwarg = 'workout_pk'
+
+    def get_queryset(self):
+        return Workout.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        workout = self.get_object()
+        context['workout'] = workout
+        context['exercises'] = self.object.exercises.all().prefetch_related('sets')
+
+
+class WorkoutProgressAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+
+        total_workouts = Workout.objects.filter(user=user).count()
+        total_volume_lifted = ExerciseSet.objects.filter(
+            exercise__workout__user=user
+        ).aggregate(total_volume=Sum(F('repetitions') * F('weight')))
+
+        data = {
+            'total_workouts_completed': total_workouts,
+            'total_volume_lifted': total_volume_lifted['total_volume'] or 0,
+        }
+        return Response(data)
 
 
 class CreateWorkoutTypeView(LoginRequiredMixin, UserObjectOwnerMixin, CreateView):
@@ -177,8 +212,7 @@ class CreateSetView(LoginRequiredMixin, CreateView):
 
 
 class WorkoutViewSet(APIView):
-    async def get(self, req):
-        workouts = [workout async for workout in Workout.objects.all()]
+    def get(self, request):
+        workouts = Workout.objects.all()
         serializer = WorkoutSerializer(workouts, many=True)
         return Response({'workouts': serializer.data})
-

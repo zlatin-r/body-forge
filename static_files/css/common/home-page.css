@@ -1,0 +1,92 @@
+.main-container-home {
+    width: 100%;
+    height: 100vh;
+}
+
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 50px 280px 0;
+}
+
+.hero-img-container {
+    width: 700px;
+    height: 50%;
+    margin-right: 50px;
+}
+
+.hero-img-gradient-overlay {
+    position: absolute;
+    right: 260px;
+    bottom: 310px;
+    height: 15%;
+    width: 400px;
+    background: linear-gradient(to top, rgb(0, 0, 0), transparent);
+}
+
+.hero-text-container {
+    font-family: "Oxygen", sans-serif;
+    height: 50%;
+    width: 800px;
+    flex-direction: column;
+    color: white;
+    margin: 0 0 0 150px;
+}
+
+.hero-btn-container {
+    position: absolute;
+    color: white;
+    bottom: 370px;
+    left: 350px;
+}
+
+.hero-gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    height: 15%;
+    width: 100%;
+    background: linear-gradient(to top, rgb(46, 88, 168), transparent);
+}
+
+.slogan {
+    position: absolute;
+    font-family: "Great Vibes", cursive;
+    font-size: 50px;
+    font-weight: bold;
+    font-style: normal;
+    color: var(--primary-blue);
+    bottom: 220px;
+    left: 160px;
+}
+
+.about-section {
+    position: relative;
+    background-color: rgb(2, 3, 3);
+    width: 100%;
+    height: 100vh;
+    padding-top: 80px;
+}
+
+.about-gradient-overlay {
+    position: absolute;
+    top: 0;
+    height: 25%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgb(46, 88, 168), transparent);
+}
+
+.about-img-container {
+    width: 100%;
+    height: 100%;
+}
+
+.about-img-container img {
+    height: 80%;
+    object-fit: contain;
+    display: block;
+    object-position: left;
+}
