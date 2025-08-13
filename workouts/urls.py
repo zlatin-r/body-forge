@@ -25,5 +25,6 @@ urlpatterns = [
 #     API
     path('api/', include([
         path('all-workouts/', WorkoutViewSet.as_view(), name='api-workouts'),
+        path('progress/', WorkoutProgressAPIView.as_view(), name='api-workout-progress'),
     ]))
 ]
