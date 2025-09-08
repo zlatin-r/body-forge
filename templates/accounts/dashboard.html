@@ -16,11 +16,11 @@
                         <ul class="wt-container">
                             {% for workout in workouts %}
                                 <li>
-                                    <div class="blur-background question-li d-flex-sp-between">
+                                      <a href="{% url 'wt-details' workout_pk=workout.pk %}" class="blur-background question-li d-flex-sp-between">
                                         <strong>{{ workout.created }}</strong>
                                         <p><strong>Type:</strong> {{ workout.workout_type }}</p>
                                         <strong>{{ workout.muscle_group }}</strong>
-                                    </div>
+                                    </a>
                                 </li>
                             {% endfor %}
                         </ul>
