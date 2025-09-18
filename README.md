@@ -6,13 +6,6 @@
 
 ---
 
-## 🚀 Live Demo
-
-The application is deployed on Azure and can be accessed at the following URL:
-
-[body-forge.azurewebsites.net](https://body-forge.azurewebsites.net)
-
----
 
 ## 🔌 API Endpoints
 
